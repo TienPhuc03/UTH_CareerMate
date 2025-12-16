@@ -1,0 +1,5 @@
+#... các mục khác ...
+venv/
+.venv/
+env/
+.env/

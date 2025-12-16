@@ -1,20 +1,11 @@
-from typing import Union
-
+# main.py
 from fastapi import FastAPI
+from modules.items import router as item_router
+# from modules.users import router as user_router # Sẽ thêm sau
 
-app = FastAPI()
+app = FastAPI(title="My Monolithic FastAPI App")
 
-items =[]
+# Gắn router. Thêm prefix để tạo ra URL hoàn chỉnh: /api/v1/items/...
+app.include_router(item_router.router, prefix="/api/v1/items", tags=["Items"])
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-@app.get("/items/")
-def create_item(item:str):
-    items.append(item)
-    return items
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+# app.include_router(user_router.router, prefix="/api/v1/users", tags=["Users"])

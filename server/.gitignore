@@ -1,5 +1,10 @@
-#... các mục khác ...
-venv/
-.venv/
-env/
-.env/
+# Python
+__pycache__/
+.env
+
+# Node
+node_modules/
+dist/
+
+# Không ignore client
+# client/

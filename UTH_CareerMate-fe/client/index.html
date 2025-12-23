@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Sinh Viên</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #eaf0fa;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #34495e;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background-color: #3498db;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 30px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>ĐIỀN THÔNG TIN SINH VIÊN</h1>
+
+    <form>
+      <label>Họ và tên</label>
+      <input type="text" required>
+
+      <label>Mã sinh viên</label>
+      <input type="text" required>
+
+      <label>Ngày sinh</label>
+      <input type="date" required>
+
+      <label>Giới tính</label>
+      <select>
+        <option>Nam</option>
+        <option>Nữ</option>
+        <option>Khác</option>
+      </select>
+
+      <label>Quê quán</label>
+      <input type="text" placeholder="Ví dụ: Hồ Chí Minh">
+
+      <label>Trường</label>
+      <input type="text" placeholder="Ví dụ: Đại học Giao thông Vận tải (UTH)">
+
+      <label>Lớp</label>
+      <input type="text">
+
+      <label>Khoa</label>
+      <select>
+        <option>Công nghệ thông tin</option>
+        <option>Hệ thống thông tin</option>
+        <option>Kỹ thuật phần mềm</option>
+        <option>An toàn thông tin</option>
+        <option>Kinh tế</option>
+      </select>
+
+      <label>Số điện thoại</label>
+      <input type="tel" placeholder="Ví dụ: 0346596681">
+
+      <label>Email</label>
+      <input type="email" placeholder="abc@example.com">
+
+      <label>Mục tiêu nghề nghiệp</label>
+      <textarea rows="4" required></textarea>
+
+      <label>Kinh Nghiệm (Nếu có)</label>
+      <textarea rows="4"></textarea>
+
+      <label>Chứng chỉ tiếng anh (Nếu có)</label>
+      <input type="text">
+
+      <button type="submit">GỬI THÔNG TIN</button>
+    </form>
+  </div>
+</body>
+</html>

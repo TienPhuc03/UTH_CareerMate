@@ -1,22 +1,21 @@
-from typing import Union
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from typing import List
+from database.session import get_db #
+from . import schemas, models
 
-from fastapi import FastAPI
-from fastapi import APIRouter
+router = APIRouter(prefix="/jobs", tags=["Jobs"])
 
-app = FastAPI()
-router = APIRouter()
+@router.get("/", response_model=List[schemas.JobResponse])
+def search_jobs(keyword: str = "", db: Session = Depends(get_db)):
+    # UC 23: Search for jobs
+    return db.query(models.Job).filter(models.Job.title.contains(keyword)).all()
 
-items =[]
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-@app.get("/items/")
-def create_item(item:str):
-    items.append(item)
-    return items
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@router.post("/", response_model=schemas.JobResponse)
+def post_job(job: schemas.JobCreate, db: Session = Depends(get_db)):
+    # UC 30: Post Job Openings (Recruiter)
+    db_job = models.Job(**job.model_dump())
+    db.add(db_job)
+    db.commit()
+    db.refresh(db_job)
+    return db_job

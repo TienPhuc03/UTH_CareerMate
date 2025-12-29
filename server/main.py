@@ -1,11 +1,18 @@
-# main.py
 from fastapi import FastAPI
-from modules.items import router as item_router
-# from modules.users import router as user_router # Sẽ thêm sau
+from modules.users import router as user_router
+from database.base import test_connection, engine, Base
 
-app = FastAPI(title="My Monolithic FastAPI App")
+app = FastAPI(title="Career Mates")
 
-# Gắn router. Thêm prefix để tạo ra URL hoàn chỉnh: /api/v1/items/...
-app.include_router(item_router.router, prefix="/api/v1/items", tags=["Items"])
+app.include_router(
+    user_router.router,
+    prefix="/api/auth",
+    tags=["Auth"]
+)
+test_connection()
+Base.metadata.create_all(bind=engine)
 
-# app.include_router(user_router.router, prefix="/api/v1/users", tags=["Users"])
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to Career Mates API!"}
+

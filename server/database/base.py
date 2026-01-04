@@ -13,12 +13,6 @@ engine = create_engine(
 
 Base = declarative_base()
 
-# AsyncSessionLocal = sessionmaker(
-#     engine,
-#     class_=AsyncSession,
-#     expire_on_commit=False
-# )
-
 #test connect db
 def test_connection():
     try:
@@ -26,4 +20,4 @@ def test_connection():
             result = conn.execute(text("SELECT 1"))
             print("Kết nối csdl thành công!!! :))", result.scalar())
     except Exception as e:
-        print("Kết nối csdl thất bại :((", e)
+        print("Kết nối csdl thất bại :((", e) 

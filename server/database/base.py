@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import text
 from sqlalchemy.orm import declarative_base
 
-DATABASE_URL = "postgresql://postgres:106006@localhost:5432/users_db"
+DATABASE_URL = "postgresql+psycopg2://postgres:123456@127.0.0.1:5432/careermate_db"
 
 engine = create_engine(
     DATABASE_URL,

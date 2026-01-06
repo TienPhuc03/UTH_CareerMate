@@ -1,16 +1,16 @@
-# server/database/session.py
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.base import engine
+from sqlalchemy.ext.declarative import declarative_base
 
-SessionLocal = sessionmaker(
-    bind=engine,
-    autoflush=False,
-    autocommit=False,
-)
+
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:123456@localhost:5432/careermate_db"
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db():
     db = SessionLocal()
-    try: 
+    try:
         yield db
     finally:
         db.close()

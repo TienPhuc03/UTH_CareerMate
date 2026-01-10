@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your dream job and create professional CV">
+    <meta name="keywords" content="job search, employment, create CV, recruitment">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>CV Preview</title>
+
+    <style>
+        @media print {
+            body { margin: 0; padding: 20px; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-white p-8 font-sans print:bg-white print:p-4">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 border-4 border-green-500 print:shadow-none print:rounded-none print:border-none print:max-w-none print:w-[21cm] print:h-[29.7cm] print:mx-0 print:p-6">
+        
+        <!-- Header Section -->
+        <div class="text-center border-b-4 border-green-500 pb-6 mb-8">
+            <h1 class="text-4xl font-bold text-green-600 uppercase">Curriculum Vitae</h1>
+            <p class="text-sm text-gray-500 mt-2">Ho Chi Minh City, Vietnam</p>
+        </div>
+
+        <!-- Personal Info -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4 uppercase border-b border-green-500 pb-2">Personal Information</h2>
+            <div class="grid grid-cols-2 gap-4 text-lg">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-500 mb-1">Full Name:</label>
+                    <p class="font-medium text-gray-900">Nguyễn Văn A</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-500 mb-1">Phone:</label>
+                    <p class="font-medium text-gray-900">0123 456 789</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-500 mb-1">Email:</label>
+                    <p class="font-medium text-gray-900">nguyenvana@email.com</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-500 mb-1">Address:</label>
+                    <p class="font-medium text-gray-900">Quận 1, TP. Hồ Chí Minh</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objective -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4 uppercase border-b border-green-500 pb-2">Career Objective</h2>
+            <p class="text-gray-800 leading-relaxed">Tìm kiếm vị trí lập trình viên tại công ty công nghệ uy tín, nơi có thể phát huy kỹ năng và kinh nghiệm để đóng góp vào sự phát triển của doanh nghiệp.</p>
+        </div>
+
+        <!-- Experience -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4 uppercase border-b border-green-500 pb-2">Work Experience</h2>
+            <div class="space-y-4">
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="font-semibold text-xl text-gray-900">Lập trình viên Fullstack</h3>
+                    <p class="text-sm text-green-500 font-medium">Công ty ABC - 2023 - Present</p>
+                    <ul class="mt-2 list-disc list-inside text-gray-500">
+                        <li>Phát triển ứng dụng web sử dụng React và Node.js.</li>
+                        <li>Quản lý database SQL và tối ưu hóa hiệu suất.</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="font-semibold text-xl text-gray-900">Intern Developer</h3>
+                    <p class="text-sm text-green-500 font-medium">Công ty XYZ - 2022 - 2023</p>
+                    <ul class="mt-2 list-disc list-inside text-gray-500">
+                        <li>Hỗ trợ phát triển frontend với HTML/CSS/JS.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4 uppercase border-b border-green-500 pb-2">Education</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900">Cử nhân Công nghệ Thông tin</h3>
+                    <p class="text-sm text-green-500 font-medium">Đại học Bách Khoa TP.HCM - 2019 - 2023</p>
+                    <p class="text-sm text-gray-500">GPA: 3.5/4.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-600 mb-4 uppercase border-b border-green-500 pb-2">Skills</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <ul class="space-y-1 text-gray-500">
+                        <li>• JavaScript (React, Node.js)</li>
+                        <li>• Python</li>
+                        <li>• SQL & MongoDB</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="space-y-1 text-gray-500">
+                        <li>• Git & Agile</li>
+                        <li>• AWS Basics</li>
+                        <li>• English (Intermediate)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Action Buttons - Hidden on Print -->
+    <div class="max-w-2xl mx-auto mt-8 flex gap-4 justify-center no-print">
+        <button class="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700 transition onclick="window.print()">
+            Print CV
+        </button>
+        <button class="px-8 py-3 bg-gray-500 text-white font-semibold rounded-lg shadow-lg hover:bg-gray-700 transition">
+            Edit
+        </button>
+    </div>
+</body>
+</html>

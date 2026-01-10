@@ -7,7 +7,60 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Register Form</title>
   </head>
+  
+<script>
+  // Chọn nút Sign Up và các trường dữ liệu
+  const signUpBtn = document.querySelector('button.bg-black');
+  
+  signUpBtn.addEventListener('click', async (e) => {
+    e.preventDefault(); // Ngăn trang web tải lại
 
+    // Lấy giá trị từ các ô Input
+    const full_name = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const terms = document.getElementById('terms').checked;
+
+    // 1. Kiểm tra cơ bản tại Frontend
+    if (!terms) {
+      alert("Please agree to the Terms & Conditions");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // 2. Gửi dữ liệu sang Backend (POST request)
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: full_name,
+          email: email,
+          password: password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Registration successful!");
+        window.location.href = "login.html"; // Chuyển sang trang Login
+      } else {
+        // Hiển thị lỗi từ Backend (ví dụ: Email đã tồn tại)
+        alert("Error: " + (data.detail || "Something went wrong"));
+      }
+    } catch (error) {
+      console.error("Connection error:", error);
+      alert("Cannot connect to server. Please check if your FastAPI is running.");
+    }
+  });
+</script>
   <body>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
       <div

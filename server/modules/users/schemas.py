@@ -1,26 +1,4 @@
-# from pydantic import BaseModel, EmailStr, SecretStr
 
-# class UserLogin(BaseModel):
-#     email: EmailStr
-#     password: SecretStr
-
-# class Token(BaseModel):
-#     access_token: str
-#     token_type: str
-
-
-# class UserCreate(BaseModel):
-#     email: EmailStr
-#     password: SecretStr
-#     full_name: str 
-
-
-# class UserOut(BaseModel):
-#     id: int
-#     email: EmailStr
-
-#     class Config:
-#         from_attributes = True
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from datetime import datetime
 from typing import Optional

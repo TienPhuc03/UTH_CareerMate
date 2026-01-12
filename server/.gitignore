@@ -5,4 +5,5 @@ __pycache__/
 # Node
 node_modules/
 dist/
+**/__pycache__/
 

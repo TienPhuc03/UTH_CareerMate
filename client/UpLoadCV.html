@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CareerMate – Upload CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cmGreen: "#02C26A",
+              cmBlue: "#0075FF",
+              cmDark: "#081021",
+              cmLight: "#F5FAFF",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-cmLight text-slate-900 flex flex-col">
+    <div class="flex flex-col min-h-screen">
+      <header class="relative overflow-hidden">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-cmGreen via-teal-400 to-cmBlue opacity-80"
+        ></div>
+        <div
+          class="relative max-w-6xl mx-auto px-4 py-6 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-2">
+            <div
+              class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center shadow-lg"
+            >
+              <span class="text-xs font-semibold text-white">CM</span>
+            </div>
+            <div class="text-sm font-semibold text-white">
+              CareerMate
+              <span class="block text-[11px] font-normal opacity-80">
+                AI‑Powered Job Companion
+              </span>
+            </div>
+          </div>
+          <nav class="hidden md:flex items-center gap-6 text-xs text-white/90">
+            <a href="#" class="hover:text-white">Tính năng</a>
+            <a href="#" class="hover:text-white">Học tập</a>
+            <a href="#" class="hover:text-white">Việc làm</a>
+            <a href="#" class="hover:text-white">Nhà tuyển dụng</a>
+          </nav>
+          <div class="flex items-center gap-3 text-xs">
+            <button
+              class="px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/30 hover:bg-white/20"
+            >
+              Đăng nhập
+            </button>
+            <button
+              class="hidden sm:inline-flex px-3 py-1.5 rounded-full bg-white text-cmDark font-semibold shadow-md hover:bg-slate-100"
+            >
+              Đăng ký miễn phí
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <section class="relative">
+          <div
+            class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none"
+          ></div>
+
+          <div
+            class="max-w-6xl mx-auto px-4 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center"
+          >
+            <div>
+              <p
+                class="inline-flex items-center gap-2 text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 mb-4"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                CareerMate – Bạn đồng hành ứng tuyển thông minh với AI
+              </p>
+              <h1
+                class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-3"
+              >
+                Upload CV để
+                <span
+                  class="bg-gradient-to-r from-cmGreen to-cmBlue bg-clip-text text-transparent"
+                >
+                  AI Career Coach
+                </span>
+                tối ưu hồ sơ của bạn
+              </h1>
+              <p class="text-sm md:text-[15px] text-slate-600 mb-4">
+                Phân tích CV &lt; 5 giây, phát hiện lỗ hổng kỹ năng, gợi ý chỉnh
+                sửa và việc làm phù hợp cho sinh viên năm cuối &amp; người mới
+                tốt nghiệp.
+              </p>
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px] mb-6"
+              >
+                <div class="flex gap-2">
+                  <div
+                    class="mt-1 h-5 w-5 rounded-full bg-emerald-100 flex items-center justify-center text-[11px] text-cmGreen"
+                  >
+                    ✓
+                  </div>
+                  <div>
+                    <div class="font-semibold">Phân tích CV bằng AI</div>
+                    <p class="text-slate-500">
+                      Đánh giá ATS, điểm phù hợp JD và gợi ý từ khóa.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <div
+                    class="mt-1 h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center text-[11px] text-cmBlue"
+                  >
+                    ✓
+                  </div>
+                  <div>
+                    <div class="font-semibold">Lộ trình nghề nghiệp</div>
+                    <p class="text-slate-500">
+                      Gợi ý khóa học, kỹ năng và thử thách.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-3 text-xs">
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cmGreen to-cmBlue text-white font-semibold shadow-md hover:shadow-lg"
+                >
+                  Trải nghiệm Career AI Coach
+                </button>
+                <p class="text-slate-500">
+                  Không cần thẻ ngân hàng. Bắt đầu với gói dùng thử miễn phí.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="bg-white rounded-2xl shadow-xl shadow-emerald-100/60 border border-slate-100 p-5 md:p-6"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div>
+                    <h2 class="text-base md:text-lg font-semibold">
+                      Tải CV để các cơ hội việc làm tự tìm đến bạn
+                    </h2>
+                    <p class="text-[12px] text-slate-500 mt-1">
+                      Giảm đến 50% thời gian tìm được công việc phù hợp.
+                    </p>
+                  </div>
+                  <span
+                    class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-[11px] text-emerald-700 border border-emerald-100"
+                  >
+                    &lt; 5 giây phân tích
+                  </span>
+                </div>
+
+                <form
+                  id="cvUploadForm"
+                  method="POST"
+                  action="/api/cv/upload"
+                  enctype="multipart/form-data"
+                  class="space-y-4"
+                >
+                  <label
+                    for="cvFile"
+                    class="block border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/60 hover:bg-slate-50 cursor-pointer transition p-4 md:p-5"
+                  >
+                    <div
+                      class="flex flex-col items-center justify-center text-center gap-2"
+                    >
+                      <div
+                        class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-cmGreen to-cmBlue text-white shadow-md"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.7"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4m0 0L8 8m4-4v12"
+                          />
+                        </svg>
+                      </div>
+                      <div class="text-[13px]">
+                        <span class="font-semibold"
+                          >Kéo &amp; thả CV vào đây</span
+                        >
+                        <span class="text-slate-500"> hoặc </span>
+                        <span class="text-cmBlue font-semibold"
+                          >chọn tệp từ máy</span
+                        >
+                      </div>
+                      <p class="text-[11px] text-slate-500">
+                        Hỗ trợ PDF, DOC, DOCX, dung lượng tối đa 5MB.
+                      </p>
+                    </div>
+                    <input
+                      id="cvFile"
+                      name="file"
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      class="hidden"
+                      required
+                    />
+                  </label>
+
+                  <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px]"
+                  >
+                    <div>
+                      <label
+                        class="block text-xs font-medium text-slate-600 mb-1"
+                      >
+                        Email liên hệ
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cmGreen/60 focus:border-cmGreen"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-xs font-medium text-slate-600 mb-1"
+                      >
+                        Ngành mục tiêu
+                      </label>
+                      <select
+                        name="targetIndustry"
+                        class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-cmBlue/60 focus:border-cmBlue"
+                      >
+                        <option value="">Chọn ngành</option>
+                        <option>Công nghệ thông tin</option>
+                        <option>Marketing / Sales</option>
+                        <option>Tài chính / Kế toán</option>
+                        <option>Nhân sự / Hành chính</option>
+                        <option>Khác</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cmGreen to-cmBlue shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cmGreen"
+                  >
+                    Phân tích CV bằng AI
+                    <span class="text-[11px] font-normal opacity-90"
+                      >(miễn phí lượt đầu)</span
+                    >
+                  </button>
+
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500"
+                  >
+                    <p>
+                      Bằng việc tải CV, bạn đồng ý với
+                      <a href="#" class="text-cmBlue underline">Điều khoản</a>
+                      &amp;
+                      <a href="#" class="text-cmBlue underline">Bảo mật</a>.
+                    </p>
+                    <p class="flex items-center gap-1">
+                      <span
+                        class="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                      ></span>
+                      Bảo mật OAuth2 &amp; JWT
+                    </p>
+                  </div>
+                </form>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-3 mt-4 text-[12px]">
+                <div
+                  class="rounded-xl bg-white/80 border border-emerald-50 p-3 flex gap-3"
+                >
+                  <div
+                    class="mt-1 h-7 w-7 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600"
+                  >
+                    🎯
+                  </div>
+                  <div>
+                    <div class="font-semibold text-slate-800">
+                      Theo dõi số liệu, tối ưu CV
+                    </div>
+                    <p class="text-slate-500">
+                      Dashboard cá nhân với điểm CV, tỷ lệ phù hợp và kỹ năng
+                      cần bổ sung.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="rounded-xl bg-white/80 border border-blue-50 p-3 flex gap-3"
+                >
+                  <div
+                    class="mt-1 h-7 w-7 rounded-lg bg-blue-100 flex items-center justify-center text-cmBlue"
+                  >
+                    💬
+                  </div>
+                  <div>
+                    <div class="font-semibold text-slate-800">
+                      Kết nối nhanh với nhà tuyển dụng
+                    </div>
+                    <p class="text-slate-500">
+                      Ghép đôi công việc dựa trên JD &amp; kỹ năng, theo dõi
+                      pipeline ứng tuyển.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white border-t border-slate-100">
+          <div class="max-w-6xl mx-auto px-4 py-8">
+            <h3 class="text-sm font-semibold mb-3">
+              Vì sao nên upload CV lên CareerMate?
+            </h3>
+            <div class="grid md:grid-cols-4 gap-4 text-[12px] text-slate-600">
+              <div>
+                <div class="font-semibold mb-1">
+                  Nhận về các cơ hội tốt nhất
+                </div>
+                <p>
+                  CV được ưu tiên hiển thị với nhà tuyển dụng tìm sinh viên năm
+                  cuối &amp; fresher.
+                </p>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Theo dõi lộ trình kỹ năng</div>
+                <p>
+                  AI phân tích JD thị trường, gợi ý roadmap học tập &amp; chứng
+                  chỉ.
+                </p>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Chia sẻ CV mọi lúc</div>
+                <p>
+                  Một đường link duy nhất để gửi cho nhà tuyển dụng, mentor và
+                  trường.
+                </p>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Tích điểm &amp; huy hiệu</div>
+                <p>
+                  Tham gia thử thách phỏng vấn giả lập, quiz và mentoring để
+                  nhận huy hiệu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bg-cmDark text-slate-300 text-[12px] mt-8">
+        <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-4 gap-6">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <div
+                class="h-8 w-8 rounded-xl bg-gradient-to-br from-cmGreen to-cmBlue flex items-center justify-center text-xs font-semibold text-white"
+              >
+                CM
+              </div>
+              <div class="font-semibold text-white text-sm">CareerMate</div>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              Kết nối tài năng trẻ với cơ hội nghề nghiệp đầu đời bằng AI.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-2 text-sm">Sản phẩm</h4>
+            <ul class="space-y-1">
+              <li><a href="#" class="hover:text-white">Candidate App</a></li>
+              <li>
+                <a href="#" class="hover:text-white">Recruiter Dashboard</a>
+              </li>
+              <li><a href="#" class="hover:text-white">Admin Portal</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-2 text-sm">Tài nguyên</h4>
+            <ul class="space-y-1">
+              <li><a href="#" class="hover:text-white">Mẫu CV</a></li>
+              <li>
+                <a href="#" class="hover:text-white">Câu hỏi phỏng vấn</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white">Blog định hướng nghề</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-2 text-sm">Liên hệ</h4>
+            <ul class="space-y-1">
+              <li>Email: support@careermate.ai</li>
+              <li>Hợp tác trường đại học</li>
+              <li>Chính sách bảo mật</li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-slate-800 py-3 text-center text-[11px] text-slate-500"
+        >
+          © 2026 CareerMate. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const form = document.getElementById("cvUploadForm");
+      form.addEventListener("submit", function (e) {
+        // BE có thể xử lý AJAX tại đây nếu cần
+      });
+    </script>
+  </body>
+</html>

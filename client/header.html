@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Website</title>
+</head>
+
+<body>
+    <header class="px-4 py-3 bg-[#EFEFEF] xl:px-0">
+        <div class="max-w-[1200px] mx-auto flex items-center">
+            <div>
+                <a href="#">
+                    <img src="logo.jpg" alt="" class="w-[200px] h-auto">
+                </a>
+            </div>
+            <nav class="ml-auto flex items-center gap-10">
+                <input type="checkbox" hidden id="menu-toggle"
+                    class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
+                <ul
+                    class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
+                    <li><a href="#" class="py-3 block hover:text-green-600 lg:py-0">Home</a></li>
+                    <li><a href="#" class="py-3 block hover:text-green-600 lg:py-0">Jobs</a></li>
+                    <li><a href="#" class="py-3 block hover:text-green-600 lg:py-0">CV Template</a></li>
+                    <li><a href="#" class="py-3 block hover:text-green-600 lg:py-0">Create CV</a></li>
+                </ul>
+                <label for="menu-toggle"
+                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
+                <div class="flex gap-3">
+                    <a href="#"
+                        class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Register</a>
+                    <a href="#"
+                        class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Login</a>
+                </div>
+                <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                </label>
+            </nav>
+        </div>
+    </header>
+</body>
+
+</html>

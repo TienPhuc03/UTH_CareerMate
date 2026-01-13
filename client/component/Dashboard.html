@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng điều khiển - Career Mate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-black">CareerMate</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="userEmail" class="text-gray-700 font-medium"></span>
+                    <button onclick="logout()"
+                        class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                        Đăng xuất
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Chào mừng đến với Career Mate! 🎉</h2>
+            <p class="text-gray-600 text-lg mb-8">Bạn đã đăng nhập thành công.</p>
+
+            <!-- Feature Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Card 1 -->
+                <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-6 text-white hover:scale-105 transition transform cursor-pointer">
+                    <svg class="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Hồ sơ</h3>
+                    <p>Quản lý thông tin cá nhân của bạn</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl p-6 text-white hover:scale-105 transition transform cursor-pointer">
+                    <svg class="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Việc làm</h3>
+                    <p>Tìm cơ hội việc làm phù hợp</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl p-6 text-white hover:scale-105 transition transform cursor-pointer">
+                    <svg class="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Đơn ứng tuyển</h3>
+                    <p>Theo dõi các đơn ứng tuyển của bạn</p>
+                </div>
+            </div>
+
+            <!-- User Info Section -->
+            <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Thông tin tài khoản</h3>
+                <div class="space-y-2">
+                    <p class="text-gray-700"><span class="font-semibold">Email:</span> <span id="displayEmail"></span></p>
+                    <p class="text-gray-700"><span class="font-semibold">Trạng thái:</span> <span class="text-green-600 font-medium">Hoạt động</span></p>
+                </div>
+            </div>
+
+            <!-- Token Info (for debugging) -->
+            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <details>
+                    <summary class="font-semibold text-blue-800 cursor-pointer hover:text-blue-900">
+                        🔐 Token truy cập (Click để xem)
+                    </summary>
+                    <div class="mt-3 bg-white p-3 rounded border border-blue-300">
+                        <p class="text-xs text-gray-600 break-all font-mono" id="tokenDisplay"></p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('access_token');
+        const email = localStorage.getItem('user_email');
+
+        if (!token || !email) {
+            // Not logged in, redirect to login page
+            alert('Vui lòng đăng nhập trước!');
+            window.location.href = 'login.html';
+        } else {
+            // Display user info
+            document.getElementById('userEmail').textContent = email;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('tokenDisplay').textContent = token;
+        }
+
+        function logout() {
+            // Clear localStorage
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_email');
+            
+            // Show message and redirect
+            alert('Đăng xuất thành công!');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

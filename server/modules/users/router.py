@@ -1,9 +1,9 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from modules.users import schemas,  curd
-from core import security
-from database.session import get_db
+from server.modules.users import schemas, curd 
+from server.core import security 
+from server.database.session import get_db
 
 router = APIRouter()
 @router.post("/regsiter")

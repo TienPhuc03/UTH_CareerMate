@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Float
 from sqlalchemy.sql import func
-from database.base import Base
+from server.database.base import Base 
 
 class User(Base):
     __tablename__ = "users"
@@ -9,10 +9,11 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     full_name = Column(String, nullable=False)
     hashed_password = Column(String, nullable=False)
+    
+    university = Column(String, nullable=True)
+    major = Column(String, nullable=True)
+    gpa = Column(Float, nullable=True)
+    
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-
-
-
-    

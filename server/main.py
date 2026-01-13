@@ -9,6 +9,7 @@ from server.modules.cvs.router import router as cv_router
 from server.database.base import test_connection, engine, Base
 from server.modules.applications.router import router as app_router
 from server.modules.ai_coach.router import router as ai_router
+from server.modules.users.router import router as user_router
 
 app = FastAPI(title="Career Mates API")
 
@@ -35,6 +36,8 @@ app.include_router(
 )
 
 app.include_router(ai_router, prefix="/api")
+
+app.include_router(user_router, prefix="/api/users", tags=["Users"])
 
 @app.get("/")
 def read_root():

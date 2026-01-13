@@ -1,21 +1,20 @@
-# hàm để lưu thông tin (đại học, chuyên ngành, gpa,...) của user vào database
-# crud.py
 from sqlalchemy.orm import Session
-from modules.users import model
-from core.security import get_password_hash
-
+# Phải import User từ file model cùng thư mục
+from server.modules.users.model import User 
+from server.core.security import get_password_hash
 
 def get_user_by_email(db: Session, email: str):
-    return db.query(model.User).filter(model.User.email == email).first()
+    # Dùng trực tiếp User thay vì model.User
+    return db.query(User).filter(User.email == email).first()
 
-def create_user (db: Session, email: str , full_name: str, password: str):
+def create_user(db: Session, email: str, full_name: str, password: str):
     hashed_password = get_password_hash(password)
-    user = model.User(
+    new_user = User(
         email=email,
         full_name=full_name,
         hashed_password=hashed_password
     )
-    db.add(user)
+    db.add(new_user)
     db.commit()
-    db.refresh(user)
-    return user
+    db.refresh(new_user)
+    return new_user

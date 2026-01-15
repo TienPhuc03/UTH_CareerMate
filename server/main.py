@@ -5,11 +5,14 @@ from database.base import Base, engine, test_connection
 from modules.users.router import router as user_router
 from modules.jobs.router import router as jobs_router 
 from modules.cvs.router import router as cv_router
+from modules.applications.router import router as app_router
+from modules.ai_coach.router import router as ai_router
 import sys
 import os
 from fastapi import FastAPI
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 
 # Create all tables
@@ -48,6 +51,15 @@ app.include_router(
     prefix="/api/cvs",
     tags=["CVs"]
 )
+
+app.include_router(
+    app_router,
+    prefix="/api/applications",
+    tags=["Applications"]
+)
+
+app.include_router(ai_router, prefix="/api")
+
 
 @app.get("/")
 def root():

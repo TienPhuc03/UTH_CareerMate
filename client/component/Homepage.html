@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your dream job and create professional CV">
+    <meta name="keywords" content="job search, employment, create CV, recruitment">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Career Mate - Find Jobs & Create Professional CV</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="px-4 py-3 bg-white xl:px-0 sticky top-0 shadow-md z-50">
+        <div class="max-w-[1200px] mx-auto flex items-center">
+            <div>
+                <a href="Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
+            </div>
+            <nav class="ml-auto flex items-center gap-10">
+                <input type="checkbox" hidden id="menu-toggle"
+                    class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
+                <ul
+                    class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
+                    <li><a href="Homepage.html" class="py-3 block hover:text-green-600 lg:py-0">Trang chủ</a></li>
+                    <li><a href="Findjobs.html" class="py-3 block hover:text-green-600 lg:py-0">Việc làm</a></li>
+                    <li><a href="Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
+                    <li><a href="Uploadcv.html" class="py-3 block hover:text-green-600 lg:py-0">Tạo CV</a></li>
+                </ul>
+                <label for="menu-toggle"
+                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
+                
+                <!-- Auth Buttons - Thay đổi dựa vào login status -->
+                <div id="authButtons" class="flex gap-3">
+                    <a href="../auth/signup.html"
+                        class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
+                    <a href="../auth/login.html"
+                        class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
+                </div>
+
+                <!-- User Menu (hiển thị khi đã login) -->
+                <div id="userMenu" class="hidden gap-3 items-center">
+                    <span id="userEmailHeader" class="text-gray-700 font-medium hidden md:block"></span>
+                    <a href="Profile.html"
+                        class="block bg-blue-600 font-bold px-6 py-3 text-white rounded-full hover:bg-blue-700">Hồ sơ</a>
+                    <button onclick="logout()"
+                        class="block bg-red-600 font-bold px-6 py-3 text-white rounded-full hover:bg-red-700">Đăng xuất</button>
+                </div>
+
+                <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <!--body-->
+    <section class="relative bg-gradient-to-r from-green-50 to-blue-50 py-16 md:py-24">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                        Tìm <span class="text-green-600">Công Việc Mơ Ước</span> Cùng Chúng Tôi
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Khám phá hàng nghìn cơ hội việc làm và tạo CV chuyên nghiệp để nổi bật với nhà tuyển dụng.
+                        Hành trình sự nghiệp của bạn bắt đầu từ đây.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="Findjobs.html"
+                            class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700 text-center text-lg">
+                            Tìm việc làm
+                        </a>
+                        <a href="Uploadcv.html"
+                            class="bg-white border-2 border-green-600 text-green-600 font-bold px-8 py-4 rounded-full hover:bg-green-50 text-center text-lg">
+                            Tạo CV
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <img src="../src/img/thành công.jpg" alt="Career Success" class="rounded-xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Search Section -->
+    <section id="jobs" class="py-16 bg-white">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Tìm Công Việc Hoàn Hảo</h2>
+
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-white p-2 rounded-full shadow-lg border">
+                    <div class="flex flex-col md:flex-row gap-2">
+                        <input type="text" placeholder="Chức danh, từ khóa hoặc công ty"
+                            class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                        <input type="text" placeholder="Thành phố, tỉnh hoặc làm việc từ xa"
+                            class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                        <button class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700">
+                            Tìm việc
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-green-600 text-2xl">💼</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Công nghệ</h3>
+                    <p class="text-gray-600"></p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-blue-600 text-2xl">🏥</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Y tế</h3>
+                    <p class="text-gray-600"></p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-purple-600 text-2xl">💰</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tài chính</h3>
+                    <p class="text-gray-600"></p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-yellow-600 text-2xl">🎓</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Giáo dục</h3>
+                    <p class="text-gray-600"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv-section" class="py-16 bg-gray-50">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Tạo CV Chuyên Nghiệp <span class="text-green-600">Trong Vài Phút</span>
+                    </h2>
+                    <p class="text-gray-600 mb-8">
+                        Chọn từ các mẫu thiết kế chuyên nghiệp và tạo CV thu hút sự chú ý của nhà tuyển dụng.
+                        Dễ tùy chỉnh, sẵn sàng tải xuống.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Mẫu chuyên nghiệp được thiết kế bởi chuyên gia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Tùy chỉnh dễ dàng với công cụ của chúng tôi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-green-600 mr-3">✔</span>
+                            <span>Tải xuống PDF, Word hoặc chia sẻ trực tuyến</span>
+                        </li>
+                    </ul>
+                    <a href="Uploadcv.html"
+                        class="inline-block bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700">
+                        Bắt đầu tạo CV
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-xl shadow-lg">
+                        <img src="../src/img/cvs1.jpg" alt="Mẫu CV 1" class="rounded-lg w-full h-48 object-cover">
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-lg mt-8">
+                        <img src="../src/img/cvs2.jpg" alt="Mẫu CV 2" class="rounded-lg w-full h-48 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Jobs -->
+    <section class="py-16 bg-white">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Việc Làm Nổi Bật</h2>
+                <a href="#jobs" class="text-green-600 font-bold hover:text-green-700">Xem tất cả →</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Lập Trình Viên Frontend</h3>
+                            <p class="text-gray-600">TechCorp Inc.</p>
+                        </div>
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-bold">Mới</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Tìm lập trình viên frontend có kinh nghiệm với React.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Từ xa</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">25tr-40tr (vnd)</span>
+                    </div>
+                    <a href="../component/Findjobs.html"
+                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
+                        Ứng tuyển ngay
+                    </a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Thiết Kế UX</h3>
+                            <p class="text-gray-600">DesignStudio</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Tham gia đội ngũ sáng tạo để thiết kế trải nghiệm người dùng tuyệt vời.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Lai</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">10tr-25tr (vnd)</span>
+                    </div>
+                    <a href="../component/Findjobs.html"
+                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
+                        Ứng tuyển ngay
+                    </a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Phân Tích Dữ Liệu</h3>
+                            <p class="text-gray-600">DataTech Solutions</p>
+                        </div>
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-bold">Gấp</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Phân tích dữ liệu và cung cấp thông tin chi tiết cho quyết định kinh doanh.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Tại văn phòng</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">8tr-25tr (vnd)</span>
+                    </div>
+                    <a href="../component/Findjobs.html"
+                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
+                        Ứng tuyển ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Sẵn Sàng Thăng Tiến Sự Nghiệp?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Tham gia cùng hàng nghìn chuyên gia đã tìm được công việc mơ ước qua nền tảng của chúng tôi.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../auth/Login.html" class="bg-white text-green-600 font-bold px-8 py-4 rounded-full hover:bg-gray-100 text-lg">
+                    Tạo tài khoản miễn phí
+                </a>
+                <a href="../component/Findjobs.html"
+                    class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 text-lg">
+                    Khám phá việc làm
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
+                    <p class="text-gray-400 mt-4">Kết nối tài năng với cơ hội từ năm 2025.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liên kết nhanh</h3>
+                    <ul class="space-y-2">
+                        <li><a href="Homepage.html" class="text-gray-400 hover:text-white">Trang chủ</a></li>
+                        <li><a href="Findjobs.html" class="text-gray-400 hover:text-white">Việc làm</a></li>
+                        <li><a href="Printcv.html" class="text-gray-400 hover:text-white">Mẫu CV</a></li>
+                        <li><a href="Uploadcv.html" class="text-gray-400 hover:text-white">Tạo CV</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Tài nguyên</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Mẹo nghề nghiệp</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Hướng dẫn phỏng vấn</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tính lương</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400 mb-2">contact@careermate.com</p>
+                    <p class="text-gray-400 mb-2">+84 (123) 456-789</p>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+                        <a href="#" class="text-gray-400 hover:text-white">LinkedIn</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Career Mate - CNPM. Bản quyền thuộc về chúng tôi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        function checkAuthStatus() {
+            const token = localStorage.getItem('access_token');
+            const email = localStorage.getItem('user_email');
+            
+            if (token && email) {
+                // User is logged in - show user menu
+                document.getElementById('authButtons').classList.add('hidden');
+                document.getElementById('userMenu').classList.remove('hidden');
+                document.getElementById('userMenu').classList.add('flex');
+                document.getElementById('userEmailHeader').textContent = email;
+            } else {
+                // User is not logged in - show auth buttons
+                document.getElementById('authButtons').classList.remove('hidden');
+                document.getElementById('userMenu').classList.add('hidden');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_email');
+            alert('Đăng xuất thành công!');
+            window.location.reload();
+        }
+
+        // Check auth status on page load
+        checkAuthStatus();
+    </script>
+</body>
+
+</html>

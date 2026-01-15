@@ -41,9 +41,9 @@
                     class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
                 
                 <div id="authButtons" class="flex gap-3">
-                    <a href="signup.html"
+                    <a href="../auth/   signup.html"
                         class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
-                    <a href="login.html"
+                    <a href="../auth/login.html"
                         class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
                 </div>
 
@@ -428,7 +428,7 @@
         function applyJob(company, position) {
             if (!userEmail) {
                 if (confirm('Bạn cần đăng nhập để ứng tuyển. Chuyển đến trang đăng nhập?')) {
-                    window.location.href = 'login.html';
+                    window.location.href = '../auth/login.html';
                 }
                 return;
             }

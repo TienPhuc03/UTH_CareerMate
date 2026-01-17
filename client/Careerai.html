@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career AI Chatbot - CV Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-green-50 to-white min-h-screen">
+    <!-- Header - THAY LOGO MỚI -->
+    <header class="bg-green-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo Career Mate - KHÔNG CÓ ROBOT -->
+            <div>
+                <a href="Homepage.html"
+                    class="text-2xl md:text-3xl font-bold text-white hover:text-green-100 transition-colors">
+                    Career Mate
+                </a>
+            </div>
+
+            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                <i class="fas fa-user text-sm"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <main class="container mx-auto max-w-4xl px-4 py-6 flex flex-col h-[calc(100vh-100px)]">
+        <!-- Chat Messages Area -->
+        <section
+            class="flex-1 overflow-y-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 mb-6 p-6">
+            <!-- Welcome Message -->
+            <div class="text-center py-12">
+                <div class="w-24 h-24 bg-green-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <i class="fas fa-comments text-3xl text-green-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Xin chào! 👋</h2>
+                <p class="text-gray-600 max-w-md mx-auto">
+                    Tôi là Career AI - trợ lý AI chuyên về CV và sự nghiệp. Hãy hỏi tôi về:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6 max-w-lg mx-auto">
+                    <div
+                        class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
+                        <i class="fas fa-file-alt mr-2"></i>Tạo CV chuyên nghiệp
+                    </div>
+                    <div
+                        class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
+                        <i class="fas fa-search mr-2"></i>Tìm việc phù hợp
+                    </div>
+                    <div
+                        class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
+                        <i class="fas fa-graduation-cap mr-2"></i>Lời khuyên học tập
+                    </div>
+                    <div
+                        class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
+                        <i class="fas fa-briefcase mr-2"></i>Phỏng vấn xin việc
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Messages - Hidden initially -->
+            <div id="chat-messages" class="space-y-4 hidden">
+                <!-- User message example -->
+                <div class="flex justify-end">
+                    <div class="max-w-xs lg:max-w-md bg-green-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg">
+                        <p>Làm sao để tạo CV ấn tượng cho sinh viên mới ra trường?</p>
+                    </div>
+                </div>
+
+                <!-- AI message example -->
+                <div class="flex justify-start">
+                    <div
+                        class="max-w-xs lg:max-w-md bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-robot text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-800 mb-2">Để tạo CV ấn tượng, bạn nên:</p>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Tập trung vào kỹ năng và dự án cá nhân</li>
+                                    <li>• Sử dụng số liệu cụ thể (tăng 30% hiệu suất...)</li>
+                                    <li>• Thiết kế sạch sẽ, dễ đọc</li>
+                                </ul>
+                                <p class="text-xs text-green-600 mt-2 font-medium">Bạn muốn tôi tạo mẫu CV không?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Input Area -->
+        <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 p-4">
+            <div class="flex space-x-4">
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="Nhập câu hỏi về CV, sự nghiệp..."
+                        class="w-full p-4 pl-16 border-2 border-green-200 rounded-2xl focus:border-green-400 focus:outline-none transition-all text-lg bg-green-50 hover:bg-green-100">
+
+                    <!-- File Attachment Button with Dropdown -->
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 group">
+                        <button id="file-btn"
+                            class="p-3 text-gray-400 hover:text-green-600 hover:bg-green-100 rounded-xl transition-all duration-200 flex items-center justify-center relative">
+                            <i class="fas fa-paperclip text-lg"></i>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div id="file-dropdown"
+                            class="absolute left-0 bottom-full mb-2 w-48 bg-white border border-green-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                            <div class="py-1">
+                                <!-- Image Upload -->
+                                <label
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block">
+                                    <i class="fas fa-image mr-3 text-green-500 w-5"></i>
+                                    <span>Hình ảnh</span>
+                                    <input type="file" accept="image/*" class="hidden" multiple>
+                                </label>
+
+                                <!-- Document Upload -->
+                                <label
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    <i class="fas fa-file-pdf mr-3 text-red-500 w-5"></i>
+                                    <span>File tài liệu</span>
+                                    <input type="file" accept=".pdf,.doc,.docx,.txt" class="hidden">
+                                </label>
+
+                                <!-- Screenshot -->
+                                <label
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    <i class="fas fa-camera mr-3 text-blue-500 w-5"></i>
+                                    <span>Chụp màn hình</span>
+                                    <input type="file" accept="image/*" class="hidden" capture="environment">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Button -->
+                    <button
+                        class="absolute right-20 top-1/2 -translate-y-1/2 text-gray-400 hover:text-green-600 transition-colors p-3 rounded-xl hover:bg-green-100">
+                        <i class="fas fa-microphone text-lg"></i>
+                    </button>
+
+                    <!-- Send Button -->
+                    <button
+                        class="absolute right-3 top-1/2 -translate-y-1/2 w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all">
+                        <i class="fas fa-paper-plane text-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 mt-3 text-xs text-gray-500">
+                <i class="fas fa-shield-alt text-green-500"></i>
+                <span>Dữ liệu được mã hóa. Chat riêng tư 100%</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Bottom Bar -->
+    <div
+        class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-green-100 p-4 z-50">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-center space-x-6 text-sm text-gray-600">
+                <div class="flex items-center space-x-1">
+                    <i class="fas fa-circle text-green-500 text-xs"></i>
+                    <span>Online</span>
+                </div>
+                <span>•</span>
+                <div class="flex items-center space-x-1">
+                    <i class="fas fa-clock text-xs"></i>
+                    <span>Trả lời trong 2s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Custom hover effect cho dropdown */
+        #file-btn:hover+#file-dropdown,
+        #file-dropdown:hover {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Smooth animation cho dropdown */
+        #file-dropdown {
+            transform: translateY(10px);
+        }
+
+        .group:hover #file-dropdown {
+            transform: translateY(0);
+        }
+    </style>
+</body>
+
+</html>

@@ -7,6 +7,7 @@ from modules.jobs.router import router as jobs_router
 from modules.cvs.router import router as cv_router
 from modules.applications.router import router as app_router
 from modules.ai_coach.router import router as ai_router
+from modules.admin.router import router as admin_router
 import sys
 import os
 from fastapi import FastAPI
@@ -60,6 +61,13 @@ app.include_router(
 
 app.include_router(ai_router, prefix="/api")
 
+app.include_router(
+    admin_router, 
+    prefix="/api/admin", 
+    tags=["Admin"]
+)
+
+app.include_router(admin_router, prefix="/api")
 
 @app.get("/")
 def root():

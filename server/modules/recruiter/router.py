@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database.session import get_db
-from modules.users.auth import get_current_user
-from modules.users.model import User
-from .middleware import require_recruiter
-from modules.jobs.model import Job
-from modules.applications.model import Application
+from core.dependencies import get_current_user
+from modules.users.models import User
+from modules.jobs.models import Job
+from modules.applications.models import Application
+from modules.admin.middleware import require_admin as require_recruiter
 
 router = APIRouter()
 
@@ -14,7 +14,8 @@ def create_job(data: dict, db: Session = Depends(get_db), current_user: User = D
     new_job = Job(**data, recruiter_id=current_user.id)
     db.add(new_job)
     db.commit()
-    return {"message": "Đăng tin thành công"}
+    db.refresh(new_job)
+    return {"message": "Đăng tin thành công", "job_id": new_job.id}
 
 @router.get("/applications/{job_id}")
 def get_job_applications(job_id: int, db: Session = Depends(get_db), current_user: User = Depends(require_recruiter)):

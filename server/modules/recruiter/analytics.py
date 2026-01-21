@@ -2,7 +2,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from server.modules.jobs.model import Job
-from server.modules.applications.model import Application
+from server.modules.applications.models import Application
 
 def get_recruiter_stats(db: Session, recruiter_id: int):
 

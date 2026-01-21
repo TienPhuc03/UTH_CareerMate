@@ -5,6 +5,7 @@ from database.base import Base
 
 class CV(Base):
     __tablename__ = "cvs"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String(255), nullable=False)

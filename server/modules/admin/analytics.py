@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from server.modules.users.model import User
+from server.modules.users.models import User
 from server.modules.jobs.models import Job
 from server.modules.applications.models import Application
 from server.modules.cvs.models import CV

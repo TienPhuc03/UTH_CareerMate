@@ -1,11 +1,15 @@
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
-from server.database.session import get_db
+from database.session import get_db
+from modules.users.models import User
 from .middleware import require_admin
 from . import analytics
-from server.modules.users.model import User
 
-router = APIRouter(prefix="/admin", tags=["Admin"], dependencies=[Depends(require_admin)])
+router = APIRouter(
+    prefix="/admin", 
+    tags=["Admin"], 
+    dependencies=[Depends(require_admin)]
+)
 
 @router.get("/dashboard/stats")
 def read_dashboard_stats(db: Session = Depends(get_db)):
@@ -42,4 +46,4 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     db.delete(user)
     db.commit()
-    return {"message": "Đã xóa user và dữ liệu liên quan "}
+    return {"message": "Đã xóa user và dữ liệu liên quan"}

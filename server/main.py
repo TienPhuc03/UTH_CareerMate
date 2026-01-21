@@ -16,7 +16,7 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Khởi tạo DB (Dòng này sẽ tự tạo bảng nếu chưa có)
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 test_connection()
 
 app = FastAPI(

@@ -3,6 +3,7 @@ from database.base import Base
 
 class Job(Base):
     __tablename__ = "jobs"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), nullable=False)

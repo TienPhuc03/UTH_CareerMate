@@ -12,7 +12,7 @@ from database.base import Base
 from core.config import settings
 
 # Import all models
-from modules.users.model import User
+from modules.users.models import User
 from modules.cvs.models import CV
 from modules.jobs.models import Job
 from modules.applications.models import Application

@@ -4,6 +4,7 @@ from database.base import Base
 
 class Application(Base): 
     __tablename__ = "applications"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     job_id = Column(Integer, ForeignKey("jobs.id"), nullable=False)

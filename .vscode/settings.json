@@ -19,6 +19,28 @@
             "name": "CM_DB",
             "database": "users_db",
             "username": "postgres"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "CareerMata_DB",
+            "database": "users_db",
+            "username": "postgres"
+        },
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "careermate_db",
+            "database": "users_db",
+            "username": "postgres"
         }
     ]
 }

@@ -1,1 +1,0 @@
-#hàm tính điểm khớp giữa yêu cầu công việc và kỹ năng trong CV

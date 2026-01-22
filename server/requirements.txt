@@ -1,0 +1,43 @@
+
+
+# FASTAPI & SERVER
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# DATABASE
+sqlalchemy>=2.0.35
+psycopg[binary]>=3.1.0
+psycopg2-binary==2.9.9
+alembic==1.13.1
+
+# AUTHENTICATION & SECURITY
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+email-validator==2.1.0
+
+
+# CONFIGURATION
+pydantic>=2.9.0
+pydantic-settings>=2.4.0
+python-dotenv==1.0.0
+
+# CV PROCESSING
+PyPDF2==3.0.1
+python-docx==1.1.0
+
+# AI SERVICE - GOOGLE GEMINI
+google-generativeai==0.3.2
+
+# MACHINE LEARNING - JOB RECOMMENDATION
+scikit-learn>=1.3.0
+pandas>=2.2.3
+numpy>=2.1.0
+
+# REDIS CACHING
+redis==5.0.1
+
+# TESTING
+pytest==8.0.0
+pytest-asyncio==0.23.0
+httpx==0.25.0

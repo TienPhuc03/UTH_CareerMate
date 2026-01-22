@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Register Form</title>
+</head>
+
+<body>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+            <!-- LEFT: FORM -->
+            <div class="flex flex-col justify-center p-8 md:p-14">
+                <span class="mb-3 text-4xl text-green-600 font-bold">Đăng ký </span>
+                <span class="font-light text-gray-400 mb-8">
+                    Xây dựng, cập nhật và quản lý CV chuyên nghiệp
+                </span>
+
+                <!-- Alert Message -->
+                <div id="alertMessage" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
+
+                <form id="signupForm">
+                    <!-- Full Name -->
+                    <div class="py-2">
+                        <span class="mb-2 font-bold text-md text-green-600 ">Họ và tên</span>
+                        <input type="text"
+                            class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                            name="fullName" id="fullName" placeholder="Họ và tên" required />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="py-2">
+                        <span class="mb-2 text-md font-bold text-green-600">Email</span>
+                        <input type="email"
+                            class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                            name="email" id="email" placeholder="Địa chỉ Email" required />
+                    </div>
+
+                    <!-- Password -->
+                    <div class="py-2">
+                        <span class="mb-2 text-md font-bold text-green-600">Mật khẩu</span>
+                        <input type="password"
+                            class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                              name="password" id="password" placeholder="Mật khẩu (ít nhất 6 ký tự)" required minlength="6" />
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="py-2">
+                        <span class="mb-2 text-md font-bold text-green-600">Xác nhận mật khẩu</span>
+                        <input type="password"
+                            class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+                            name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" required />
+                    </div>
+
+                    <!-- Accept Terms -->
+                    <div class="flex items-center w-full py-4">
+                        <input type="checkbox" id="terms" name="terms" class="mr-2" required />
+                        <label for="terms" class="text-md text-gray-600">
+                            Tôi đồng ý với Điều khoản và Điều kiện
+                        </label>
+                    </div>
+
+                    <!-- Sign Up button -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-green-600 text-white p-2 rounded-lg mb-4 hover:bg-white hover:text-black hover:border hover:border-gray-300 transition">
+                        Đăng ký
+                    </button>
+                </form>
+
+                <!-- Google Sign Up (optional) -->
+                <button
+                    class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition">
+                    <img src="https://img.icons8.com/color/50/google-logo.png" alt="img" class="w-6 h-6 inline mr-2" />
+                    Đăng ký với Google
+                </button>
+
+                <!-- Link to Login page -->
+                <div class="text-center text-gray-400">
+                    Bạn đã có tài khoản?
+                    <a href="login.html" class="font-bold text-black hover:underline">Đăng nhập</a>
+                </div>
+            </div>
+
+            <!-- RIGHT: IMAGE + TEXT -->
+            <div class="relative">
+                <img src="../src/img/Login.jpg" alt="img"
+                    class="w-[400px] h-full hidden rounded-r-2xl md:block object-cover" />
+                <div
+                    class="absolute hidden bottom-10 right-6 left-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
+                    <span class="text-white text-xl">
+                   Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV chuyên nghiệp để nắm bắt các cơ hội việc làm thực tế.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000/api/Auth';
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const full_name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            const submitBtn = document.getElementById('submitBtn');
+            const alertMessage = document.getElementById('alertMessage');
+
+            // Validate
+            if (!terms) {
+                showAlert("Please agree to the Terms & Conditions", 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert("Passwords do not match!", 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert("Password must be at least 6 characters", 'error');
+                return;
+            }
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating account...';
+            alertMessage.classList.add('hidden');
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        full_name: full_name,
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showAlert("Registration successful! Redirecting to login...", 'success');
+                    
+                    // Redirect to login page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 2000);
+                } else {
+                    // Show error from backend
+                    showAlert(data.detail || "Registration failed. Please try again.", 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign Up';
+                }
+            } catch (error) {
+                console.error("Connection error:", error);
+                showAlert("Cannot connect to server. Please check if backend is running!", 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign Up';
+            }
+        });
+
+        function showAlert(message, type) {
+            const alertMessage = document.getElementById('alertMessage');
+            alertMessage.className = `mb-4 p-3 rounded-lg text-sm ${
+                type === 'success' 
+                    ? 'bg-green-100 text-green-700 border border-green-400' 
+                    : 'bg-red-100 text-red-700 border border-red-400'
+            }`;
+            alertMessage.textContent = message;
+            alertMessage.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

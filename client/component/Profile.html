@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerMate - Thông tin Cá nhân</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="Homepage.html" class="text-2xl font-bold text-green-600">Career Mate</a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-6">
+                    <a href="Homepage.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                        <i class="fas fa-home mr-1"></i> Trang chủ
+                    </a>
+                    <a href="Profile.html" class="text-green-600 font-medium">
+                        <i class="fas fa-user mr-1"></i> Hồ sơ
+                    </a>
+                    <a href="Findjobs.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                        <i class="fas fa-briefcase mr-1"></i> Việc làm
+                    </a>
+                    <a href="Uploadcv.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                        <i class="fas fa-file-alt mr-1"></i> Tạo CV
+                    </a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.location.href='Uploadcv.html'" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                        <i class="fas fa-plus mr-1"></i> Tạo CV mới
+                    </button>
+                    <div class="relative">
+                        <div id="userAvatar" class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold cursor-pointer">
+                            U
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <div class="mb-6 text-sm text-gray-500">
+            <a href="Homepage.html" class="hover:text-green-600">Trang chủ</a> /
+            <span class="text-gray-800">Hồ sơ</span>
+        </div>
+        
+        <!-- Profile Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                <div class="relative">
+                    <div class="w-32 h-32 rounded-full overflow-hidden ring-4 ring-green-500">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80"
+                             alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex-1 text-center md:text-left">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                        <div>
+                            <h1 id="userName" class="text-3xl font-bold text-gray-800">Đang tải...</h1>
+                            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-2">
+                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">
+                                    <i class="fas fa-check-circle mr-1"></i> Đã xác thực
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 md:mt-0 flex flex-wrap justify-center gap-3">
+                            <button class="px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors">
+                                <i class="fas fa-edit mr-2"></i> Chỉnh sửa
+                            </button>
+                            <button onclick="window.location.href='Printcv.html'" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i> Xem CV
+                            </button>
+                            <button onclick="logout()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center justify-center md:justify-start">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mr-3">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Email</p>
+                                <p id="userEmail" class="font-medium">Đang tải...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center md:justify-start">
+                            <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center mr-3">
+                                <i class="fas fa-calendar text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Tham gia</p>
+                                <p id="joinDate" class="font-medium">Đang tải...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div onclick="window.location.href='Uploadcv.html'" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-4">
+                        <i class="fas fa-file-upload text-blue-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Tải lên CV</h3>
+                        <p class="text-sm text-gray-500">Cập nhật CV của bạn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div onclick="window.location.href='Findjobs.html'" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center mr-4">
+                        <i class="fas fa-search text-green-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Tìm việc</h3>
+                        <p class="text-sm text-gray-500">Khám phá cơ hội mới</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div onclick="window.location.href='Printcv.html'" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center mr-4">
+                        <i class="fas fa-print text-purple-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">In CV</h3>
+                        <p class="text-sm text-gray-500">Xem và in CV của bạn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Info -->
+        <div class="bg-white rounded-2xl shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-user-circle text-green-600 mr-3"></i> Thông tin tài khoản
+            </h2>
+            
+            <div class="space-y-4">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-500 mb-1">Họ và tên</p>
+                    <p id="displayName" class="text-lg font-medium text-gray-800">Đang tải...</p>
+                </div>
+                
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-500 mb-1">Địa chỉ Email</p>
+                    <p id="displayEmail" class="text-lg font-medium text-gray-800">Đang tải...</p>
+                </div>
+                
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-500 mb-1">Trạng thái tài khoản</p>
+                    <p class="text-lg font-medium text-green-600">
+                        <i class="fas fa-check-circle mr-2"></i>Hoạt động
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('access_token');
+        const email = localStorage.getItem('user_email');
+
+        if (!token || !email) {
+            alert('Vui lòng đăng nhập trước!');
+            window.location.href = '../auth/login.html';
+        } else {
+            // Display user info
+            const nameParts = email.split('@')[0];
+            const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
+            const initials = displayName.substring(0, 2).toUpperCase();
+            
+            document.getElementById('userName').textContent = displayName;
+            document.getElementById('userEmail').textContent = email;
+            document.getElementById('displayName').textContent = displayName;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('userAvatar').textContent = initials;
+            
+            // Set join date (mock data)
+            const today = new Date();
+            document.getElementById('joinDate').textContent = today.toLocaleDateString('vi-VN');
+        }
+
+        function logout() {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_email');
+            alert('Đăng xuất thành công!');
+            window.location.href = 'Homepage.html';
+        }
+    </script>
+</body>
+</html>

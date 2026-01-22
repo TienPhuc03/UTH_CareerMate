@@ -6,6 +6,6 @@ __pycache__/
 node_modules/
 dist/
 *.session.sql
-
+*.log
 
 

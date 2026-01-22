@@ -3,6 +3,7 @@ from database.base import Base
 
 class AICoachFeedback(Base):
     __tablename__ = "ai_coach_feedbacks"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
     application_id = Column(Integer, ForeignKey("applications.id"), nullable=False)

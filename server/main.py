@@ -6,11 +6,16 @@ from modules.jobs.router import router as jobs_router
 from modules.cvs.router import router as cv_router
 from modules.applications.router import router as app_router
 from modules.ai_coach.router import router as ai_router
+from modules.admin.router import router as admin_router
+from modules.recruiter.router import router as recruiter_router
+import sys
+import os
 
 # Import config and logging
 from core.logging_config import setup_logging, get_logger
 from core.config import settings, display_settings
 from core.redis_client import redis_client
+
 
 # Setup logging
 logger = setup_logging()
@@ -25,7 +30,12 @@ except Exception as e:
 # Test DB connection
 test_connection()
 
-# Initialize FastAPI
+
+
+
+# Đảm bảo Python tìm thấy các module khi chạy từ thư mục server
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 app = FastAPI(
     title="CareerMate - AI Career Platform",
     description="AI-powered career platform for Vietnamese job seekers",
@@ -34,7 +44,6 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins_list,
@@ -50,7 +59,9 @@ app.include_router(user_router, prefix="/api/Auth", tags=["Auth"])
 app.include_router(jobs_router, prefix="/api/jobs", tags=["Jobs"])
 app.include_router(cv_router, prefix="/api/cvs", tags=["CVs"])
 app.include_router(app_router, prefix="/api/applications", tags=["Applications"])
-app.include_router(ai_router, prefix="/api")
+app.include_router(ai_router, prefix="/api", tags=["AI Coach"])
+app.include_router(admin_router, prefix="/api/admin", tags=["Admin"])
+app.include_router(recruiter_router, prefix="/api/recruiter", tags=["Recruiter"])
 
 logger.info("All routers registered")
 
@@ -93,6 +104,9 @@ def root():
         "docs": "/docs",
         "health": "/health"
     }
+@app.get("/")
+def root():
+    return {"message": "Welcome to Career Mates API!", "docs": "/docs"}
 
 
 @app.get("/health")

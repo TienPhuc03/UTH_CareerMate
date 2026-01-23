@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
-from database.session import get_db
+from database.base import get_db  
 from modules.users.models import User
-from .middleware import require_admin
 from . import analytics
+from core.dependencies import require_admin
 
+# Global Admin Protection
 router = APIRouter(
     prefix="/admin", 
     tags=["Admin"], 

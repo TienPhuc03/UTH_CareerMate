@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Tuyển Dụng - Career Mate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="Homepage.html" class="text-2xl font-bold text-green-600">Career Mate</a>
+                    <span class="hidden md:inline text-sm text-gray-500">| Nhà tuyển dụng</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-6">
+                    <a href="RecruiterDashboard.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                        <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
+                    </a>
+                    <a href="PostJob.html" class="text-green-600 font-medium">
+                        <i class="fas fa-plus-circle mr-1"></i> Đăng việc
+                    </a>
+                    <a href="Findjobs.html" class="text-gray-600 hover:text-green-600 transition-colors">
+                        <i class="fas fa-search mr-1"></i> Tìm ứng viên
+                    </a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold">
+                        NT
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <div class="mb-10">
+            <div class="flex items-center justify-between relative">
+                <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
+                
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg">
+                        1
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-green-600">Thông tin cơ bản</span>
+                </div>
+                
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg">
+                        2
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-500">Yêu cầu công việc</span>
+                </div>
+                
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg">
+                        3
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-500">Xem lại & Đăng</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Đăng tin tuyển dụng mới</h1>
+            <p class="text-gray-600 mb-8">Điền thông tin chi tiết để tìm ứng viên phù hợp nhất</p>
+            
+            <form id="postJobForm">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Chức danh công việc <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" required placeholder="VD: Lập trình viên Frontend"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Tên công ty <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" required placeholder="VD: Công ty Công nghệ ABC"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                    </div>
+                </div>
+                
+                // dia diem 
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Địa điểm làm việc <span class="text-red-500">*</span>
+                        </label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                            <option value="">Chọn địa điểm</option>
+                            <option>TP. Hồ Chí Minh</option>
+                            <option>Hà Nội</option>
+                            <option>Đà Nẵng</option>
+                            <option>Làm việc từ xa</option>
+                            <option>Hybrid (Kết hợp)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Hình thức làm việc <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex flex-wrap gap-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="jobType" value="fulltime" class="text-green-600" checked>
+                                <span class="ml-2">Toàn thời gian</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="jobType" value="parttime" class="text-green-600">
+                                <span class="ml-2">Bán thời gian</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="jobType" value="intern" class="text-green-600">
+                                <span class="ml-2">Thực tập</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Mức lương (VND/tháng)
+                    </label>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">Từ</label>
+                            <input type="number" placeholder="10,000,000"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">Đến</label>
+                            <input type="number" placeholder="20,000,000"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Mô tả công việc <span class="text-red-500">*</span>
+                    </label>
+                    <textarea rows="5" required placeholder="Mô tả chi tiết về công việc, trách nhiệm..."
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"></textarea>
+                </div>
+                
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Yêu cầu công việc <span class="text-red-500">*</span>
+                    </label>
+                    <div id="requirementsContainer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="text" placeholder="VD: 1+ năm kinh nghiệm React"
+                                class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                            <button type="button" onclick="addRequirement()"
+                                class="px-4 py-3 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Kỹ năng yêu cầu
+                    </label>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                    <input type="text" placeholder="Thêm kỹ năng (nhấn Enter)"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                        id="skillInput">
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 pt-6 border-t">
+                    <button type="submit"
+                        class="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md">
+                        <i class="fas fa-paper-plane mr-2"></i> Đăng tin ngay
+                    </button>
+                    <button type="button"
+                        class="flex-1 bg-gray-100 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition">
+                        <i class="fas fa-save mr-2"></i> Lưu bản nháp
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 border border-blue-100">
+            <div class="flex items-start">
+                <div class="text-blue-600 mr-4 mt-1">
+                    <i class="fas fa-info-circle text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Tin tuyển dụng của bạn sẽ được:</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Hiển thị trong 30 ngày</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Đề xuất tới ứng viên phù hợp bằng AI</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Xuất hiện trên TopCV & Career Mate</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Nhận CV ứng tuyển trực tiếp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        .skill-tag {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #059669;
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            border: 1px solid #a7f3d0;
+        }
+    </style>
+    
+    <script>
+        function addRequirement() {
+            const container = document.getElementById('requirementsContainer');
+            const newInput = document.createElement('div');
+            newInput.className = 'flex items-center gap-2 mb-2';
+            newInput.innerHTML = `
+                <input type="text" placeholder="Thêm yêu cầu khác..."
+                    class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+                <button type="button" onclick="this.parentElement.remove()"
+                    class="px-4 py-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(newInput);
+        }
+        
+        // Skill tags vi du 
+        document.getElementById('skillInput').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter' && this.value.trim()) {
+                e.preventDefault();
+                const skill = this.value.trim();
+                const tag = document.createElement('span');
+                tag.className = 'skill-tag';
+                tag.textContent = skill;
+                tag.innerHTML += ' <button type="button" onclick="this.parentElement.remove()" class="ml-1 text-red-400 hover:text-red-600">×</button>';
+                
+                this.previousElementSibling.appendChild(tag);
+                this.value = '';
+            }
+        });
+        
+        // Form de submission bai 
+        document.getElementById('postJobForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Tin tuyển dụng đã được đăng thành công!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Career Mate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex">
+        <aside class="w-64 bg-gray-900 text-white min-h-screen sticky top-0">
+            <div class="p-6">
+                <a href="Homepage.html" class="text-2xl font-bold text-green-400 block mb-8">Career Mate <span class="text-xs bg-red-500 text-white px-2 py-1 rounded">ADMIN</span></a>
+                
+                <div class="mb-8 p-4 bg-gray-800 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
+                        A
+                    </div>
+                    <h3 class="text-center font-bold">Administrator</h3>
+                    <p class="text-center text-sm text-gray-400">Super Admin</p>
+                </div>
+                
+                <nav class="space-y-2">
+                    <a href="AdminDashboard.html" class="flex items-center p-3 text-white bg-gray-800 rounded-lg font-medium">
+                        <i class="fas fa-tachometer-alt w-6 mr-3"></i> Tổng quan hệ thống
+                    </a>
+                    <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
+                        <i class="fas fa-users w-6 mr-3"></i> Quản lý người dùng
+                    </a>
+                    <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
+                        <i class="fas fa-building w-6 mr-3"></i> Nhà tuyển dụng
+                    </a>
+                    <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
+                        <i class="fas fa-briefcase w-6 mr-3"></i> Tin tuyển dụng
+                    </a>
+                    <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
+                        <i class="fas fa-chart-bar w-6 mr-3"></i> Báo cáo & Analytics
+                    </a>
+                    <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
+                        <i class="fas fa-cog w-6 mr-3"></i> Cài đặt hệ thống
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6">
+            <div class="mb-6 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-800">Quản Trị Hệ Thống</h1>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-circle text-green-500 mr-1"></i> Hệ thống hoạt động bình thường
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Tổng người dùng</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">2,847</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-users text-blue-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-600 text-sm font-medium">+124 tháng này</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Nhà tuyển dụng</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">156</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
+                            <i class="fas fa-building text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-600 text-sm font-medium">+8 mới</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Tin tuyển dụng</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">892</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <i class="fas fa-briefcase text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-600 text-sm font-medium">+42 hôm nay</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 text-sm">Ứng tuyển</p>
+                            <p class="text-3xl font-bold text-gray-800 mt-2">4,256</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center">
+                            <i class="fas fa-file-alt text-orange-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="text-green-600 text-sm font-medium">+327 hôm nay</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Hoạt động gần đây</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-4 flex-shrink-0">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Người dùng mới đăng ký</p>
+                                <p class="text-sm text-gray-600">Nguyễn Văn C - vanc@email.com</p>
+                                <p class="text-xs text-gray-500">10 phút trước</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4 flex-shrink-0">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Tin tuyển dụng mới</p>
+                                <p class="text-sm text-gray-600">"Senior Backend Developer" từ Công ty XYZ</p>
+                                <p class="text-xs text-gray-500">1 giờ trước</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4 flex-shrink-0">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Đăng nhập Admin</p>
+                                <p class="text-sm text-gray-600">IP: 192.168.1.100 - Thành công</p>
+                                <p class="text-xs text-gray-500">2 giờ trước</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Thao tác nhanh</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-center transition">
+                            <i class="fas fa-user-cog text-blue-600 text-2xl mb-2"></i>
+                            <p class="font-medium">Quản lý người dùng</p>
+                        </a>
+                        
+                        <a href="#" class="p-4 bg-green-50 hover:bg-green-100 rounded-lg text-center transition">
+                            <i class="fas fa-clipboard-check text-green-600 text-2xl mb-2"></i>
+                            <p class="font-medium">Kiểm duyệt tin</p>
+                        </a>
+                        
+                        <a href="#" class="p-4 bg-purple-50 hover:bg-purple-100 rounded-lg text-center transition">
+                            <i class="fas fa-chart-pie text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-medium">Báo cáo hệ thống</p>
+                        </a>
+                        
+                        <a href="#" class="p-4 bg-red-50 hover:bg-red-100 rounded-lg text-center transition">
+                            <i class="fas fa-cogs text-red-600 text-2xl mb-2"></i>
+                            <p class="font-medium">Cấu hình hệ thống</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

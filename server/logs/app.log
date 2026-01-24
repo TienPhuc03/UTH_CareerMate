@@ -120,3 +120,249 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 [32mINFO[0m | 2026-01-22 14:49:48 | careermate | startup_event:87 |  APPLICATION READY
 [32mINFO[0m | 2026-01-22 14:49:48 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
 [32mINFO[0m | 2026-01-22 14:49:48 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-22 17:13:11 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173']
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-22 17:13:11 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-22 17:13:11 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:02:53 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 16:03:18 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5500', 'http://127.0.0.1:5500', 'http://127.0.0.1:5173', 'http://127.0.0.1:3000']
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 16:03:18 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 16:03:18 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:12:51 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 16:13:20 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5500', 'http://127.0.0.1:5500', 'http://127.0.0.1:5173', 'http://127.0.0.1:3000']
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 16:13:20 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 16:13:20 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:19:33 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 16:21:52 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5500', 'http://127.0.0.1:5500', 'http://127.0.0.1:5173', 'http://127.0.0.1:3000']
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 16:21:52 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 16:21:52 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:47:58 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 16:48:01 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5500', 'http://127.0.0.1:5500', 'http://127.0.0.1:5173', 'http://127.0.0.1:3000']
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 16:48:01 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 16:48:01 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:06:02 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 17:06:04 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | <module>:55 | CORS enabled for: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5500', 'http://127.0.0.1:5500', 'http://127.0.0.1:5173', 'http://127.0.0.1:3000']
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 17:06:04 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 17:06:04 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:14:28 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 17:14:52 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | <module>:55 | CORS enabled for: ['*']
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 17:14:52 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 17:14:53 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 17:14:53 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:19:59 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 17:20:20 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | <module>:55 | CORS enabled for: ['*']
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 17:20:20 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 17:20:20 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:25:21 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 17:25:23 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | <module>:55 | CORS enabled for: ['*']
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 17:25:23 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 17:25:23 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:29:07 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-23 17:31:12 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-23 17:31:12 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-23 17:31:12 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:18:09 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-24 09:19:01 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-24 09:19:01 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-24 09:19:01 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:29:52 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-24 09:30:37 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-24 09:30:37 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-24 09:30:37 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:30:50 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-24 09:34:13 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-24 09:34:13 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:41:47 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-24 09:43:59 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-24 09:43:59 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:89 | ======================================================================

@@ -33,7 +33,7 @@ class Settings(BaseSettings):
     ALLOWED_FILE_TYPES: str = "pdf,docx,doc"
     
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173"
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://localhost:5500,http://127.0.0.1:5500,http://127.0.0.1:5173,http://127.0.0.1:3000"
     
     # Paths
     UPLOAD_DIR: str = "uploads"
@@ -43,9 +43,12 @@ class Settings(BaseSettings):
         env_file = ".env"
         case_sensitive = False
     
+    # @property
+    # def allowed_origins_list(self) -> List[str]:
+    #     return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
     @property
     def allowed_origins_list(self) -> List[str]:
-        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
+        return ["*"]
     
     @property
     def allowed_file_types_list(self) -> List[str]:

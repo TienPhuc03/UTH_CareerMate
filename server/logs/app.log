@@ -350,3 +350,19 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 [32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
 [32mINFO[0m | 2026-01-24 09:34:13 | careermate | startup_event:89 | ======================================================================
 [32mINFO[0m | 2026-01-24 09:41:47 | careermate | shutdown_event:95 |  Application shutting down...
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | setup_logging:84 | ============================================================
+[33mWARNING[0m | 2026-01-24 09:43:59 | careermate.core.redis_client | _connect:33 | ⚠️  Redis not available: Error 111 connecting to localhost:6379. Connection refused.
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | <module>:26 | Database tables created
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | <module>:66 | All routers registered
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:72 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:73 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:74 | ======================================================================
+[33mWARNING[0m | 2026-01-24 09:43:59 | careermate | startup_event:84 |  Redis not connected - caching disabled
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:86 | ======================================================================
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:87 |  APPLICATION READY
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-24 09:43:59 | careermate | startup_event:89 | ======================================================================

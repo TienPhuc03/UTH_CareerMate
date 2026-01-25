@@ -1,6 +1,5 @@
-
 from pydantic_settings import BaseSettings
-from typing import List
+from typing import List, Optional
 import os
 
 
@@ -16,7 +15,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # AI Service - Gemini
-    GEMINI_API_KEY: str
+    GEMINI_API_KEY: Optional[str] = None  # ✅ Optional now
     GEMINI_MODEL: str = "gemini-1.5-flash"
     
     # Redis
@@ -41,32 +40,38 @@ class Settings(BaseSettings):
     
     class Config:
         env_file = ".env"
+        extra = "ignore"
         case_sensitive = False
     
     @property
     def allowed_origins_list(self) -> List[str]:
+        """Parse ALLOWED_ORIGINS string to list"""
         return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
     
     @property
     def allowed_file_types_list(self) -> List[str]:
+        """Parse ALLOWED_FILE_TYPES string to list"""
         return [ft.strip() for ft in self.ALLOWED_FILE_TYPES.split(",")]
     
     @property
     def max_file_size_bytes(self) -> int:
+        """Convert MB to bytes"""
         return self.MAX_FILE_SIZE_MB * 1024 * 1024
     
     @property
     def is_production(self) -> bool:
+        """Check if running in production"""
         return self.ENVIRONMENT.lower() == "production"
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # Create directories
+        # Create directories if they don't exist
         os.makedirs(self.UPLOAD_DIR, exist_ok=True)
         os.makedirs(f"{self.UPLOAD_DIR}/cvs", exist_ok=True)
         os.makedirs(self.LOG_DIR, exist_ok=True)
 
 
+# Create settings instance
 settings = Settings()
 
 
@@ -80,5 +85,6 @@ def display_settings():
     print(f"Database: {settings.DATABASE_URL.split('@')[-1]}")
     print(f"Redis: {settings.REDIS_URL}")
     print(f"AI Model: {settings.GEMINI_MODEL}")
+    print(f"Gemini API Key: {'✅ Set' if settings.GEMINI_API_KEY else '❌ Not set'}")
     print(f"Allowed Origins: {settings.allowed_origins_list}")
     print("=" * 60)

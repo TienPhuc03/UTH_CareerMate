@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from modules.users import schemas, curd
 from core import security
 from database.session import get_db
+from core.dependencies import get_current_user
 
 router = APIRouter()
 

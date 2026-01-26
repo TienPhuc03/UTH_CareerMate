@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
-from database.base import get_db  
+from database.session import get_db  
 from modules.users.models import User
 from . import analytics
 from core.dependencies import require_admin

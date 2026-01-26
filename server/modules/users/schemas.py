@@ -23,6 +23,7 @@ class UserOut(BaseModel):
     id: int
     email: EmailStr
     full_name: str
+    role: str
     is_active: bool
     created_at: datetime
 

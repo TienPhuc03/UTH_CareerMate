@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 from core.config import settings
-from database.base import get_db
+from database.session import get_db
 from modules.users.models import User
 
 # Security scheme for automatic Swagger documentation

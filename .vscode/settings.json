@@ -42,6 +42,11 @@
             "database": "users_db",
             "username": "postgres"
         }
-    ]
+    ],
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none"
+  },
+  "python.linting.enabled": false,
+  "python.analysis.typeCheckingMode": "off"
 }
-

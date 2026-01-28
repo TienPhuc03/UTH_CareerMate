@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.base import Base, engine, test_connection
+from database.base import  test_connection
 from modules.users.router import router as user_router
 from modules.jobs.router import router as jobs_router 
 from modules.cvs.router import router as cv_router
@@ -19,15 +19,6 @@ from core.redis_client import redis_client
 
 # Setup logging
 logger = setup_logging()
-
-# Create tables
-try:
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables created")
-except Exception as e:
-    logger.error(f"Failed to create tables: {e}")
-
-# Test DB connection
 test_connection()
 
 

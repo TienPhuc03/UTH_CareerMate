@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from modules.users import schemas, curd
 from core import security
 from database.session import get_db
+from core.dependencies import get_current_user
 
 router = APIRouter()
 
@@ -62,3 +63,7 @@ def login(user: schemas.UserLogin, db: DbDependency):
         "access_token": access_token,
         "token_type": "bearer"
     }
+
+@router.get("/profile")
+def get_profile(current_user = Depends(get_current_user)):
+    return {"id": current_user.id, "email": current_user.email, "role": current_user.role}

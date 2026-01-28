@@ -7,5 +7,5 @@ node_modules/
 dist/
 *.session.sql
 *.log
-
+server/logs/
 

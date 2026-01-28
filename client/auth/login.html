@@ -99,7 +99,7 @@ Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV c
                     localStorage.setItem('user_email', email);
 
                     // Show success message
-                    showAlert('Login successful! Redirecting...', 'success');
+                    showAlert('Đăng nhập thành công!', 'success');
 
                     // Redirect to homepage 
                     setTimeout(() => {
@@ -107,13 +107,13 @@ Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV c
                     }, 1000);
                 } else {
                     // Show error message
-                    showAlert(data.detail || 'Invalid email or password', 'error');
+                    showAlert(data.detail || 'Email hoặc mật khẩu không hợp lệ', 'error');
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Sign In';
                 }
             } catch (error) {
                 console.error('Error:', error);
-                showAlert('Cannot connect to server. Please check if backend is running!', 'error');
+                showAlert('Không thể kết nối đến máy chủ, vui lòng kiểm tra!', 'error');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Sign In';
             }

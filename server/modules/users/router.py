@@ -30,7 +30,8 @@ def register(user: schemas.UserCreate, db: DbDependency):
         db=db,
         email=user.email,
         full_name=user.full_name,
-        password=user.password
+        password=user.password,
+        role=user.role
     )
     
     return new_user

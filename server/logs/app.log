@@ -455,3 +455,215 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 [32mINFO[0m | 2026-01-26 08:33:34 | careermate | startup_event:87 |  APPLICATION READY
 [32mINFO[0m | 2026-01-26 08:33:34 | careermate | startup_event:88 |  API Docs: http://localhost:8000/docs
 [32mINFO[0m | 2026-01-26 08:33:34 | careermate | startup_event:89 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:08:08 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:31 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:41 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:09:51 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:10 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:15 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:16 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:20 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:22 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:24 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:10:25 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:05 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-26 15:14:06 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:14 | careermate | shutdown_event:86 |  Application shutting down...
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-26 15:14:15 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:50 | careermate | shutdown_event:86 |  Application shutting down...
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-26 15:14:54 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-26 15:28:09 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-28 14:24:03 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-28 14:27:08 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:46:02 | careermate | shutdown_event:86 |  Application shutting down...
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-28 14:46:04 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:00:04 | careermate | shutdown_event:86 |  Application shutting down...
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-28 15:00:06 | careermate | startup_event:80 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:04:14 | careermate | shutdown_event:86 |  Application shutting down...
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 15:04:17 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | setup_logging:80 | ============================================================
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | setup_logging:81 | 🚀 CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | setup_logging:82 | Environment: development
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | setup_logging:83 | Log Level: INFO
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | setup_logging:84 | ============================================================
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate.core.redis_client | _connect:30 | ✅ Redis connected: redis://redis:6379/0
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | <module>:57 | All routers registered
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:63 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:64 |  CAREERMATE APPLICATION STARTUP
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:65 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:73 |  Redis connected - 0 keys
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:77 | ======================================================================
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:78 |  APPLICATION READY
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:79 |  API Docs: http://localhost:8000/docs
+[32mINFO[0m | 2026-01-28 15:04:20 | careermate | startup_event:80 | ======================================================================

@@ -19,15 +19,6 @@ from core.redis_client import redis_client
 
 # Setup logging
 logger = setup_logging()
-
-# # Create tables
-# try:
-#     Base.metadata.create_all(bind=engine)
-#     logger.info("Database tables created")
-# except Exception as e:
-#     logger.error(f"Failed to create tables: {e}")
-
-# Test DB connection
 test_connection()
 
 

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Float, Integer, String, DateTime, ForeignKey, Text
 from sqlalchemy.sql import func
-from database.base import Base 
+from database.base import Base
 
-class Application(Base): 
+class Application(Base):
     __tablename__ = "applications"
     __table_args__ = {'extend_existing': True}
 

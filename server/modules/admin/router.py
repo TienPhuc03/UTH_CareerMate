@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy.orm import Session
-from database.session import get_db  
+from database.session import get_db
 from typing import Optional
 from datetime import datetime
 from modules.users.models import User
@@ -53,6 +53,7 @@ def list_all_users(
         )
     
     total = query.count()
+    # Tính toán tổng số trang
     total_pages = (total + limit - 1) // limit
     users = query.offset((page-1)*limit).limit(limit).all()
     
@@ -149,12 +150,14 @@ def list_all_jobs(
     # Apply filters
     if status:
         if status.lower() == "active":
-            query = query.filter(Job.is_active == True)
+            # [FIX LOGIC] Map "active" sang cột status của DB
+            query = query.filter(Job.status == "active")
         elif status.lower() == "closed":
-            query = query.filter(Job.is_active == False)
+            # [FIX LOGIC] Map "closed" sang cột status của DB
+            query = query.filter(Job.status == "closed")
     
     if company:
-        query = query.filter(Job.title.contains(company))
+        query = query.filter(Job.company_name.contains(company))
     
     if date_from:
         try:
@@ -180,7 +183,8 @@ def list_all_jobs(
     total = query.count()
     
     # Apply pagination
-    jobs = query.offset((page - 1) * limit).limit(limit).all()
+    from sqlalchemy import desc
+    jobs = query.order_by(desc(Job.created_at)).offset((page - 1) * limit).limit(limit).all()
     
     return {
         "total": total,
@@ -218,8 +222,10 @@ def update_job_status(
             detail="Job not found"
         )
     
-    old_status = job.is_active
-    job.is_active = is_active
+    # [FIX LOGIC] Chuyển đổi Boolean (Form) -> String (Database)
+    # Giữ nguyên tham số is_active của bạn
+    job.status = "active" if is_active else "closed"
+    
     db.commit()
     db.refresh(job)
     
@@ -228,7 +234,7 @@ def update_job_status(
     return {
         "id": job.id,
         "title": job.title,
-        "status": "active" if job.is_active else "closed",
+        "status": job.status,
         "message": f"Job {action} successfully"
     }
 

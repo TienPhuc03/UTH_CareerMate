@@ -37,22 +37,70 @@
                     <li><a href="Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
                     <li><a href="Uploadcv.html" class="py-3 block hover:text-green-600 lg:py-0">Tạo CV</a></li>
                 </ul>
-                <label for="menu-toggle"
-                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
-                
+
                 <div id="authButtons" class="flex gap-3">
-                    <a href="../auth/   signup.html"
+                    <a href="../auth/signup.html"
                         class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
                     <a href="../auth/login.html"
                         class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
                 </div>
 
-                <div id="userMenu" class="hidden gap-3 items-center">
-                    <span id="userEmailHeader" class="text-gray-700 font-medium hidden md:block"></span>
-                    <a href="Profile.html"
-                        class="block bg-blue-600 font-bold px-6 py-3 text-white rounded-full hover:bg-blue-700">Hồ sơ</a>
-                    <button onclick="logout()"
-                        class="block bg-red-600 font-bold px-6 py-3 text-white rounded-full hover:bg-red-700">Đăng xuất</button>
+                <div id="userInfo" class="hidden items-center gap-3">
+                    <div class="relative">
+                        <div class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity" id="userMenuToggle">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold" id="userAvatar">
+                                <!-- Initials sẽ được điền bằng JS -->
+                            </div>
+                            <div class="hidden md:block">
+                                <div class="font-medium text-gray-800 max-w-[150px] truncate" id="userNameDisplay">
+                                    <!-- Tên sẽ được điền bằng JS -->
+                                </div>
+                                <div class="text-xs text-gray-500 max-w-[150px] truncate" id="userEmailDisplay">
+                                    <!-- Email sẽ được điền bằng JS -->
+                                </div>
+                            </div>
+                            <svg class="hidden md:block w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute hidden right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50" id="userDropdown">
+                            <div class="p-4 border-b border-gray-100">
+                                <div class="font-medium text-gray-800 truncate" id="dropdownUserName"></div>
+                                <div class="text-sm text-gray-500 truncate" id="dropdownUserEmail"></div>
+                            </div>
+                            
+                            <a href="Profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 transition-colors">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span>Hồ sơ cá nhân</span>
+                            </a>
+                            
+                            <a href="Uploadcv.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Tạo CV mới</span>
+                            </a>
+                            
+                            <a href="Findjobs.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors">
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Việc làm đã lưu</span>
+                            </a>
+                            
+                            <div class="border-t border-gray-200"></div>
+                            
+                            <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors text-left">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span>Đăng xuất</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
@@ -410,13 +458,54 @@
 
         function checkAuthStatus() {
             if (token && userEmail) {
+                // User is logged in - show user info
                 document.getElementById('authButtons').classList.add('hidden');
-                document.getElementById('userMenu').classList.remove('hidden');
-                document.getElementById('userMenu').classList.add('flex');
-                document.getElementById('userEmailHeader').textContent = userEmail;
+                document.getElementById('userInfo').classList.remove('hidden');
+                document.getElementById('userInfo').classList.add('flex');
+                
+                // Extract user name from email (before @)
+                const nameParts = userEmail.split('@')[0];
+                const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
+                const initials = displayName.substring(0, 2).toUpperCase();
+                
+                // Set user info
+                document.getElementById('userNameDisplay').textContent = displayName;
+                document.getElementById('userEmailDisplay').textContent = userEmail;
+                document.getElementById('dropdownUserName').textContent = displayName;
+                document.getElementById('dropdownUserEmail').textContent = userEmail;
+                document.getElementById('userAvatar').textContent = initials;
             }
         }
-        checkAuthStatus();
+        
+        // Toggle dropdown menu
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            
+            const userMenuToggle = document.getElementById('userMenuToggle');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            if (userMenuToggle) {
+                userMenuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('hidden');
+                });
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (userDropdown && !userDropdown.contains(e.target) && !userMenuToggle.contains(e.target)) {
+                    userDropdown.classList.add('hidden');
+                }
+            });
+            
+            // Close dropdown when clicking on a menu item
+            const dropdownItems = document.querySelectorAll('#userDropdown a, #userDropdown button');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    userDropdown.classList.add('hidden');
+                });
+            });
+        });
 
         function logout() {
             localStorage.removeItem('access_token');

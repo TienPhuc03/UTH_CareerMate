@@ -10,30 +10,109 @@
 </head>
 
 <body class="bg-gradient-to-br from-green-50 to-white min-h-screen">
-    <!-- Header - THAY LOGO MỚI -->
-    <header class="bg-green-600 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex items-center justify-between">
-            <!-- Logo Career Mate - KHÔNG CÓ ROBOT -->
+    <!-- Header -->
+    <!-- Header - Giống Homepage -->
+    <header class="px-4 py-3 bg-white xl:px-0 sticky top-0 shadow-md z-50">
+        <div class="max-w-[1200px] mx-auto flex items-center">
             <div>
-                <a href="Homepage.html"
-                    class="text-2xl md:text-3xl font-bold text-white hover:text-green-100 transition-colors">
-                    Career Mate
-                </a>
+                <a href="Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
             </div>
+            <nav class="ml-auto flex items-center gap-10">
+                <input type="checkbox" hidden id="menu-toggle"
+                    class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
+                <ul
+                    class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
+                    <li><a href="Homepage.html" class="py-3 block hover:text-green-600 lg:py-0">Trang chủ</a></li>
+                    <li><a href="Findjobs.html" class="py-3 block hover:text-green-600 lg:py-0">Việc làm</a></li>
+                    <li><a href="Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
+                    <li><a href="Uploadcv.html" class="py-3 block hover:text-green-600 lg:py-0">Tạo CV</a></li>
+                </ul>
+                <label for="menu-toggle"
+                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
+                
+                <!-- Auth Buttons - Thay đổi dựa vào login status -->
+                <div id="authButtons" class="flex gap-3">
+                    <a href="../auth/signup.html"
+                        class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
+                    <a href="../auth/login.html"
+                        class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
+                </div>
 
-            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <i class="fas fa-user text-sm"></i>
-            </div>
+                <!-- User Info - Hiển thị khi đã login -->
+                <div id="userInfo" class="hidden items-center gap-3">
+                    <div class="relative">
+                        <div class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity" id="userMenuToggle">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold" id="userAvatar">
+                                <!-- Initials sẽ được điền bằng JS -->
+                            </div>
+                            <div class="hidden md:block">
+                                <div class="font-medium text-gray-800 max-w-[150px] truncate" id="userNameDisplay">
+                                    <!-- Tên sẽ được điền bằng JS -->
+                                </div>
+                                <div class="text-xs text-gray-500 max-w-[150px] truncate" id="userEmailDisplay">
+                                    <!-- Email sẽ được điền bằng JS -->
+                                </div>
+                            </div>
+                            <svg class="hidden md:block w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        
+                        <div class="absolute hidden right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50" id="userDropdown">
+                            <div class="p-4 border-b border-gray-100">
+                                <div class="font-medium text-gray-800 truncate" id="dropdownUserName"></div>
+                                <div class="text-sm text-gray-500 truncate" id="dropdownUserEmail"></div>
+                            </div>
+                            
+                            <a href="Profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 transition-colors">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span>Hồ sơ cá nhân</span>
+                            </a>
+                            
+                            <a href="Uploadcv.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Tạo CV mới</span>
+                            </a>
+                            
+                            <a href="Careerai.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors">
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>AI Career Coach</span>
+                            </a>
+                            
+                            <div class="border-t border-gray-200"></div>
+                            
+                            <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors text-left">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span>Đăng xuất</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                    <span class="block w-full h-[3px] bg-[#333]"></span>
+                </label>
+            </nav>
         </div>
     </header>
 
     <!-- Main Chat Container -->
     <main class="container mx-auto max-w-4xl px-4 py-6 flex flex-col h-[calc(100vh-100px)]">
-        <!-- Chat Messages Area -->
+
         <section
             class="flex-1 overflow-y-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 mb-6 p-6">
-            <!-- Welcome Message -->
-            <div class="text-center py-12">
+            <!-- Welcome Message - THÊM ID Ở ĐÂY -->
+            <div id="welcomeMessage" class="text-center py-12">
                 <div class="w-24 h-24 bg-green-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i class="fas fa-comments text-3xl text-green-600"></i>
                 </div>
@@ -42,19 +121,19 @@
                     Tôi là Career AI - trợ lý AI chuyên về CV và sự nghiệp. Hãy hỏi tôi về:
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6 max-w-lg mx-auto">
-                    <div
+                    <div onclick="askQuestion('Tạo CV chuyên nghiệp như thế nào?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-file-alt mr-2"></i>Tạo CV chuyên nghiệp
                     </div>
-                    <div
+                    <div onclick="askQuestion('Làm thế nào để tìm việc phù hợp?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-search mr-2"></i>Tìm việc phù hợp
                     </div>
-                    <div
+                    <div onclick="askQuestion('Nên học những kỹ năng gì?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-graduation-cap mr-2"></i>Lời khuyên học tập
                     </div>
-                    <div
+                    <div onclick="askQuestion('Chuẩn bị phỏng vấn như thế nào?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-briefcase mr-2"></i>Phỏng vấn xin việc
                     </div>
@@ -63,34 +142,7 @@
 
             <!-- Sample Messages - Hidden initially -->
             <div id="chat-messages" class="space-y-4 hidden">
-                <!-- User message example -->
-                <div class="flex justify-end">
-                    <div class="max-w-xs lg:max-w-md bg-green-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg">
-                        <p>Làm sao để tạo CV ấn tượng cho sinh viên mới ra trường?</p>
-                    </div>
-                </div>
-
-                <!-- AI message example -->
-                <div class="flex justify-start">
-                    <div
-                        class="max-w-xs lg:max-w-md bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
-                        <div class="flex items-start space-x-3">
-                            <div
-                                class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-robot text-sm"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-800 mb-2">Để tạo CV ấn tượng, bạn nên:</p>
-                                <ul class="text-sm space-y-1">
-                                    <li>• Tập trung vào kỹ năng và dự án cá nhân</li>
-                                    <li>• Sử dụng số liệu cụ thể (tăng 30% hiệu suất...)</li>
-                                    <li>• Thiết kế sạch sẽ, dễ đọc</li>
-                                </ul>
-                                <p class="text-xs text-green-600 mt-2 font-medium">Bạn muốn tôi tạo mẫu CV không?</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Tin nhắn mẫu sẽ được hiển thị khi người dùng bắt đầu chat -->
             </div>
         </section>
 
@@ -98,39 +150,37 @@
         <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 p-4">
             <div class="flex space-x-4">
                 <div class="flex-1 relative">
-                    <input type="text" placeholder="Nhập câu hỏi về CV, sự nghiệp..."
-                        class="w-full p-4 pl-16 border-2 border-green-200 rounded-2xl focus:border-green-400 focus:outline-none transition-all text-lg bg-green-50 hover:bg-green-100">
+                    <!-- THÊM ID VÀ ONKEYPRESS VÀO INPUT -->
+                    <input type="text" id="messageInput" placeholder="Nhập câu hỏi về CV, sự nghiệp..."
+                        class="w-full p-4 pl-16 border-2 border-green-200 rounded-2xl focus:border-green-400 focus:outline-none transition-all text-lg bg-green-50 hover:bg-green-100"
+                        onkeypress="handleKeyPress(event)">
 
-                    <!-- File Attachment Button with Dropdown -->
+                    <!-- File Attachment Button -->
                     <div class="absolute left-4 top-1/2 -translate-y-1/2 group">
                         <button id="file-btn"
                             class="p-3 text-gray-400 hover:text-green-600 hover:bg-green-100 rounded-xl transition-all duration-200 flex items-center justify-center relative">
                             <i class="fas fa-paperclip text-lg"></i>
                         </button>
 
-                        <!-- Dropdown Menu -->
                         <div id="file-dropdown"
                             class="absolute left-0 bottom-full mb-2 w-48 bg-white border border-green-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
                             <div class="py-1">
-                                <!-- Image Upload -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full">
                                     <i class="fas fa-image mr-3 text-green-500 w-5"></i>
                                     <span>Hình ảnh</span>
                                     <input type="file" accept="image/*" class="hidden" multiple>
                                 </label>
 
-                                <!-- Document Upload -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full border-t border-green-100">
                                     <i class="fas fa-file-pdf mr-3 text-red-500 w-5"></i>
                                     <span>File tài liệu</span>
                                     <input type="file" accept=".pdf,.doc,.docx,.txt" class="hidden">
                                 </label>
 
-                                <!-- Screenshot -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full border-t border-green-100">
                                     <i class="fas fa-camera mr-3 text-blue-500 w-5"></i>
                                     <span>Chụp màn hình</span>
                                     <input type="file" accept="image/*" class="hidden" capture="environment">
@@ -145,8 +195,7 @@
                         <i class="fas fa-microphone text-lg"></i>
                     </button>
 
-                    <!-- Send Button -->
-                    <button
+                    <button onclick="sendMessage()"
                         class="absolute right-3 top-1/2 -translate-y-1/2 w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all">
                         <i class="fas fa-paper-plane text-lg"></i>
                     </button>
@@ -201,50 +250,72 @@
         let userEmail = localStorage.getItem('user_email');
         let token = localStorage.getItem('access_token');
 
-        // Check authentication
+        // Khi trang load xong
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Trang đã load, kiểm tra đăng nhập...');
+            
+            if (!checkAuth()) {
+                return;
+            }
+            console.log('Đã đăng nhập với email:', userEmail);
+        });
+
+        // Kiểm tra đăng nhập
         function checkAuth() {
             if (!token || !userEmail) {
-                alert('Vui lòng đăng nhập để sử dụng Career AI Coach!');
+                alert('⚠️ Vui lòng đăng nhập để sử dụng Career AI Coach!');
                 window.location.href = '../auth/login.html';
                 return false;
             }
-            document.getElementById('userEmailDisplay').textContent = userEmail;
             return true;
         }
 
-        // Handle Enter key
+        // Nhấn Enter để gửi
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Quick question buttons
+        // Câu hỏi nhanh
         function askQuestion(question) {
-            document.getElementById('messageInput').value = question;
-            sendMessage();
+            const input = document.getElementById('messageInput');
+            if (input) {
+                input.value = question;
+                sendMessage();
+            }
         }
 
-        // Send message to AI
+        // Gửi tin nhắn
         async function sendMessage() {
             const input = document.getElementById('messageInput');
-            const message = input.value.trim();
+            if (!input) {
+                console.error('Không tìm thấy input message');
+                return;
+            }
             
+            const message = input.value.trim();
             if (!message) return;
+            
+            console.log('Đang gửi:', message);
 
-            // Hide welcome message
-            document.getElementById('welcomeMessage').classList.add('hidden');
-            document.getElementById('chat-messages').classList.remove('hidden');
+            // Ẩn welcome message
+            const welcome = document.getElementById('welcomeMessage');
+            if (welcome) welcome.classList.add('hidden');
+            
+            // Hiện khung chat
+            const chatBox = document.getElementById('chat-messages');
+            if (chatBox) chatBox.classList.remove('hidden');
 
-            // Add user message to chat
+            // Thêm tin nhắn user
             addMessageToChat(message, 'user');
             input.value = '';
 
-            // Show typing indicator
+            // Hiện đang gõ
             showTypingIndicator();
 
             try {
-                // Call AI Coach API
+                // Gọi API AI
                 const response = await fetch(`${API_URL}/ai-coach/chat`, {
                     method: 'POST',
                     headers: {
@@ -259,44 +330,55 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('AI response failed');
+                    throw new Error('API lỗi: ' + response.status);
                 }
 
                 const data = await response.json();
+                console.log('AI trả lời:', data);
                 
-                // Remove typing indicator
+                // Ẩn đang gõ
                 removeTypingIndicator();
 
-                // Add AI response
-                addMessageToChat(data.response || data.analysis || 'Xin lỗi, tôi không hiểu câu hỏi của bạn.', 'ai');
+                // Thêm tin nhắn AI
+                const aiResponse = data.response || data.analysis || 'Xin lỗi, tôi chưa hiểu câu hỏi.';
+                addMessageToChat(aiResponse, 'ai');
 
-                // Update conversation history
+                // Lưu vào lịch sử
                 conversationHistory.push({
                     user: message,
-                    ai: data.response || data.analysis
+                    ai: aiResponse
                 });
 
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Lỗi:', error);
                 removeTypingIndicator();
-                addMessageToChat('⚠️ Có lỗi xảy ra. Vui lòng thử lại sau.', 'ai');
+                
+                // Chế độ demo nếu API lỗi
+                addMessageToChat('🤖 **Chế độ demo**\n\nTôi là Career AI Coach. Câu hỏi của bạn: "' + message + '"\n\n*Lưu ý: API chưa kết nối, đang ở chế độ demo*', 'ai');
+                
+                conversationHistory.push({
+                    user: message,
+                    ai: 'Demo response'
+                });
             }
         }
 
-        // Add message to chat UI
+        // Thêm tin nhắn vào khung chat
         function addMessageToChat(message, type) {
-            const chatMessages = document.getElementById('chat-messages');
+            const chatBox = document.getElementById('chat-messages');
+            if (!chatBox) return;
+            
             const messageDiv = document.createElement('div');
             
             if (type === 'user') {
-                messageDiv.className = 'flex justify-end';
+                messageDiv.className = 'flex justify-end mb-4';
                 messageDiv.innerHTML = `
                     <div class="max-w-xs lg:max-w-md bg-green-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg">
                         <p class="whitespace-pre-wrap">${escapeHtml(message)}</p>
                     </div>
                 `;
             } else {
-                messageDiv.className = 'flex justify-start';
+                messageDiv.className = 'flex justify-start mb-4';
                 messageDiv.innerHTML = `
                     <div class="max-w-xs lg:max-w-md bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
                         <div class="flex items-start space-x-3">
@@ -311,16 +393,18 @@
                 `;
             }
             
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Show typing indicator
+        // Hiện "đang gõ"
         function showTypingIndicator() {
-            const chatMessages = document.getElementById('chat-messages');
+            const chatBox = document.getElementById('chat-messages');
+            if (!chatBox) return;
+            
             const typingDiv = document.createElement('div');
             typingDiv.id = 'typing-indicator';
-            typingDiv.className = 'flex justify-start';
+            typingDiv.className = 'flex justify-start mb-4';
             typingDiv.innerHTML = `
                 <div class="bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
                     <div class="flex items-center space-x-2">
@@ -330,41 +414,33 @@
                     </div>
                 </div>
             `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Remove typing indicator
+        // Ẩn "đang gõ"
         function removeTypingIndicator() {
             const indicator = document.getElementById('typing-indicator');
-            if (indicator) {
-                indicator.remove();
-            }
+            if (indicator) indicator.remove();
         }
 
-        // Format AI response with line breaks and lists
+        // Định dạng tin nhắn AI
         function formatAIResponse(text) {
-            // Convert newlines to <br>
-            let formatted = text.replace(/\n/g, '<br>');
-            
-            // Convert bullet points
-            formatted = formatted.replace(/• /g, '<br>• ');
-            
-            // Highlight key phrases
-            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="text-green-600">$1</strong>');
-            
+            if (!text) return '';
+            let formatted = text.toString()
+                .replace(/\n/g, '<br>')
+                .replace(/• /g, '<br>• ')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-green-600">$1</strong>');
             return formatted;
         }
 
-        // Escape HTML
+        // Bảo mật: escape HTML
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
-
-        // Initialize
-        checkAuth();
     </script>
 </body>
 

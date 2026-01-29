@@ -11,7 +11,6 @@ from . import analytics
 
 # Global Admin Protection
 router = APIRouter(
-    prefix="/admin", 
     tags=["Admin"], 
     dependencies=[Depends(require_admin)]
 )
@@ -118,7 +117,7 @@ def delete_user(
             db.delete(job)
     
     # Delete applications by this user
-    applications = db.query(Application).filter(Application.candidate_id == user_id).all()
+    applications = db.query(Application).filter(Application.user_id == user_id).all()
     for app in applications:
         db.delete(app)
     

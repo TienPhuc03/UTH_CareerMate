@@ -7,8 +7,8 @@ class JobCreate(BaseModel):
     description: Optional[str] = None
     salary_range: Optional[str] = None
     job_type: str = "full_time"
-    salary_min: Optional[float] = None      # ← Thêm các field này
-    salary_max: Optional[float] = None      # ← vì router.py đang dùng
+    salary_min: Optional[int] = None      # ← Thêm các field này
+    salary_max: Optional[int] = None      # ← vì router.py đang dùng
     location: Optional[str] = None
     company_name: Optional[str] = None
     requirements: Optional[str] = None  # Thêm field này

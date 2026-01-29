@@ -248,7 +248,7 @@ def update_application_status(
     # Update status
     application.status = new_status
     if notes:
-        application.notes = notes
+        application.recruiter_notes = notes
     
     db.commit()
     db.refresh(application)
@@ -256,9 +256,9 @@ def update_application_status(
     return {
         "id": application.id,
         "job_id": application.job_id,
-        "candidate_id": application.candidate_id,
+        "candidate_id": application.user_id,
         "status": application.status,
-        "notes": application.notes,
+        "recruiter_notes": application.recruiter_notes,
         "created_at": application.created_at,
         "updated_at": application.updated_at
     }

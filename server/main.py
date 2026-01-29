@@ -95,9 +95,7 @@ def root():
         "docs": "/docs",
         "health": "/health"
     }
-@app.get("/")
-def root():
-    return {"message": "Welcome to Career Mates API!", "docs": "/docs"}
+
 
 
 @app.get("/health")

@@ -5,7 +5,7 @@ from database.session import get_db
 from modules.applications import crud
 from modules.applications import schemas
 
-router = APIRouter(prefix="/applications", tags=["Applications"])
+router = APIRouter(tags=["Applications"])
 
 @router.post("/", response_model=schemas.ApplicationResponse)
 def submit_application(app_in: schemas.ApplicationCreate, db: Session = Depends(get_db)):

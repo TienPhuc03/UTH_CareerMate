@@ -145,6 +145,7 @@
             </div>
         </div>
     </div>
+
     <script>
         // --- 1. TÍNH NĂNG: HIỆN/ẨN MẬT KHẨU ---
         function togglePassword(inputId, iconId) {
@@ -188,7 +189,7 @@
                 confirmInput.classList.add("border-green-500");
             }
         }
-        // --- 2. LOGIC UI: Xử lý hiệu ứng chọn Role ---
+        // --- LOGIC UI: Xử lý hiệu ứng chọn Role ---
         function updateRoleUI(input) {
             // Reset style của cả 2 thẻ về mặc định
             const studentCard = document.getElementById('label-student');
@@ -218,8 +219,7 @@
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // 1. SỬA TÊN ID CHO KHỚP VỚI HTML
-            // Lưu ý: ID trong HTML là 'fullname' (viết thường), không phải 'fullName'
+            //  SỬA TÊN ID CHO KHỚP VỚI HTML
             const full_name = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;

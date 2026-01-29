@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Job Details – CareerMate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cmGreen: "#02C26A",
+              cmBlue: "#0075FF",
+              cmDark: "#081021",
+              cmLight: "#F5FAFF",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-cmLight text-slate-900">
+    <header class="bg-gradient-to-r from-cmGreen to-cmBlue text-white">
+      <div
+        class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold"
+          >
+            CM
+          </div>
+          <span class="text-sm font-semibold">CareerMate</span>
+        </div>
+        <button class="text-xs px-3 py-1 rounded-full bg-white text-cmDark">
+          Dashboard
+        </button>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 space-y-3"
+      >
+        <div class="flex justify-between gap-3">
+          <div>
+            <p class="text-[11px] text-emerald-600 font-semibold">
+              Entry‑level / Fresher
+            </p>
+            <h1 class="text-lg md:text-xl font-bold">
+              Frontend Developer (Fresher)
+            </h1>
+            <p class="text-xs text-slate-600 mt-1">
+              CareerMate Vietnam · HCMC · Hybrid · Up to 15M VND
+            </p>
+          </div>
+          <button
+            id="btnApplyQuick"
+            class="self-start text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-cmGreen to-cmBlue text-white font-semibold"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-slate-100">ReactJS</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100">TypeScript</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100">Tailwind</span>
+        </div>
+      </section>
+
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 grid gap-4 text-xs md:grid-cols-2"
+      >
+        <div class="space-y-1">
+          <h2 class="text-sm font-semibold">Mô tả</h2>
+          <ul class="list-disc list-inside text-slate-700 space-y-1">
+            <li>
+              Tham gia phát triển Web/App CareerMate cho sinh viên năm cuối.
+            </li>
+            <li>
+              Phối hợp với Designer &amp; AI team triển khai tính năng CV
+              Analyzer.
+            </li>
+            <li>Viết code React, Tailwind, kết nối REST API.</li>
+          </ul>
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-sm font-semibold">Yêu cầu</h2>
+          <ul class="list-disc list-inside text-slate-700 space-y-1">
+            <li>Sinh viên năm cuối hoặc mới tốt nghiệp ngành IT.</li>
+            <li>Có project React (portfolio/GitHub).</li>
+            <li>Biết Git, HTML, CSS, JavaScript cơ bản.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 text-xs space-y-3"
+      >
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold">Ứng tuyển nhanh qua CareerMate</h2>
+          <span class="text-[11px] text-emerald-600"
+            >Match 87% với CV hiện tại</span
+          >
+        </div>
+
+        <form
+          id="jobApplyForm"
+          method="POST"
+          action="/api/jobs/apply"
+          class="space-y-3"
+        >
+          <input type="hidden" name="jobId" value="JOB_FRONTEND_FRESHER_001" />
+          <label class="block">
+            <span class="text-[11px] font-medium text-slate-700">Chọn CV</span>
+            <select
+              name="cvId"
+              class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cmBlue/60"
+            >
+              <option value="">Chọn CV của bạn</option>
+              <option value="cv_latest">CV Fresher Frontend</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="text-[11px] font-medium text-slate-700"
+              >Ghi chú cho HR (tuỳ chọn)</span
+            >
+            <textarea
+              name="note"
+              rows="3"
+              class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cmGreen/60"
+              placeholder="Giới thiệu ngắn gọn về bạn..."
+            ></textarea>
+          </label>
+          <div class="flex flex-wrap gap-2">
+            <button
+              type="submit"
+              class="px-4 py-2 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-cmGreen to-cmBlue"
+            >
+              Gửi đơn ứng tuyển
+            </button>
+            <button
+              type="button"
+              id="btnAnalyzeCVJob"
+              class="px-3 py-2 rounded-full text-xs font-semibold border border-slate-200 text-slate-700"
+            >
+              Phân tích CV so với JD
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-cmDark text-[11px] text-slate-300">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between">
+        <span>© 2026 CareerMate</span>
+        <span>AI CV &amp; Job Matching</span>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("btnApplyQuick").onclick = () =>
+        document
+          .getElementById("jobApplyForm")
+          .scrollIntoView({ behavior: "smooth" });
+
+      document
+        .getElementById("jobApplyForm")
+        .addEventListener("submit", function (e) {
+          // e.preventDefault();
+        });
+      document.getElementById("btnAnalyzeCVJob").onclick = () => {
+        // window.location.href = "/cv-analysis?jobId=JOB_FRONTEND_FRESHER_001";
+      };
+    </script>
+  </body>
+</html>

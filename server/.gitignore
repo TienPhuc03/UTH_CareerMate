@@ -9,3 +9,6 @@ dist/
 *.log
 server/logs/
 
+.env
+__pycache__/
+*.pyc

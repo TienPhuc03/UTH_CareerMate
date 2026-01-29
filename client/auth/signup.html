@@ -121,11 +121,16 @@
                 </form>
 
                 <!-- Google Sign Up (optional) -->
-                <button
+                <button type="button" onclick="loginWithGoogle()"
+                    class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition flex items-center justify-center">
+                    <img src="https://img.icons8.com/color/50/google-logo.png" alt="img" class="w-6 h-6 mr-2" />
+                    Đăng ký với Google
+                </button>
+                <!-- <button
                     class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition">
                     <img src="https://img.icons8.com/color/50/google-logo.png" alt="img" class="w-6 h-6 inline mr-2" />
                     Đăng ký với Google
-                </button>
+                </button> -->
 
                 <!-- Link to Login page -->
                 <div class="text-center text-gray-400">
@@ -308,6 +313,19 @@
 
             alertMessage.textContent = message;
             alertMessage.classList.remove('hidden');
+        }
+        // --- 3. ĐĂNG KÝ VỚI GOOGLE (OPTIONAL) ---
+        function loginWithGoogle() {
+            // Thay đổi đường dẫn này khớp với route Backend của bạn
+            // Thông thường sẽ là: /login/google hoặc /auth/google
+            const googleAuthUrl = `${API_URL}/google/login`;
+
+            // Chuyển hướng trình duyệt sang trang đăng nhập Google
+            window.location.href = googleAuthUrl;
+        }
+        function loginWithGoogle() {
+            // Chuyển hướng người dùng đến API xử lý login google của bạn
+            window.location.href = "http://127.0.0.1:8000/api/Auth/google/login";
         }
     </script>
 </body>

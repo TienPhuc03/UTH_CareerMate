@@ -19,25 +19,28 @@
         },
       };
     </script>
+        <script>
+      // Load header
+      fetch('components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+          });
+
+       // Load footer
+      fetch('components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
   </head>
   <body class="bg-cmLight text-slate-900">
-    <header class="bg-gradient-to-r from-cmGreen to-cmBlue text-white">
-      <div
-        class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"
-      >
-        <div class="flex items-center gap-2">
-          <div
-            class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold"
-          >
-            CM
-          </div>
-          <span class="text-sm font-semibold">CareerMate – CV Analyzer</span>
-        </div>
-        <button class="text-xs px-3 py-1 rounded-full bg-white text-cmDark">
-          Upload CV khác
-        </button>
-      </div>
-    </header>
+    
+    <div id="header-container"></div>
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
       <section
@@ -162,9 +165,32 @@
         <span>© 2026 CareerMate</span>
         <span>AI CV · Roadmap · Job Matching</span>
       </div>
+      <!-- Thêm nút quay lại trong phần footer: -->
+      <div class="mt-4 text-center">
+          <button onclick="window.location.href='Uploadcv.html'"
+              class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+              <i class="fas fa-upload"></i> Tải CV khác để phân tích
+          </button>
+      </div>
     </footer>
 
+    <div id="footer-container"></div>
+
     <script>
+      document.addEventListener("DOMContentLoaded", function() 
+      {
+      const cvData = localStorage.getItem('cv_analysis_data');
+      if (cvData) {
+          const analysis = JSON.parse(cvData);
+          // Hiển thị dữ liệu phân tích trên trang
+          console.log('Dữ liệu phân tích CV:', analysis);
+          // Xóa dữ liệu sau khi sử dụng
+          localStorage.removeItem('cv_analysis_data');
+        } else {
+          console.log('Không tìm thấy dữ liệu phân tích CV.');
+        }
+      });
+
       document.getElementById("btnOpenEditor").onclick = () => {
         // window.location.href = "/cv-editor?cvId=cv_latest";
       };

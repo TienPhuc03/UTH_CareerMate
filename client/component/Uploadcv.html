@@ -9,102 +9,7 @@
 </head>
 <body class="min-h-screen bg-gray-50 text-slate-900 flex flex-col">
     
-    <!-- Header - Giống Homepage -->
-    <header class="px-4 py-3 bg-white xl:px-0 sticky top-0 shadow-md z-50">
-        <div class="max-w-[1200px] mx-auto flex items-center">
-            <div>
-                <a href="Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
-            </div>
-            <nav class="ml-auto flex items-center gap-10">
-                <input type="checkbox" hidden id="menu-toggle"
-                    class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
-                <ul
-                    class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
-                    <li><a href="Homepage.html" class="py-3 block hover:text-green-600 lg:py-0">Trang chủ</a></li>
-                    <li><a href="Findjobs.html" class="py-3 block hover:text-green-600 lg:py-0">Việc làm</a></li>
-                    <li><a href="Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
-                    <li><a href="Uploadcv.html" class="py-3 block text-green-600 lg:py-0">Tạo CV</a></li>
-                </ul>
-                <label for="menu-toggle"
-                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
-                
-                <div id="authButtons" class="flex gap-3">
-                    <a href="../auth/signup.html"
-                        class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
-                    <a href="../auth/login.html"
-                        class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
-                </div>
-
-                <div id="userInfo" class="hidden items-center gap-3">
-                    <div class="relative">
-                        <div class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity" id="userMenuToggle">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold" id="userAvatar">
-                                <!-- Initials sẽ được điền bằng JS -->
-                            </div>
-                            <div class="hidden md:block">
-                                <div class="font-medium text-gray-800 max-w-[150px] truncate" id="userNameDisplay">
-                                    <!-- Tên sẽ được điền bằng JS -->
-                                </div>
-                                <div class="text-xs text-gray-500 max-w-[150px] truncate" id="userEmailDisplay">
-                                    <!-- Email sẽ được điền bằng JS -->
-                                </div>
-                            </div>
-                            <svg class="hidden md:block w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                        
-                        <div class="absolute hidden right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50" id="userDropdown">
-                            <div class="p-4 border-b border-gray-100">
-                                <div class="font-medium text-gray-800 truncate" id="dropdownUserName"></div>
-                                <div class="text-sm text-gray-500 truncate" id="dropdownUserEmail"></div>
-                            </div>
-                            
-                            <a href="Profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 transition-colors">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                </svg>
-                                <span>Hồ sơ cá nhân</span>
-                            </a>
-                            
-                            <a href="Uploadcv.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                </svg>
-                                <span>Tạo CV mới</span>
-                            </a>
-                            
-                            <a href="Findjobs.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors">
-                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>Việc làm đã lưu</span>
-                            </a>
-                            
-                            <div class="border-t border-gray-200"></div>
-                            
-                            <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors text-left">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                                </svg>
-                                <span>Đăng xuất</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                </label>
-            </nav>
-            <button onclick="goToAnalysis()"
-                class="hidden bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-200">
-                Phân tích CV AI
-            </button>
-        </div>
-    </header>
+    <div id="header-container"></div>
 
         <main class="flex-1">
             <section class="relative">
@@ -252,47 +157,27 @@
             </section>
         </main>
 
-        <footer class="bg-slate-900 text-slate-300 text-[12px] mt-8">
-            <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-4 gap-6">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center text-xs font-semibold text-white">
-                            CM
-                        </div>
-                        <div class="font-semibold text-white text-sm">CareerMate</div>
-                    </div>
-                    <p class="text-[11px] text-slate-400">
-                        Kết nối tài năng trẻ với cơ hội nghề nghiệp đầu đời bằng AI.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Liên kết</h4>
-                    <ul class="space-y-1">
-                        <li><a href="Homepage.html" class="hover:text-white">Trang chủ</a></li>
-                        <li><a href="Profile.html" class="hover:text-white">Hồ sơ</a></li>
-                        <li><a href="Findjobs.html" class="hover:text-white">Việc làm</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Tài nguyên</h4>
-                    <ul class="space-y-1">
-                        <li><a href="Printcv.html" class="hover:text-white">Mẫu CV</a></li>
-                        <li><a href="#" class="hover:text-white">Blog định hướng nghề</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Liên hệ</h4>
-                    <ul class="space-y-1">
-                        <li>Email: support@careermate.ai</li>
-                        <li>Chính sách bảo mật</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 py-3 text-center text-[11px] text-slate-500">
-                © 2026 CareerMate. All rights reserved.
-            </div>
-        </footer>
     </div>
+
+    <div id="footer-container"></div>
+    <script>
+      // Load header
+      fetch('components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+          });
+
+       // Load footer
+      fetch('components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
 
     <script>
         // Load user email and check auth

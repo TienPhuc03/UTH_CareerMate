@@ -6,46 +6,19 @@
     <title>CareerMate - Thông tin Cá nhân</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+       // Load footer
+      fetch('components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
 </head>
 <body class="bg-gray-50 min-h-screen text-gray-800">
     
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-10">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <a href="Homepage.html" class="text-2xl font-bold text-green-600">Career Mate</a>
-                </div>
-                
-                <nav class="hidden md:flex space-x-6">
-                    <a href="Homepage.html" class="text-gray-600 hover:text-green-600 transition-colors">
-                        <i class="fas fa-home mr-1"></i> Trang chủ
-                    </a>
-                    <a href="Profile.html" class="text-green-600 font-medium">
-                        <i class="fas fa-user mr-1"></i> Hồ sơ
-                    </a>
-                    <a href="Findjobs.html" class="text-gray-600 hover:text-green-600 transition-colors">
-                        <i class="fas fa-briefcase mr-1"></i> Việc làm
-                    </a>
-                    <a href="Uploadcv.html" class="text-gray-600 hover:text-green-600 transition-colors">
-                        <i class="fas fa-file-alt mr-1"></i> Tạo CV
-                    </a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <button onclick="window.location.href='Uploadcv.html'" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                        <i class="fas fa-plus mr-1"></i> Tạo CV mới
-                    </button>
-                    <div class="relative">
-                        <div id="userAvatar" class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold cursor-pointer">
-                            U
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
+    <div id="header-container"></div>
     <main class="container mx-auto px-4 py-8">
         <!-- Breadcrumb -->
         <div class="mb-6 text-sm text-gray-500">
@@ -177,7 +150,19 @@
             </div>
         </div>
     </main>
-
+    <script>
+    // Load header
+    fetch('components/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            // Load script sau khi header loaded
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+        });
+    </script>
+    <div id="footer-container"></div>
     <script>
         // Check if user is logged in
         const token = localStorage.getItem('access_token');

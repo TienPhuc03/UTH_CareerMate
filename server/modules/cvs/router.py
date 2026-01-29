@@ -5,10 +5,10 @@ from typing import List, Optional
 import os
 import shutil
 from datetime import datetime
-
+from modules.users.models import User
 from database.session import get_db
 from modules.cvs.schemas import CVCreate, CVResponse
-from modules.cvs.service import create_cv, get_all_cvs
+from modules.cvs.service import create_cv
 from modules.cvs.parser import parse_cv_file
 from modules.cvs.ai_analyzer import (
     analyze_cv_with_gemini,
@@ -18,8 +18,6 @@ from modules.cvs.ai_analyzer import (
 from modules.cvs.models import CV
 from core.logging_config import get_logger
 from core.redis_client import redis_client, get_cv_cache_key, get_job_recommendations_key
-
-
 
 router = APIRouter()
 logger = get_logger(__name__)
@@ -38,13 +36,24 @@ def upload_cv_file(
     """Upload and analyze CV with Gemini AI"""
     logger.info(f"📤 CV upload started: {email}")
     
-    # Validate file
-    if file.content_type not in ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']:
-        raise HTTPException(400, "Only PDF and DOCX allowed")
+    MAX_FILE_SIZE = 5 * 1024 * 1024 # 5MB
     
-    # Save file
+    file.file.seek(0, 2)
+    file_size = file.file.tell()
+    
+    file.file.seek(0) 
+    
+    if file_size > MAX_FILE_SIZE:
+        raise HTTPException(400, "File quá lớn. Vui lòng tải file dưới 5MB.")
+        
+    # Validate file type
+    if file.content_type not in ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']:
+        raise HTTPException(400, "Chỉ chấp nhận file PDF và DOCX")
+    
+    # Lưu file lên server
     file_ext = file.filename.split('.')[-1]
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # Tạo tên file: email_timestamp.ext
     filename = f"{email.split('@')[0]}_{timestamp}.{file_ext}"
     file_path = os.path.join(UPLOAD_DIR, filename)
     
@@ -56,13 +65,15 @@ def upload_cv_file(
     # Parse CV
     try:
         parsed_data = parse_cv_file(file_path, file_ext)
-        logger.info(f"✅ CV parsed. Found {len(parsed_data['skills'])} skills")
+        logger.info(f"✅ CV parsed. Found {len(parsed_data.get('skills', []))} skills")
     except Exception as e:
-        os.remove(file_path)
+        # Nếu lỗi thì xóa file rác đi
+        if os.path.exists(file_path):
+            os.remove(file_path)
         logger.error(f"❌ Parse failed: {e}")
         raise HTTPException(422, f"Cannot parse CV: {e}")
     
-    # Analyze with Gemini
+    #  Analyze with Gemini
     ai_analysis = None
     try:
         ai_analysis = analyze_cv_with_gemini(
@@ -72,37 +83,53 @@ def upload_cv_file(
     except Exception as e:
         logger.warning(f"⚠️  AI analysis failed: {e}")
     
-    # Save to DB
+    #Tìm User ID dựa trên Email
+    user = db.query(User).filter(User.email == email).first()
+    user_id = user.id if user else None
+
+    # Chuẩn bị dữ liệu lưu DB
+    # Map dữ liệu từ parser vào schema
     cv_data = CVCreate(
         full_name=parsed_data.get('full_name', 'Unknown'),
         email=email,
         phone=parsed_data.get('phone'),
         skills=', '.join(parsed_data.get('skills', [])),
-        experience=parsed_data.get('raw_text', '')[:2000]
+        experience=parsed_data.get('raw_text', '')[:2000],
+        education=parsed_data.get('education', '') # [THÊM MỚI] Lấy education từ parser
+    )
+    ats_score = ai_analysis.get('ats_score') if ai_analysis else None
+    
+    # Gọi service để lưu đầy đủ thông tin
+    cv_record = create_cv(
+        db=db, 
+        cv_data=cv_data,
+        user_id=user_id,          
+        file_path=file_path,     
+        file_name=filename,      
+        file_type=file_ext,     
+        ats_score=ats_score,      
+        ai_feedback=ai_analysis   
     )
     
-    cv_record = create_cv(db, cv_data)
     logger.info(f"✅ CV saved to DB: ID={cv_record.id}")
-    
-    # Cache AI analysis
     if ai_analysis:
         cache_key = get_cv_cache_key(cv_record.id)
         redis_client.set(cache_key, ai_analysis, expire=3600)
     
+    # Trả về kết quả
     return {
         "cv_id": cv_record.id,
         "message": "CV uploaded successfully",
         "parsed_data": {
             "full_name": parsed_data.get('full_name'),
             "email": email,
-            "phone": parsed_data.get('phone'),
-            "skills": parsed_data.get('skills'),
             "skills_count": len(parsed_data.get('skills', []))
         },
+        "ats_score": ats_score,
         "ai_analysis": ai_analysis,
         "file_info": {
             "filename": filename,
-            "size_kb": round(os.path.getsize(file_path) / 1024, 2)
+            "size_kb": round(file_size / 1024, 2)
         }
     }
 
@@ -153,10 +180,17 @@ def re_analyze_cv(
         raise HTTPException(404, "CV not found")
     
     logger.info(f"🔄 Cache MISS for CV {cv_id}, analyzing...")
+    
+    # Sử dụng text đã lưu trong DB để phân tích lại
     analysis = analyze_cv_with_gemini(cv.experience, target_industry)
     
     # Cache result
     redis_client.set(cache_key, analysis, expire=3600)
+    
+    # Cập nhật lại kết quả mới nhất vào DB
+    cv.ai_feedback = analysis
+    cv.ats_score = analysis.get('ats_score')
+    db.commit()
     
     return {
         "cv_id": cv_id,
@@ -226,6 +260,14 @@ def delete_cv(cv_id: int, db: Session = Depends(get_db)):
     if not cv:
         raise HTTPException(404, "CV not found")
     
+    # [THÊM MỚI] Xóa file vật lý nếu tồn tại
+    if cv.file_path and os.path.exists(cv.file_path):
+        try:
+            os.remove(cv.file_path)
+            logger.info(f"Deleted file: {cv.file_path}")
+        except Exception as e:
+            logger.error(f"⚠️ Error deleting file: {e}")
+
     # Delete from DB
     db.delete(cv)
     db.commit()
@@ -234,6 +276,6 @@ def delete_cv(cv_id: int, db: Session = Depends(get_db)):
     cache_key = get_cv_cache_key(cv_id)
     redis_client.delete(cache_key)
     
-    logger.info(f"🗑️  CV {cv_id} deleted")
+    logger.info(f" CV {cv_id} deleted")
     
     return {"message": "CV deleted successfully"}

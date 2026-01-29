@@ -8,4 +8,5 @@ dist/
 *.session.sql
 *.log
 server/logs/
-
+ADMIN/node_modules/
+node_modules/

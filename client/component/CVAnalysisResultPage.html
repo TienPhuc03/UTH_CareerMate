@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
@@ -171,6 +171,229 @@
       document.getElementById("btnViewJobs").onclick = () => {
         // window.location.href = "/jobs?cvId=cv_latest";
       };
+    </script>
+  </body>
+</html> -->
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CV Analysis Result – CareerMate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cmGreen: "#02C26A",
+              cmBlue: "#0075FF",
+              cmDark: "#081021",
+              cmLight: "#F5FAFF",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-cmLight text-slate-900">
+    <header class="bg-gradient-to-r from-cmGreen to-cmBlue text-white">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='Homepage.html'">
+          <div class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold">
+            CM
+          </div>
+          <span class="text-sm font-semibold">CareerMate – AI Analyzer</span>
+        </div>
+        <button onclick="window.location.href='Uploadcv.html'" class="text-xs px-3 py-1 rounded-full bg-white text-cmDark hover:bg-gray-100 transition">
+          <i class="fas fa-upload mr-1"></i> Upload CV khác
+        </button>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
+      
+      <div id="loadingState" class="hidden text-center py-10">
+          <i class="fas fa-spinner fa-spin text-4xl text-cmGreen"></i>
+          <p class="mt-4 text-slate-600">Đang tải kết quả phân tích...</p>
+      </div>
+
+      <div id="resultContent">
+          <section class="bg-white border border-slate-100 rounded-xl p-4 flex justify-between items-center gap-4 shadow-sm">
+            <div>
+              <p class="text-[11px] text-emerald-600 font-semibold">
+                KẾT QUẢ PHÂN TÍCH
+              </p>
+              <h1 class="text-lg md:text-xl font-bold" id="cvTitle">
+                CV Ứng viên
+              </h1>
+              <p class="text-xs text-slate-600 mt-1" id="aiAssessment">
+                Đang tải nhận xét tổng quan...
+              </p>
+            </div>
+            <div class="flex gap-3 text-center">
+              <div>
+                <p class="text-[11px] text-slate-500">ATS Score</p>
+                <div class="mt-1 h-12 w-12 rounded-full bg-slate-900 text-white flex flex-col items-center justify-center shadow-lg shadow-slate-200">
+                  <span class="text-base font-bold" id="atsScore">0</span>
+                  <span class="text-[9px] text-slate-300">/100</span>
+                </div>
+              </div>
+              <div class="opacity-50">
+                <p class="text-[11px] text-slate-500">Job Match</p>
+                <div class="mt-1 h-12 w-12 rounded-full bg-gray-200 text-gray-500 flex flex-col items-center justify-center">
+                  <span class="text-base font-bold">--</span>
+                  <span class="text-[9px] text-gray-400">%</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid md:grid-cols-2 gap-4 text-xs mt-4">
+            <div class="bg-white border border-emerald-100 rounded-xl p-4 shadow-sm">
+              <h3 class="text-sm font-semibold text-emerald-700 mb-2 flex items-center">
+                  <i class="fas fa-check-circle mr-2"></i> Điểm mạnh
+              </h3>
+              <ul class="list-disc list-inside text-slate-700 space-y-1" id="strengthsList">
+                <li>Đang tải dữ liệu...</li>
+              </ul>
+            </div>
+            <div class="bg-white border border-rose-100 rounded-xl p-4 shadow-sm">
+              <h3 class="text-sm font-semibold text-rose-600 mb-2 flex items-center">
+                  <i class="fas fa-exclamation-triangle mr-2"></i> Cần cải thiện (Skill Gaps)
+              </h3>
+              <ul class="list-disc list-inside text-slate-700 space-y-1" id="weaknessesList">
+                <li>Đang tải dữ liệu...</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="bg-white border border-slate-100 rounded-xl p-4 text-xs space-y-3 mt-4 shadow-sm">
+            <h2 class="text-sm font-semibold flex items-center">
+                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Gợi ý hành động tiếp theo
+            </h2>
+            <ul class="list-disc list-inside text-slate-700 space-y-1" id="suggestionsList">
+               <li>Đang tải...</li>
+            </ul>
+            
+            <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-slate-100">
+              <button id="btnViewDetails" class="px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-cmGreen to-cmBlue shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">
+                <i class="fas fa-eye mr-2"></i> Xem chi tiết & In CV
+              </button>
+              <button id="btnFindJobs" class="px-5 py-2.5 rounded-full text-xs font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition">
+                <i class="fas fa-briefcase mr-2"></i> Tìm việc phù hợp
+              </button>
+            </div>
+          </section>
+      </div>
+    </main>
+
+    <footer class="bg-cmDark text-[11px] text-slate-300 mt-8">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between">
+        <span>© 2026 CareerMate</span>
+        <span>AI CV · Roadmap · Job Matching</span>
+      </div>
+    </footer>
+
+    <script>
+      const API_URL = 'http://127.0.0.1:8000/api/cvs';
+
+      async function loadAnalysisData() {
+        const cvId = localStorage.getItem('current_cv_id');
+        
+        if (!cvId) {
+            alert("Không tìm thấy dữ liệu CV. Vui lòng upload lại.");
+            window.location.href = 'Uploadcv.html';
+            return;
+        }
+
+        // Ưu tiên 1: Lấy dữ liệu từ LocalStorage (được lưu lúc upload) cho nhanh
+        let aiAnalysis = null;
+        const cachedResult = localStorage.getItem('current_ai_result');
+        
+        if (cachedResult) {
+            aiAnalysis = JSON.parse(cachedResult);
+            renderData(aiAnalysis);
+        } else {
+            // Ưu tiên 2: Nếu không có cache, gọi API lấy lại (Fallback)
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('resultContent').classList.add('hidden');
+            
+            try {
+                const res = await fetch(`${API_URL}/${cvId}`);
+                const cvData = await res.json();
+                if (cvData.ai_feedback) {
+                    renderData(cvData.ai_feedback);
+                } else {
+                    alert("CV này chưa có kết quả phân tích AI.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Lỗi kết nối Server.");
+            } finally {
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('resultContent').classList.remove('hidden');
+            }
+        }
+      }
+
+      function renderData(data) {
+          // 1. Điểm số & Nhận xét chung
+          document.getElementById('atsScore').textContent = data.ats_score || 0;
+          document.getElementById('aiAssessment').textContent = data.overall_assessment || "Chưa có đánh giá tổng quan.";
+
+          // 2. Điểm mạnh
+          const strengthsList = document.getElementById('strengthsList');
+          strengthsList.innerHTML = '';
+          if (data.strengths && data.strengths.length > 0) {
+              data.strengths.forEach(item => {
+                  const li = document.createElement('li');
+                  li.textContent = item;
+                  strengthsList.appendChild(li);
+              });
+          } else {
+              strengthsList.innerHTML = '<li>Không tìm thấy điểm mạnh nổi bật.</li>';
+          }
+
+          // 3. Điểm yếu
+          const weaknessesList = document.getElementById('weaknessesList');
+          weaknessesList.innerHTML = '';
+          if (data.weaknesses && data.weaknesses.length > 0) {
+              data.weaknesses.forEach(item => {
+                  const li = document.createElement('li');
+                  li.textContent = item;
+                  weaknessesList.appendChild(li);
+              });
+          } else {
+              weaknessesList.innerHTML = '<li>CV khá tốt, không có điểm yếu lớn.</li>';
+          }
+
+          // 4. Gợi ý
+          const suggestionsList = document.getElementById('suggestionsList');
+          suggestionsList.innerHTML = '';
+          if (data.improvement_suggestions && data.improvement_suggestions.length > 0) {
+              data.improvement_suggestions.forEach(item => {
+                  const li = document.createElement('li');
+                  li.textContent = item;
+                  suggestionsList.appendChild(li);
+              });
+          } else {
+              suggestionsList.innerHTML = '<li>Tiếp tục duy trì phong độ hiện tại.</li>';
+          }
+      }
+
+      // Xử lý nút bấm
+      document.getElementById("btnViewDetails").onclick = () => {
+        window.location.href = "Printcv.html";
+      };
+      
+      document.getElementById("btnFindJobs").onclick = () => {
+        window.location.href = "Findjobs.html";
+      };
+
+      // Chạy khi load trang
+      loadAnalysisData();
     </script>
   </body>
 </html>

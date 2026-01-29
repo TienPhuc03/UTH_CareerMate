@@ -240,7 +240,7 @@
         </footer>
     </div>
 
-    <script>
+    <!-- <script>
         // Load user email and check auth
         const userEmail = localStorage.getItem('user_email');
         const token = localStorage.getItem('access_token');
@@ -294,6 +294,101 @@
             alert('Đăng xuất thành công!');
             window.location.href = 'Homepage.html';
         }
+    </script> -->
+    <script>
+    // 1. Kiểm tra đăng nhập
+    const userEmail = localStorage.getItem('user_email');
+    const token = localStorage.getItem('access_token');
+    
+    function checkAuthStatus() {
+        if (token && userEmail) {
+            document.getElementById('authButtons').classList.add('hidden');
+            document.getElementById('userMenu').classList.remove('hidden');
+            document.getElementById('userMenu').classList.add('flex');
+            document.getElementById('userEmailHeader').textContent = userEmail;
+            document.getElementById('emailInput').value = userEmail;
+        } else {
+            alert('Vui lòng đăng nhập trước!');
+            window.location.href = '../auth/login.html';
+        }
+    }
+    checkAuthStatus();
+
+    // 2. Hiển thị tên file
+    document.getElementById('cvFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const fileName = document.getElementById('fileName');
+            fileName.textContent = `Đã chọn: ${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`;
+            fileName.classList.remove('hidden');
+        }
+    });
+
+    // 3. XỬ LÝ UPLOAD VÀ CHUYỂN HƯỚNG SANG TRANG KẾT QUẢ AI
+    const API_URL = 'http://127.0.0.1:8000/api/cvs';
+
+    document.getElementById('cvUploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const fileInput = document.getElementById('cvFile');
+        const emailInput = document.getElementById('emailInput');
+        const industrySelect = document.querySelector('select[name="targetIndustry"]');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert('Vui lòng chọn file CV!');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('email', emailInput.value);
+        if (industrySelect.value) {
+            formData.append('target_industry', industrySelect.value);
+        }
+
+        // Hiệu ứng Loading
+        const btn = this.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang phân tích bằng AI...';
+        btn.disabled = true;
+
+        try {
+            const response = await fetch(`${API_URL}/upload`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // QUAN TRỌNG: Lưu ID và Kết quả phân tích tạm thời
+                localStorage.setItem('current_cv_id', data.cv_id);
+                // Lưu luôn kết quả phân tích để trang sau load cho nhanh (đỡ gọi API lại lần nữa)
+                localStorage.setItem('current_ai_result', JSON.stringify(data.ai_analysis));
+                
+                // CHUYỂN HƯỚNG SANG TRANG KẾT QUẢ
+                window.location.href = 'CVAnalysisResultPage.html'; 
+            } else {
+                alert(`Lỗi: ${data.detail || 'Không thể tải lên'}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Lỗi kết nối Backend!');
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user_email');
+        window.location.href = 'Homepage.html';
+    }
     </script>
 </body>
 </html>

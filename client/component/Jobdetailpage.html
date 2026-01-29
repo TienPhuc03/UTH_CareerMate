@@ -21,23 +21,7 @@
     </script>
   </head>
   <body class="bg-cmLight text-slate-900">
-    <header class="bg-gradient-to-r from-cmGreen to-cmBlue text-white">
-      <div
-        class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"
-      >
-        <div class="flex items-center gap-2">
-          <div
-            class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold"
-          >
-            CM
-          </div>
-          <span class="text-sm font-semibold">CareerMate</span>
-        </div>
-        <button class="text-xs px-3 py-1 rounded-full bg-white text-cmDark">
-          Dashboard
-        </button>
-      </div>
-    </header>
+    <div id="header-container"></div>
 
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
       <section
@@ -158,6 +142,25 @@
         <span>AI CV &amp; Job Matching</span>
       </div>
     </footer>
+    <div id="footer-container"></div>
+    <script>
+    // Load header
+      fetch('components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+          });
+    
+       // Load footer
+      fetch('components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
 
     <script>
       document.getElementById("btnApplyQuick").onclick = () =>

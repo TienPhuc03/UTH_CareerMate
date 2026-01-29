@@ -37,11 +37,17 @@ class Settings(BaseSettings):
     # Paths
     UPLOAD_DIR: str = "uploads"
     LOG_DIR: str = "logs"
+
+    # Google OAuth (MỚI THÊM VÀO ĐÚNG VỊ TRÍ)
+    # Pydantic sẽ tự động lấy từ file .env nếu tên biến trùng khớp
+    GOOGLE_CLIENT_ID: str 
+    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_REDIRECT_URI: str = "http://127.0.0.1:8000/api/Auth/google/callback"
     
     class Config:
-        env_file = ".env"
+        env_file = ".env"      # Chỉ định file chứa biến môi trường
         extra = "ignore"
-        case_sensitive = False
+        case_sensitive = False # Không phân biệt chữ hoa chữ thường (google_client_id vẫn nhận)
     
     @property
     def allowed_origins_list(self) -> List[str]:

@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+*.pyc
 .env
 .venv/
 # Node
@@ -10,3 +11,6 @@ dist/
 server/logs/
 ADMIN/node_modules/
 node_modules/
+
+
+

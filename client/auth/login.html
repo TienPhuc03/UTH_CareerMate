@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <title>Login Form</title>
 </head>
 
@@ -26,18 +28,26 @@
                             class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                             name="email" id="email" placeholder="Địa chỉ Email" required>
                     </div>
-                    <div class="py-4">
-                        <span class=" text-green-600 font-bold mb-2 text-md">Password</span>
-                        <input type="password"
-                            class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-                            name="password" id="password" placeholder="Mật khẩu " required>
+                    <!-- Password -->
+                    <div class="py-2">
+                        <span class="mb-2 text-md font-bold text-green-600">Mật khẩu</span>
+                        <div class="relative">
+                            <input type="password" id="password" placeholder="Mật khẩu"
+                                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
+                                required>
+                            <button type="button" onclick="togglePassword('password', 'eye-icon-pass')"
+                                class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-green-600 focus:outline-none">
+                                <i id="eye-icon-pass" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="flex justify-between w-full py-4">
                         <div class="mr-24">
                             <input type="checkbox" name="ch" id="ch" class="mr-2">
                             <span class="text-md font-light">Nhớ mật khẩu</span>
                         </div>
-                        <span class="font-bold text-green-600 text-md cursor-pointer hover:text-gray-600">Quên mật khẩu</span>
+                        <span class="font-bold text-green-600 text-md cursor-pointer hover:text-gray-600">Quên mật
+                            khẩu</span>
                     </div>
                     <button type="submit" id="submitBtn"
                         class="w-full font-bold text-white p-2 bg-green-600 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300 transition">
@@ -48,11 +58,11 @@
                 <button
                     class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition">
                     <img src="https://img.icons8.com/color/50/google-logo.png" alt="img" class="w-6 h-6 inline mr-2">
-                   Đăng nhập với Google
+                    Đăng nhập với Google
                 </button>
                 <div class="text-center text-gray-400">
                     Bạn chưa có tài khoản? <a href="signup.html" class="font-bold text-black hover:underline">Đăng ký
-                        </a>
+                    </a>
                 </div>
             </div>
             <div class="relative">
@@ -62,7 +72,8 @@
                 <div
                     class="absolute hidden bottom-10 right-6 left-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
                     <span class="text-white text-xl">
-Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV chuyên nghiệp để nắm bắt các cơ hội việc làm thực tế.</span>
+                        Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV chuyên nghiệp để nắm bắt các cơ hội
+                        việc làm thực tế.</span>
                 </div>
             </div>
         </div>
@@ -122,11 +133,27 @@ Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV c
         function showAlert(message, type) {
             const alertMessage = document.getElementById('alertMessage');
             alertMessage.className = `mb-4 p-3 rounded-lg text-sm ${type === 'success'
-                    ? 'bg-green-100 text-green-700 border border-green-400'
-                    : 'bg-red-100 text-red-700 border border-red-400'
+                ? 'bg-green-100 text-green-700 border border-green-400'
+                : 'bg-red-100 text-red-700 border border-red-400'
                 }`;
             alertMessage.textContent = message;
             alertMessage.classList.remove('hidden');
+        }
+
+        // --- TÍNH NĂNG: HIỆN/ẨN MẬT KHẨU ---
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (input.type === "password") {
+                input.type = "text"; // Hiện mật khẩu
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash"); // Đổi icon thành mắt gạch chéo
+            } else {
+                input.type = "password"; // Ẩn mật khẩu
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye"); // Đổi icon về mắt thường
+            }
         }
     </script>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -44,8 +45,11 @@
                     <div class="py-2">
                         <span class="mb-2 text-md font-bold text-green-600">Mật khẩu</span>
                         <div class="relative">
-                            <input type="password" id="password" placeholder="Mật khẩu (ít nhất 6 ký tự)" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10" required>
-                            <button type="button" onclick="togglePassword('password', 'eye-icon-pass')" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-green-600 focus:outline-none">
+                            <input type="password" id="password" placeholder="Mật khẩu (ít nhất 6 ký tự)"
+                                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
+                                required>
+                            <button type="button" onclick="togglePassword('password', 'eye-icon-pass')"
+                                class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-green-600 focus:outline-none">
                                 <i id="eye-icon-pass" class="fa-solid fa-eye"></i>
                             </button>
                         </div>
@@ -55,8 +59,12 @@
                     <div class="py-2">
                         <span class="mb-2 text-md font-bold text-green-600">Nhập lại mật khẩu</span>
                         <div class="relative">
-                            <input type="password" id="confirmPassword" oninput="checkPasswordMatch()" placeholder="Xác nhận lại mật khẩu" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10" required>
-                            <button type="button" onclick="togglePassword('confirmPassword', 'eye-icon-confirm')" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-green-600 focus:outline-none">
+                            <input type="password" id="confirmPassword" oninput="checkPasswordMatch()"
+                                placeholder="Xác nhận lại mật khẩu"
+                                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
+                                required>
+                            <button type="button" onclick="togglePassword('confirmPassword', 'eye-icon-confirm')"
+                                class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-green-600 focus:outline-none">
                                 <i id="eye-icon-confirm" class="fa-solid fa-eye"></i>
                             </button>
                         </div>
@@ -64,10 +72,13 @@
                     <div class="mb-6">
                         <label class="block text-sm font-bold text-gray-700 mb-3">Bạn là?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <label id="label-student" class="role-card relative border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 border-emerald-500 bg-emerald-50 ring-2 ring-emerald-200">
-                                <input type="radio" name="role" value="student" checked class="sr-only" onchange="updateRoleUI(this)">
+                            <label id="label-student"
+                                class="role-card relative border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 border-emerald-500 bg-emerald-50 ring-2 ring-emerald-200">
+                                <input type="radio" name="role" value="student" checked class="sr-only"
+                                    onchange="updateRoleUI(this)">
                                 <div class="flex flex-col items-center text-center">
-                                    <div class="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center mb-3 text-emerald-600">
+                                    <div
+                                        class="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center mb-3 text-emerald-600">
                                         <i class="fa-solid fa-user-graduate"></i>
                                     </div>
                                     <span class="font-bold text-gray-800">Ứng viên</span>
@@ -75,10 +86,13 @@
                                 </div>
                             </label>
 
-                            <label id="label-recruiter" class="role-card relative border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all duration-200 hover:border-sky-300 hover:bg-sky-50">
-                                <input type="radio" name="role" value="recruiter" class="sr-only" onchange="updateRoleUI(this)">
+                            <label id="label-recruiter"
+                                class="role-card relative border-2 border-gray-200 rounded-xl p-4 cursor-pointer transition-all duration-200 hover:border-sky-300 hover:bg-sky-50">
+                                <input type="radio" name="role" value="recruiter" class="sr-only"
+                                    onchange="updateRoleUI(this)">
                                 <div class="flex flex-col items-center text-center">
-                                    <div class="h-12 w-12 rounded-full bg-sky-100 flex items-center justify-center mb-3 text-sky-600">
+                                    <div
+                                        class="h-12 w-12 rounded-full bg-sky-100 flex items-center justify-center mb-3 text-sky-600">
                                         <i class="fa-solid fa-briefcase text-xl"></i>
                                     </div>
                                     <span class="font-bold text-gray-800">Nhà tuyển dụng</span>
@@ -124,18 +138,19 @@
                 <div
                     class="absolute hidden bottom-10 right-6 left-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
                     <span class="text-white text-xl">
-                   Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV chuyên nghiệp để nắm bắt các cơ hội việc làm thực tế.
+                        Nâng cao sự nghiệp của bạn bằng cách xây dựng và quản lý CV chuyên nghiệp để nắm bắt các cơ hội
+                        việc làm thực tế.
                     </span>
                 </div>
             </div>
         </div>
     </div>
-   <script>
-    // --- 1. TÍNH NĂNG: HIỆN/ẨN MẬT KHẨU ---
+    <script>
+        // --- 1. TÍNH NĂNG: HIỆN/ẨN MẬT KHẨU ---
         function togglePassword(inputId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
-            
+
             if (input.type === "password") {
                 input.type = "text"; // Hiện mật khẩu
                 icon.classList.remove("fa-eye");
@@ -173,16 +188,16 @@
                 confirmInput.classList.add("border-green-500");
             }
         }
-    // --- 2. LOGIC UI: Xử lý hiệu ứng chọn Role ---
+        // --- 2. LOGIC UI: Xử lý hiệu ứng chọn Role ---
         function updateRoleUI(input) {
             // Reset style của cả 2 thẻ về mặc định
             const studentCard = document.getElementById('label-student');
             const recruiterCard = document.getElementById('label-recruiter');
-            
+
             // Class mặc định (chưa chọn)
             const inactiveClass = "border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50";
             const inactiveClassSky = "border-gray-200 hover:border-sky-300 hover:bg-sky-50/50";
-            
+
             // Class khi được chọn (Active)
             const activeStudent = "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-200";
             const activeRecruiter = "border-sky-500 bg-sky-50 ring-2 ring-sky-200";
@@ -198,99 +213,100 @@
                 recruiterCard.className = `role-card relative border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 ${activeRecruiter}`;
             }
         }
-        
-    const API_URL = 'http://127.0.0.1:8000/api/Auth';
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
 
-        // 1. SỬA TÊN ID CHO KHỚP VỚI HTML
-        // Lưu ý: ID trong HTML là 'fullname' (viết thường), không phải 'fullName'
-        const full_name = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value; // Sửa ID
-        
-        // Kiểm tra checkbox điều khoản (Nếu HTML không có thì tạm bỏ qua)
-        const termsCheckbox = document.getElementById('terms');
-        const terms = termsCheckbox ? termsCheckbox.checked : true; 
+        const API_URL = 'http://127.0.0.1:8000/api/Auth';
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        const submitBtn = document.getElementById('submitBtn');
-        const alertMessage = document.getElementById('alertMessage');
+            // 1. SỬA TÊN ID CHO KHỚP VỚI HTML
+            // Lưu ý: ID trong HTML là 'fullname' (viết thường), không phải 'fullName'
+            const full_name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value; // Sửa ID
 
-        // Validate
-        if (!terms) {
-            showAlert("Vui lòng đồng ý với Điều khoản sử dụng", 'error');
-            return;
-        }
+            // Kiểm tra checkbox điều khoản (Nếu HTML không có thì tạm bỏ qua)
+            const termsCheckbox = document.getElementById('terms');
+            const terms = termsCheckbox ? termsCheckbox.checked : true;
 
-        if (password !== confirmPassword) {
-            showAlert("Mật khẩu nhập lại không khớp!", 'error');
-            return;
-        }
+            const submitBtn = document.getElementById('submitBtn');
+            const alertMessage = document.getElementById('alertMessage');
 
-        if (password.length < 6) {
-            showAlert("Mật khẩu phải có ít nhất 6 ký tự", 'error');
-            return;
-        }
+            // Validate
+            if (!terms) {
+                showAlert("Vui lòng đồng ý với Điều khoản sử dụng", 'error');
+                return;
+            }
 
-        // Disable button and show loading
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Đang tạo tài khoản...';
-        alertMessage.classList.add('hidden');
+            if (password !== confirmPassword) {
+                showAlert("Mật khẩu nhập lại không khớp!", 'error');
+                return;
+            }
 
-        try {
-            const response = await fetch(`${API_URL}/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    // 2. CÁC BIẾN GỬI LÊN SERVER (Phải khớp với schemas.py)
-                    full_name: full_name,  // Python: full_name
-                    email: email,          // Python: email
-                    password: password,    // Python: password
-                    role: role     // THÊM BIẾN THIẾU: Mặc định là ứng viên
-                })
-            });
+            if (password.length < 6) {
+                showAlert("Mật khẩu phải có ít nhất 6 ký tự", 'error');
+                return;
+            }
 
-            const data = await response.json();
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Đang tạo tài khoản...';
+            alertMessage.classList.add('hidden');
 
-            if (response.ok) {
-                showAlert("Đăng ký thành công! Đang chuyển hướng...", 'success');
-                
-                // Redirect to login page after 1.5 seconds
-                setTimeout(() => {
-                    window.location.href = "login.html";
-                }, 1500);
-            } else {
-                // Show error from backend
-                const errorDetail = data.detail || "Đăng ký thất bại.";
-                showAlert(errorDetail, 'error');
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        // 2. CÁC BIẾN GỬI LÊN SERVER (Phải khớp với schemas.py)
+                        full_name: full_name,  // Python: full_name
+                        email: email,          // Python: email
+                        password: password,    // Python: password
+                        role: role     // THÊM BIẾN THIẾU: Mặc định là ứng viên
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showAlert("Đăng ký thành công! Đang chuyển hướng...", 'success');
+
+                    // Redirect to login page after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1500);
+                } else {
+                    // Show error from backend
+                    const errorDetail = data.detail || "Đăng ký thất bại.";
+                    showAlert(errorDetail, 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Đăng ký ngay';
+                }
+            } catch (error) {
+                console.error("Connection error:", error);
+                showAlert("Không thể kết nối đến Server. Hãy kiểm tra Backend!", 'error');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Đăng ký ngay';
             }
-        } catch (error) {
-            console.error("Connection error:", error);
-            showAlert("Không thể kết nối đến Server. Hãy kiểm tra Backend!", 'error');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Đăng ký ngay';
-        }
-    });
+        });
 
-    function showAlert(message, type) {
-        const alertMessage = document.getElementById('alertMessage');
-        // Reset class
-        alertMessage.className = 'mb-4 p-3 rounded-lg text-sm border';
-        
-        if (type === 'success') {
-            alertMessage.classList.add('bg-green-100', 'text-green-700', 'border-green-400');
-        } else {
-            alertMessage.classList.add('bg-red-100', 'text-red-700', 'border-red-400');
+        function showAlert(message, type) {
+            const alertMessage = document.getElementById('alertMessage');
+            // Reset class
+            alertMessage.className = 'mb-4 p-3 rounded-lg text-sm border';
+
+            if (type === 'success') {
+                alertMessage.classList.add('bg-green-100', 'text-green-700', 'border-green-400');
+            } else {
+                alertMessage.classList.add('bg-red-100', 'text-red-700', 'border-red-400');
+            }
+
+            alertMessage.textContent = message;
+            alertMessage.classList.remove('hidden');
         }
-        
-        alertMessage.textContent = message;
-        alertMessage.classList.remove('hidden');
-    }
-</script>
+    </script>
 </body>
+
 </html>

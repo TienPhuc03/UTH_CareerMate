@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
        // Load footer
-      fetch('components/footer.html')
+      fetch('../components/footer.html')
        .then(response => response.text())
        .then(data => {
             document.getElementById('footer-container').innerHTML = data;
@@ -158,7 +158,7 @@
             document.getElementById('header-container').innerHTML = data;
             // Load script sau khi header loaded
             const script = document.createElement('script');
-            script.src = 'components/auth-script.js';
+            script.src = '../components/auth-script.js';
             document.body.appendChild(script);
         });
     </script>

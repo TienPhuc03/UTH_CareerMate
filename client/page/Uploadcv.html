@@ -167,12 +167,12 @@
        .then(data => {
             document.getElementById('header-container').innerHTML = data;
             const script = document.createElement('script');
-            script.src = 'components/auth-script.js';
+            script.src = '../components/auth-script.js';
             document.body.appendChild(script);
           });
 
        // Load footer
-      fetch('components/footer.html')
+      fetch('../components/footer.html')
        .then(response => response.text())
        .then(data => {
             document.getElementById('footer-container').innerHTML = data;

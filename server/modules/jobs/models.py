@@ -20,6 +20,8 @@ class Job(Base):
     location = Column(String(255), nullable=True)   # Work location
     job_type = Column(String(50), default="full_time")  # full_time, part_time, internship, remote
     salary_range = Column(String(100), nullable=True)
+    salary_min = Column(Integer, nullable=True) # Thêm column
+    salary_max = Column(Integer, nullable=True) # Thêm column
     # Status - NEW
     status = Column(String(50), default="active")   # active, closed, draft
     is_approved = Column(Boolean, default=True)     # For admin approval workflow

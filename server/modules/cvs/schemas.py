@@ -13,17 +13,12 @@ class CVCreate(BaseModel):
 
 class CVResponse(CVCreate):
     id: int
-    user_id: Optional[int] = None    
-    
-    # File Info
-    file_path: Optional[str] = None  
-    file_name: Optional[str] = None  
+    user_id: Optional[int] = None
+    file_path: Optional[str] = None
+    file_name: Optional[str] = None
     file_type: Optional[str] = None
-    
-    # AI Results
-    ats_score: Optional[float] = None       
-    ai_feedback: Optional[Dict[str, Any]] = None 
-    
+    ats_score: Optional[float] = None
+    ai_feedback: Optional[dict] = None
     created_at: datetime
     updated_at: Optional[datetime] = None
 

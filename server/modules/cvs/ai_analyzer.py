@@ -47,7 +47,7 @@ Output JSON format:
     "skills_found": ["..."]
 }}"""
         response = client.models.generate_content(
-            model=settings.GEMINI_MODEL, # Hardcode tên model chuẩn để tránh lỗi config cũ
+            model=settings.GEMINI_MODEL, 
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_mime_type="application/json"
@@ -57,7 +57,7 @@ Output JSON format:
         duration = time.time() - start_time
         result_json = json.loads(response.text)
         
-        logger.info(f"✅ Gemini analysis done. ATS: {result_json.get('ats_score')} ({duration:.2f}s)")
+        logger.info(f"Gemini analysis done. ATS: {result_json.get('ats_score')} ({duration:.2f}s)")
         return result_json
         
     except Exception as e:
@@ -111,7 +111,7 @@ Trả về JSON (không markdown):
             text = text.split("```json")[1].split("```")[0].strip()
         
         roadmap = json.loads(text)
-        logger.info(f"✅ Roadmap generated for {target_role}")
+        logger.info(f"Roadmap generated for {target_role}")
         return roadmap
         
     except Exception as e:
@@ -157,7 +157,7 @@ JSON:
             text = text.split("```json")[1].split("```")[0].strip()
         
         result = json.loads(text)
-        logger.info(f"✅ CV-Job match: {result.get('match_score')}")
+        logger.info(f"CV-Job match: {result.get('match_score')}")
         return result
         
     except Exception as e:

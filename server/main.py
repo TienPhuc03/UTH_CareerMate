@@ -96,11 +96,6 @@ def root():
         "docs": "/docs",
         "health": "/health"
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7962ebe50e2ff639a687f226a5b3309534e301f1
-
 
 @app.get("/health")
 def health_check():

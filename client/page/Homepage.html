@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Find your dream job and create professional CV">
     <meta name="keywords" content="job search, employment, create CV, recruitment">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Career Mate - Find Jobs & Create Professional CV</title>
-            <script>
+    <script>
       // Load header
       fetch('../components/header.html')
        .then(response => response.text())
        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
+            document.getElementById('header-container').innerHTML = data
             const script = document.createElement('script');
             script.src = '../components/auth-script.js';
             document.body.appendChild(script);
@@ -181,7 +183,7 @@
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">25tr-40tr (vnd)</span>
                     </div>
-                    <a href="../component/Findjobs.html"
+                    <a href="../page/Findjobs.html"
                         class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
                         Ứng tuyển ngay
                     </a>
@@ -200,7 +202,7 @@
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">10tr-25tr (vnd)</span>
                     </div>
-                    <a href="../component/Findjobs.html"
+                    <a href="../page/Findjobs.html"
                         class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
                         Ứng tuyển ngay
                     </a>
@@ -220,7 +222,7 @@
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
                         <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">8tr-25tr (vnd)</span>
                     </div>
-                    <a href="../component/Findjobs.html"
+                    <a href="../page/Findjobs.html"
                         class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
                         Ứng tuyển ngay
                     </a>
@@ -240,7 +242,7 @@
                 <a href="../auth/Login.html" class="bg-white text-green-600 font-bold px-8 py-4 rounded-full hover:bg-gray-100 text-lg">
                     Tạo tài khoản miễn phí
                 </a>
-                <a href="../component/Findjobs.html"
+                <a href="../page/Findjobs.html"
                     class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 text-lg">
                     Khám phá việc làm
                 </a>

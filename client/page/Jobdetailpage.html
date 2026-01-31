@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Job Details – CareerMate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cmGreen: "#02C26A",
+              cmBlue: "#0075FF",
+              cmDark: "#081021",
+              cmLight: "#F5FAFF",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-cmLight text-slate-900">
+    <!-- HEADER: nền xanh lá -->
+    <header class="bg-gradient-to-r from-green-500 to-green-600 text-white">
+      <div
+        class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="h-8 w-8 rounded-xl bg-slate-900 flex items-center justify-center text-xs font-semibold"
+          >
+            CM
+          </div>
+          <span class="text-sm font-semibold">CareerMate</span>
+        </div>
+        <button class="text-xs px-3 py-1 rounded-full bg-white text-cmDark">
+          Dashboard
+        </button>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 space-y-3"
+      >
+        <div class="flex justify-between gap-3">
+          <div>
+            <p class="text-[11px] text-emerald-600 font-semibold">
+              Entry‑level / Fresher
+            </p>
+            <h1 class="text-lg md:text-xl font-bold">
+              Frontend Developer (Fresher)
+            </h1>
+            <p class="text-xs text-slate-600 mt-1">
+              CareerMate Vietnam · HCMC · Hybrid · Up to 15M VND
+            </p>
+          </div>
+          <!-- NÚT TRÊN: ĐÃ ĐỔI CHỮ + MÀU -->
+          <button
+            id="btnApplyQuick"
+            class="self-start text-xs px-4 py-2 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700"
+          >
+            Xem & ứng tuyển
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-[11px]">
+          <span class="px-2 py-1 rounded-full bg-slate-100">ReactJS</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100">TypeScript</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100">Tailwind</span>
+        </div>
+      </section>
+
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 grid gap-4 text-xs md:grid-cols-2"
+      >
+        <div class="space-y-1">
+          <h2 class="text-sm font-semibold">Mô tả</h2>
+          <ul class="list-disc list-inside text-slate-700 space-y-1">
+            <li>
+              Tham gia phát triển Web/App CareerMate cho sinh viên năm cuối.
+            </li>
+            <li>
+              Phối hợp với Designer &amp; AI team triển khai tính năng CV
+              Analyzer.
+            </li>
+            <li>Viết code React, Tailwind, kết nối REST API.</li>
+          </ul>
+        </div>
+        <div class="space-y-1">
+          <h2 class="text-sm font-semibold">Yêu cầu</h2>
+          <ul class="list-disc list-inside text-slate-700 space-y-1">
+            <li>Sinh viên năm cuối hoặc mới tốt nghiệp ngành IT.</li>
+            <li>Có project React (portfolio/GitHub).</li>
+            <li>Biết Git, HTML, CSS, JavaScript cơ bản.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="bg-white border border-slate-100 rounded-xl p-4 text-xs space-y-3"
+      >
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold">Ứng tuyển nhanh qua CareerMate</h2>
+          <span class="text-[11px] text-emerald-600"
+            >Match 87% với CV hiện tại</span
+          >
+        </div>
+
+        <form
+          id="jobApplyForm"
+          method="POST"
+          action="/api/jobs/apply"
+          class="space-y-3"
+        >
+          <input type="hidden" name="jobId" value="JOB_FRONTEND_FRESHER_001" />
+          <label class="block">
+            <span class="text-[11px] font-medium text-slate-700">Chọn CV</span>
+            <select
+              name="cvId"
+              class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cmBlue/60"
+            >
+              <option value="">Chọn CV của bạn</option>
+              <option value="cv_latest">CV Fresher Frontend</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="text-[11px] font-medium text-slate-700"
+              >Ghi chú cho HR (tuỳ chọn)</span
+            >
+            <textarea
+              name="note"
+              rows="3"
+              class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-cmGreen/60"
+              placeholder="Giới thiệu ngắn gọn về bạn..."
+            ></textarea>
+          </label>
+          <div class="flex flex-wrap gap-2">
+            <!-- NÚT FORM: ĐÃ ĐỔI CHỮ + MÀU -->
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-full text-xs font-semibold text-white bg-green-600 hover:bg-green-700"
+            >
+              Ứng tuyển ngay
+            </button>
+            <button
+              type="button"
+              id="btnAnalyzeCVJob"
+              class="px-3 py-2 rounded-full text-xs font-semibold border border-slate-200 text-slate-700"
+            >
+              Phân tích CV so với JD
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-cmDark text-[11px] text-slate-300">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between">
+        <span>© 2026 CareerMate</span>
+        <span>AI CV &amp; Job Matching</span>
+      </div>
+    </footer>
+
+    <script>
+      // Cấu hình dữ liệu cho từng job
+      const JOB_DATA = {
+        JOB_LEAD_DATA_ENGINEER_001: {
+          level: "Senior / Lead",
+          title: "Lead Data Engineer",
+          meta: "VNG Corporation · Quận 7, HCMC · 50–70M VND",
+          tags: ["Python", "Big Data", "Analytics"],
+          description: [
+            "Thiết kế và xây dựng data pipeline quy mô lớn cho hệ thống sản phẩm VNG.",
+            "Làm việc với các công nghệ Big Data (Spark, Hadoop, Kafka...).",
+            "Phối hợp với team Data Scientist và Product để tối ưu dữ liệu.",
+          ],
+          requirements: [
+            "3+ năm kinh nghiệm về Data Engineer.",
+            "Thành thạo Python, SQL và một công cụ Big Data.",
+            "Kinh nghiệm với cloud (AWS/GCP/Azure) là lợi thế.",
+          ],
+          match: "Match 92% với CV hiện tại",
+        },
+        JOB_SE_INTERN_001: {
+          level: "Intern / Fresher",
+          title: "Software Engineer Intern",
+          meta: "FPT Software · Quận 1, HCMC · 8–12M VND",
+          tags: ["React", "JavaScript", "Intern"],
+          description: [
+            "Tham gia phát triển các module frontend cho dự án của FPT.",
+            "Làm việc cùng senior engineer để review code và cải thiện kỹ năng.",
+            "Tìm hiểu quy trình phát triển phần mềm Agile/Scrum.",
+          ],
+          requirements: [
+            "Sinh viên năm 3, 4 hoặc mới tốt nghiệp ngành CNTT.",
+            "Có project cá nhân (GitHub/Portfolio) dùng JavaScript/React.",
+            "Ham học hỏi, chủ động trong công việc.",
+          ],
+          match: "Match 85% với CV hiện tại",
+        },
+        JOB_DATA_ANALYST_SR_001: {
+          level: "Senior",
+          title: "Data Analyst Senior",
+          meta: "Tiki Corporation · Thủ Đức, HCMC · 25–35M VND",
+          tags: ["SQL", "Python", "Analytics"],
+          description: [
+            "Phân tích dữ liệu hành vi người dùng để tối ưu trải nghiệm mua sắm.",
+            "Xây dựng dashboard theo dõi KPI cho các phòng ban.",
+            "Phối hợp với team Data Engineer, Product, Marketing.",
+          ],
+          requirements: [
+            "3+ năm kinh nghiệm Data Analyst/BI.",
+            "Thành thạo SQL, có kinh nghiệm với Python/R là lợi thế.",
+            "Biết dùng các công cụ BI (Power BI, Tableau...).",
+          ],
+          match: "Match 88% với CV hiện tại",
+        },
+        JOB_MARKETING_EXEC_001: {
+          level: "Executive",
+          title: "Marketing Executive",
+          meta: "Vinamilk · Hoàn Kiếm, Hà Nội · 15–20M VND",
+          tags: ["Marketing", "Social Media"],
+          description: [
+            "Lên kế hoạch và triển khai các chiến dịch marketing sản phẩm.",
+            "Quản lý nội dung trên các kênh social media.",
+            "Phối hợp với agency để tối ưu hiệu quả truyền thông.",
+          ],
+          requirements: [
+            "1–2 năm kinh nghiệm Marketing.",
+            "Hiểu về digital marketing, social media.",
+            "Kỹ năng viết content tốt, sáng tạo.",
+          ],
+          match: "Match 80% với CV hiện tại",
+        },
+        JOB_BACKEND_ENGINEER_001: {
+          level: "Middle / Senior",
+          title: "Backend Engineer",
+          meta: "Shopee Vietnam · Remote / HCMC · 30–50M VND",
+          tags: ["Node.js", "MongoDB", "AWS"],
+          description: [
+            "Thiết kế và phát triển API backend cho hệ thống thương mại điện tử.",
+            "Tối ưu performance, đảm bảo hệ thống chịu tải lớn.",
+            "Làm việc với kiến trúc microservices, cloud AWS.",
+          ],
+          requirements: [
+            "2+ năm kinh nghiệm Backend (Node.js).",
+            "Kinh nghiệm với database NoSQL (MongoDB, Redis...).",
+            "Hiểu về kiến trúc phân tán, message queue.",
+          ],
+          match: "Match 90% với CV hiện tại",
+        },
+        JOB_STORE_MANAGER_001: {
+          level: "Store Manager",
+          title: "Store Manager",
+          meta: "Thế Giới Di Động · Vũng Tàu · 18–25M VND",
+          tags: ["Retail", "Management"],
+          description: [
+            "Quản lý hoạt động kinh doanh tại cửa hàng.",
+            "Quản lý nhân sự, đào tạo và phân ca làm việc.",
+            "Đảm bảo chỉ tiêu doanh số và chất lượng dịch vụ.",
+          ],
+          requirements: [
+            "Kinh nghiệm quản lý cửa hàng/bán lẻ.",
+            "Kỹ năng lãnh đạo, giao tiếp tốt.",
+            "Sẵn sàng làm việc theo ca, kể cả cuối tuần.",
+          ],
+          match: "Match 78% với CV hiện tại",
+        },
+      };
+
+      // Lấy jobId từ URL
+      const params = new URLSearchParams(window.location.search);
+      const jobIdFromUrl = params.get("jobId");
+      const jobData = JOB_DATA[jobIdFromUrl] || JOB_DATA["JOB_SE_INTERN_001"];
+
+      // Gán jobId vào input hidden
+      const jobIdInput = document.querySelector('input[name="jobId"]');
+      if (jobIdInput) {
+        jobIdInput.value = jobIdFromUrl || "JOB_SE_INTERN_001";
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Level
+        document.querySelector("p.text-[11px].text-emerald-600").textContent =
+          jobData.level;
+        // Title
+        document.querySelector("h1.text-lg").textContent = jobData.title;
+        // Meta
+        document.querySelector("p.text-xs.text-slate-600.mt-1").textContent =
+          jobData.meta;
+        // Tags
+        const tagContainer = document.querySelector(
+          "section.bg-white.border.border-slate-100.rounded-xl.p-4.space-y-3 .flex.flex-wrap.gap-2",
+        );
+        tagContainer.innerHTML = "";
+        jobData.tags.forEach((t) => {
+          const span = document.createElement("span");
+          span.className = "px-2 py-1 rounded-full bg-slate-100 text-[11px]";
+          span.textContent = t;
+          tagContainer.appendChild(span);
+        });
+        // Mô tả
+        const descList = document.querySelectorAll(
+          "section.bg-white.border.border-slate-100.rounded-xl.p-4.grid ul.list-disc",
+        )[0];
+        descList.innerHTML = "";
+        jobData.description.forEach((d) => {
+          const li = document.createElement("li");
+          li.textContent = d;
+          descList.appendChild(li);
+        });
+        // Yêu cầu
+        const reqList = document.querySelectorAll(
+          "section.bg-white.border.border-slate-100.rounded-xl.p-4.grid ul.list-disc",
+        )[1];
+        reqList.innerHTML = "";
+        jobData.requirements.forEach((r) => {
+          const li = document.createElement("li");
+          li.textContent = r;
+          reqList.appendChild(li);
+        });
+        // Match %
+        document.querySelector(
+          "span.text-[11px].text-emerald-600",
+        ).textContent = jobData.match;
+      });
+
+      // Lấy email, token từ localStorage
+      let userEmail = localStorage.getItem("user_email");
+      let token = localStorage.getItem("access_token");
+
+      // Nút "Xem & ứng tuyển" trên
+      document.getElementById("btnApplyQuick").onclick = () => {
+        if (!userEmail) {
+          if (
+            confirm(
+              "Bạn cần đăng nhập để ứng tuyển. Chuyển đến trang đăng nhập?",
+            )
+          ) {
+            window.location.href = "../auth/login.html";
+          }
+          return;
+        }
+        document
+          .getElementById("jobApplyForm")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+
+      // Submit form ứng tuyển
+      document
+        .getElementById("jobApplyForm")
+        .addEventListener("submit", function (e) {
+          if (!userEmail) {
+            e.preventDefault();
+            if (
+              confirm(
+                "Bạn cần đăng nhập để ứng tuyển. Chuyển đến trang đăng nhập?",
+              )
+            ) {
+              window.location.href = "../auth/login.html";
+            }
+            return;
+          }
+
+          e.preventDefault();
+          alert(
+            "✅ Đã gửi CV thành công!\n\n" +
+              "Job ID: " +
+              (jobIdFromUrl || "JOB_SE_INTERN_001") +
+              "\nNhà tuyển dụng sẽ liên hệ qua: " +
+              userEmail,
+          );
+        });
+
+      // Nút phân tích CV
+      document.getElementById("btnAnalyzeCVJob").onclick = () => {
+        alert("Tính năng phân tích CV sẽ được cập nhật sau.");
+      };
+    </script>
+  </body>
+</html>

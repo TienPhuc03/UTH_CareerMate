@@ -7,33 +7,37 @@
     <title>Career AI Chatbot - CV Builder</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+      // Load header
+      fetch('components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+          });
+
+       // Load footer
+      fetch('../components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
 </head>
 
 <body class="bg-gradient-to-br from-green-50 to-white min-h-screen">
-    <!-- Header - THAY LOGO MỚI -->
-    <header class="bg-green-600 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex items-center justify-between">
-            <!-- Logo Career Mate - KHÔNG CÓ ROBOT -->
-            <div>
-                <a href="Homepage.html"
-                    class="text-2xl md:text-3xl font-bold text-white hover:text-green-100 transition-colors">
-                    Career Mate
-                </a>
-            </div>
-
-            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <i class="fas fa-user text-sm"></i>
-            </div>
-        </div>
-    </header>
+    
+    <div id="header-container"></div>
 
     <!-- Main Chat Container -->
     <main class="container mx-auto max-w-4xl px-4 py-6 flex flex-col h-[calc(100vh-100px)]">
-        <!-- Chat Messages Area -->
+
         <section
             class="flex-1 overflow-y-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 mb-6 p-6">
-            <!-- Welcome Message -->
-            <div class="text-center py-12">
+            <!-- Welcome Message - THÊM ID Ở ĐÂY -->
+            <div id="welcomeMessage" class="text-center py-12">
                 <div class="w-24 h-24 bg-green-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i class="fas fa-comments text-3xl text-green-600"></i>
                 </div>
@@ -42,19 +46,19 @@
                     Tôi là Career AI - trợ lý AI chuyên về CV và sự nghiệp. Hãy hỏi tôi về:
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6 max-w-lg mx-auto">
-                    <div
+                    <div onclick="askQuestion('Tạo CV chuyên nghiệp như thế nào?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-file-alt mr-2"></i>Tạo CV chuyên nghiệp
                     </div>
-                    <div
+                    <div onclick="askQuestion('Làm thế nào để tìm việc phù hợp?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-search mr-2"></i>Tìm việc phù hợp
                     </div>
-                    <div
+                    <div onclick="askQuestion('Nên học những kỹ năng gì?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-graduation-cap mr-2"></i>Lời khuyên học tập
                     </div>
-                    <div
+                    <div onclick="askQuestion('Chuẩn bị phỏng vấn như thế nào?')"
                         class="bg-green-100 p-3 rounded-xl text-sm text-green-800 hover:bg-green-200 transition-all cursor-pointer">
                         <i class="fas fa-briefcase mr-2"></i>Phỏng vấn xin việc
                     </div>
@@ -63,34 +67,7 @@
 
             <!-- Sample Messages - Hidden initially -->
             <div id="chat-messages" class="space-y-4 hidden">
-                <!-- User message example -->
-                <div class="flex justify-end">
-                    <div class="max-w-xs lg:max-w-md bg-green-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg">
-                        <p>Làm sao để tạo CV ấn tượng cho sinh viên mới ra trường?</p>
-                    </div>
-                </div>
-
-                <!-- AI message example -->
-                <div class="flex justify-start">
-                    <div
-                        class="max-w-xs lg:max-w-md bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
-                        <div class="flex items-start space-x-3">
-                            <div
-                                class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-robot text-sm"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-800 mb-2">Để tạo CV ấn tượng, bạn nên:</p>
-                                <ul class="text-sm space-y-1">
-                                    <li>• Tập trung vào kỹ năng và dự án cá nhân</li>
-                                    <li>• Sử dụng số liệu cụ thể (tăng 30% hiệu suất...)</li>
-                                    <li>• Thiết kế sạch sẽ, dễ đọc</li>
-                                </ul>
-                                <p class="text-xs text-green-600 mt-2 font-medium">Bạn muốn tôi tạo mẫu CV không?</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Tin nhắn mẫu sẽ được hiển thị khi người dùng bắt đầu chat -->
             </div>
         </section>
 
@@ -98,39 +75,37 @@
         <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 p-4">
             <div class="flex space-x-4">
                 <div class="flex-1 relative">
-                    <input type="text" placeholder="Nhập câu hỏi về CV, sự nghiệp..."
-                        class="w-full p-4 pl-16 border-2 border-green-200 rounded-2xl focus:border-green-400 focus:outline-none transition-all text-lg bg-green-50 hover:bg-green-100">
+                    <!-- THÊM ID VÀ ONKEYPRESS VÀO INPUT -->
+                    <input type="text" id="messageInput" placeholder="Nhập câu hỏi về CV, sự nghiệp..."
+                        class="w-full p-4 pl-16 border-2 border-green-200 rounded-2xl focus:border-green-400 focus:outline-none transition-all text-lg bg-green-50 hover:bg-green-100"
+                        onkeypress="handleKeyPress(event)">
 
-                    <!-- File Attachment Button with Dropdown -->
+                    <!-- File Attachment Button -->
                     <div class="absolute left-4 top-1/2 -translate-y-1/2 group">
                         <button id="file-btn"
                             class="p-3 text-gray-400 hover:text-green-600 hover:bg-green-100 rounded-xl transition-all duration-200 flex items-center justify-center relative">
                             <i class="fas fa-paperclip text-lg"></i>
                         </button>
 
-                        <!-- Dropdown Menu -->
                         <div id="file-dropdown"
                             class="absolute left-0 bottom-full mb-2 w-48 bg-white border border-green-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
                             <div class="py-1">
-                                <!-- Image Upload -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full">
                                     <i class="fas fa-image mr-3 text-green-500 w-5"></i>
                                     <span>Hình ảnh</span>
                                     <input type="file" accept="image/*" class="hidden" multiple>
                                 </label>
 
-                                <!-- Document Upload -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full border-t border-green-100">
                                     <i class="fas fa-file-pdf mr-3 text-red-500 w-5"></i>
                                     <span>File tài liệu</span>
                                     <input type="file" accept=".pdf,.doc,.docx,.txt" class="hidden">
                                 </label>
 
-                                <!-- Screenshot -->
                                 <label
-                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full block border-t border-green-100">
+                                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-green-50 cursor-pointer transition-colors w-full border-t border-green-100">
                                     <i class="fas fa-camera mr-3 text-blue-500 w-5"></i>
                                     <span>Chụp màn hình</span>
                                     <input type="file" accept="image/*" class="hidden" capture="environment">
@@ -145,8 +120,7 @@
                         <i class="fas fa-microphone text-lg"></i>
                     </button>
 
-                    <!-- Send Button -->
-                    <button
+                    <button onclick="sendMessage()"
                         class="absolute right-3 top-1/2 -translate-y-1/2 w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all">
                         <i class="fas fa-paper-plane text-lg"></i>
                     </button>
@@ -194,6 +168,7 @@
             transform: translateY(0);
         }
     </style>
+    <div id="footer-container"></div>
     
     <script>
         const API_URL = 'http://127.0.0.1:8000/api';
@@ -201,50 +176,72 @@
         let userEmail = localStorage.getItem('user_email');
         let token = localStorage.getItem('access_token');
 
-        // Check authentication
+        // Khi trang load xong
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Trang đã load, kiểm tra đăng nhập...');
+            
+            if (!checkAuth()) {
+                return;
+            }
+            console.log('Đã đăng nhập với email:', userEmail);
+        });
+
+        // Kiểm tra đăng nhập
         function checkAuth() {
             if (!token || !userEmail) {
-                alert('Vui lòng đăng nhập để sử dụng Career AI Coach!');
+                alert('⚠️ Vui lòng đăng nhập để sử dụng Career AI Coach!');
                 window.location.href = '../auth/login.html';
                 return false;
             }
-            document.getElementById('userEmailDisplay').textContent = userEmail;
             return true;
         }
 
-        // Handle Enter key
+        // Nhấn Enter để gửi
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Quick question buttons
+        // Câu hỏi nhanh
         function askQuestion(question) {
-            document.getElementById('messageInput').value = question;
-            sendMessage();
+            const input = document.getElementById('messageInput');
+            if (input) {
+                input.value = question;
+                sendMessage();
+            }
         }
 
-        // Send message to AI
+        // Gửi tin nhắn
         async function sendMessage() {
             const input = document.getElementById('messageInput');
-            const message = input.value.trim();
+            if (!input) {
+                console.error('Không tìm thấy input message');
+                return;
+            }
             
+            const message = input.value.trim();
             if (!message) return;
+            
+            console.log('Đang gửi:', message);
 
-            // Hide welcome message
-            document.getElementById('welcomeMessage').classList.add('hidden');
-            document.getElementById('chat-messages').classList.remove('hidden');
+            // Ẩn welcome message
+            const welcome = document.getElementById('welcomeMessage');
+            if (welcome) welcome.classList.add('hidden');
+            
+            // Hiện khung chat
+            const chatBox = document.getElementById('chat-messages');
+            if (chatBox) chatBox.classList.remove('hidden');
 
-            // Add user message to chat
+            // Thêm tin nhắn user
             addMessageToChat(message, 'user');
             input.value = '';
 
-            // Show typing indicator
+            // Hiện đang gõ
             showTypingIndicator();
 
             try {
-                // Call AI Coach API
+                // Gọi API AI
                 const response = await fetch(`${API_URL}/ai-coach/chat`, {
                     method: 'POST',
                     headers: {
@@ -259,44 +256,55 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('AI response failed');
+                    throw new Error('API lỗi: ' + response.status);
                 }
 
                 const data = await response.json();
+                console.log('AI trả lời:', data);
                 
-                // Remove typing indicator
+                // Ẩn đang gõ
                 removeTypingIndicator();
 
-                // Add AI response
-                addMessageToChat(data.response || data.analysis || 'Xin lỗi, tôi không hiểu câu hỏi của bạn.', 'ai');
+                // Thêm tin nhắn AI
+                const aiResponse = data.response || data.analysis || 'Xin lỗi, tôi chưa hiểu câu hỏi.';
+                addMessageToChat(aiResponse, 'ai');
 
-                // Update conversation history
+                // Lưu vào lịch sử
                 conversationHistory.push({
                     user: message,
-                    ai: data.response || data.analysis
+                    ai: aiResponse
                 });
 
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Lỗi:', error);
                 removeTypingIndicator();
-                addMessageToChat('⚠️ Có lỗi xảy ra. Vui lòng thử lại sau.', 'ai');
+                
+                // Chế độ demo nếu API lỗi
+                addMessageToChat('🤖 **Chế độ demo**\n\nTôi là Career AI Coach. Câu hỏi của bạn: "' + message + '"\n\n*Lưu ý: API chưa kết nối, đang ở chế độ demo*', 'ai');
+                
+                conversationHistory.push({
+                    user: message,
+                    ai: 'Demo response'
+                });
             }
         }
 
-        // Add message to chat UI
+        // Thêm tin nhắn vào khung chat
         function addMessageToChat(message, type) {
-            const chatMessages = document.getElementById('chat-messages');
+            const chatBox = document.getElementById('chat-messages');
+            if (!chatBox) return;
+            
             const messageDiv = document.createElement('div');
             
             if (type === 'user') {
-                messageDiv.className = 'flex justify-end';
+                messageDiv.className = 'flex justify-end mb-4';
                 messageDiv.innerHTML = `
                     <div class="max-w-xs lg:max-w-md bg-green-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg">
                         <p class="whitespace-pre-wrap">${escapeHtml(message)}</p>
                     </div>
                 `;
             } else {
-                messageDiv.className = 'flex justify-start';
+                messageDiv.className = 'flex justify-start mb-4';
                 messageDiv.innerHTML = `
                     <div class="max-w-xs lg:max-w-md bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
                         <div class="flex items-start space-x-3">
@@ -311,16 +319,18 @@
                 `;
             }
             
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Show typing indicator
+        // Hiện "đang gõ"
         function showTypingIndicator() {
-            const chatMessages = document.getElementById('chat-messages');
+            const chatBox = document.getElementById('chat-messages');
+            if (!chatBox) return;
+            
             const typingDiv = document.createElement('div');
             typingDiv.id = 'typing-indicator';
-            typingDiv.className = 'flex justify-start';
+            typingDiv.className = 'flex justify-start mb-4';
             typingDiv.innerHTML = `
                 <div class="bg-white border border-green-200 p-4 rounded-2xl rounded-tl-sm shadow-lg">
                     <div class="flex items-center space-x-2">
@@ -330,41 +340,33 @@
                     </div>
                 </div>
             `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Remove typing indicator
+        // Ẩn "đang gõ"
         function removeTypingIndicator() {
             const indicator = document.getElementById('typing-indicator');
-            if (indicator) {
-                indicator.remove();
-            }
+            if (indicator) indicator.remove();
         }
 
-        // Format AI response with line breaks and lists
+        // Định dạng tin nhắn AI
         function formatAIResponse(text) {
-            // Convert newlines to <br>
-            let formatted = text.replace(/\n/g, '<br>');
-            
-            // Convert bullet points
-            formatted = formatted.replace(/• /g, '<br>• ');
-            
-            // Highlight key phrases
-            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="text-green-600">$1</strong>');
-            
+            if (!text) return '';
+            let formatted = text.toString()
+                .replace(/\n/g, '<br>')
+                .replace(/• /g, '<br>• ')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-green-600">$1</strong>');
             return formatted;
         }
 
-        // Escape HTML
+        // Bảo mật: escape HTML
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
-
-        // Initialize
-        checkAuth();
     </script>
 </body>
 

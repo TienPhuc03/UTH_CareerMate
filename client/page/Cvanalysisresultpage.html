@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>CV Analysis Result – CareerMate</title>
+    <title>CV Analysis Result - CareerMate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -21,8 +20,28 @@
         },
       };
     </script>
+        <script>
+      // Load header
+      fetch('components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = 'components/auth-script.js';
+            document.body.appendChild(script);
+          });
+
+       // Load footer
+      fetch('../components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
   </head>
   <body class="bg-cmLight text-slate-900">
+    
+    <div id="header-container"></div>
     <header class="bg-gradient-to-r from-cmGreen to-cmBlue text-white">
       <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='Homepage.html'">
@@ -119,7 +138,16 @@
         <span>© 2026 CareerMate</span>
         <span>AI CV · Roadmap · Job Matching</span>
       </div>
+      <!-- Thêm nút quay lại trong phần footer: -->
+      <div class="mt-4 text-center">
+          <button onclick="window.location.href='Uploadcv.html'"
+              class="inline-flex items-center gap-2 text-sm px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+              <i class="fas fa-upload"></i> Tải CV khác để phân tích
+          </button>
+      </div>
     </footer>
+
+    <div id="footer-container"></div>
 
     <script>
       const API_URL = 'http://127.0.0.1:8000/api/cvs';

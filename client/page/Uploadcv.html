@@ -10,48 +10,7 @@
 </head>
 <body class="min-h-screen bg-gray-50 text-slate-900 flex flex-col">
     
-    <!-- Header - Giống Homepage -->
-    <header class="px-4 py-3 bg-white xl:px-0 sticky top-0 shadow-md z-50">
-        <div class="max-w-[1200px] mx-auto flex items-center">
-            <div>
-                <a href="Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
-            </div>
-            <nav class="ml-auto flex items-center gap-10">
-                <input type="checkbox" hidden id="menu-toggle"
-                    class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
-                <ul
-                    class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
-                    <li><a href="Homepage.html" class="py-3 block hover:text-green-600 lg:py-0">Trang chủ</a></li>
-                    <li><a href="Findjobs.html" class="py-3 block hover:text-green-600 lg:py-0">Việc làm</a></li>
-                    <li><a href="Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
-                    <li><a href="Uploadcv.html" class="py-3 block text-green-600 lg:py-0">Tạo CV</a></li>
-                </ul>
-                <label for="menu-toggle"
-                    class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
-                
-                <div id="authButtons" class="flex gap-3">
-                    <a href="../auth/signup.html"
-                        class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
-                    <a href="../auth/login.html"
-                        class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
-                </div>
-
-                <div id="userMenu" class="hidden gap-3 items-center">
-                    <span id="userEmailHeader" class="text-gray-700 font-medium hidden md:block"></span>
-                    <a href="Profile.html"
-                        class="block bg-blue-600 font-bold px-6 py-3 text-white rounded-full hover:bg-blue-700">Hồ sơ</a>
-                    <button onclick="logout()"
-                        class="block bg-red-600 font-bold px-6 py-3 text-white rounded-full hover:bg-red-700">Đăng xuất</button>
-                </div>
-
-                <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                    <span class="block w-full h-[3px] bg-[#333]"></span>
-                </label>
-            </nav>
-        </div>
-    </header>
+    <div id="header-container"></div>
 
         <main class="flex-1">
             <section class="relative">
@@ -199,51 +158,30 @@
             </section>
         </main>
 
-        <footer class="bg-slate-900 text-slate-300 text-[12px] mt-8">
-            <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-4 gap-6">
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                        <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center text-xs font-semibold text-white">
-                            CM
-                        </div>
-                        <div class="font-semibold text-white text-sm">CareerMate</div>
-                    </div>
-                    <p class="text-[11px] text-slate-400">
-                        Kết nối tài năng trẻ với cơ hội nghề nghiệp đầu đời bằng AI.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Liên kết</h4>
-                    <ul class="space-y-1">
-                        <li><a href="Homepage.html" class="hover:text-white">Trang chủ</a></li>
-                        <li><a href="Profile.html" class="hover:text-white">Hồ sơ</a></li>
-                        <li><a href="Findjobs.html" class="hover:text-white">Việc làm</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Tài nguyên</h4>
-                    <ul class="space-y-1">
-                        <li><a href="Printcv.html" class="hover:text-white">Mẫu CV</a></li>
-                        <li><a href="#" class="hover:text-white">Blog định hướng nghề</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-2 text-sm">Liên hệ</h4>
-                    <ul class="space-y-1">
-                        <li>Email: support@careermate.ai</li>
-                        <li>Chính sách bảo mật</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 py-3 text-center text-[11px] text-slate-500">
-                © 2026 CareerMate. All rights reserved.
-            </div>
-        </footer>
     </div>
 
-<script>
-const userEmail = localStorage.getItem('user_email');
-const token = localStorage.getItem('access_token');
+    <div id="footer-container"></div>
+    <script>
+      // Load header
+      fetch('../components/header.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = '../components/auth-script.js';
+            document.body.appendChild(script);
+          });
+
+       // Load footer
+      fetch('../components/footer.html')
+       .then(response => response.text())
+       .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+         });
+    </script>
+        <script>
+                const userEmail = localStorage.getItem('user_email');
+            const token = localStorage.getItem('access_token');
 
 function checkAuthStatus() {
     if (token && userEmail) {
@@ -323,16 +261,17 @@ document.getElementById('cvUploadForm').addEventListener('submit', async functio
 
         const data = await response.json();
         console.log("✅ Success:", data);
-
+          
         // Save result to localStorage
         localStorage.setItem('current_cv_id', data.cv_id);
         localStorage.setItem('current_ai_result', JSON.stringify(data.ai_analysis));
         localStorage.setItem('current_ats_score', data.ats_score);
 
         alert(`✅ Upload thành công!\n\nATS Score: ${data.ats_score}/100\nCV ID: ${data.cv_id}`);
-
-        // Redirect to result page
-        window.location.href = 'CVanalysisresultpage.html';
+         setTimeout(() => {
+                window.location.href = 'Printcv.html';
+            }, 1000);
+        ;
 
     } catch (err) {
         console.error("❌ Network error:", err);
@@ -349,8 +288,5 @@ function logout() {
     window.location.href = '../auth/login.html';
 }
 </script>
-
-
-  
 </body>
 </html>

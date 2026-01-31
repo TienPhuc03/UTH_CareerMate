@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     
     # AI Service - Gemini
     GEMINI_API_KEY: Optional[str] = None  # ✅ Optional now
-    GEMINI_MODEL: str = "gemini-1.5-flash"
+    GEMINI_MODEL: str = "gemini-3-flash-preview"
     
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
@@ -40,8 +40,8 @@ class Settings(BaseSettings):
 
     # Google OAuth (MỚI THÊM VÀO ĐÚNG VỊ TRÍ)
     # Pydantic sẽ tự động lấy từ file .env nếu tên biến trùng khớp
-    GOOGLE_CLIENT_ID: str 
-    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_CLIENT_ID: Optional[str] = None
+    GOOGLE_CLIENT_SECRET: Optional[str] = None
     GOOGLE_REDIRECT_URI: str = "http://127.0.0.1:8000/api/Auth/google/callback"
     
     class Config:

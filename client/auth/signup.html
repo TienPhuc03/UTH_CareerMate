@@ -153,8 +153,7 @@
             </div>
         </div>
     </div>
-
-    <script>
+      <script>
         // --- 1. TÍNH NĂNG: HIỆN/ẨN MẬT KHẨU ---
         function togglePassword(inputId, iconId) {
             const input = document.getElementById(inputId);
@@ -255,6 +254,14 @@
                 showAlert("Mật khẩu phải có ít nhất 6 ký tự", 'error');
                 return;
             }
+            // ✅ LẤY GIÁ TRỊ ROLE TỪ RADIO INPUT
+            const roleInput = document.querySelector('input[name="role"]:checked');
+            if (!roleInput) {
+                showAlert("Vui lòng chọn vai trò!", 'error');
+                return;
+            }
+            const role = roleInput.value;
+
 
             // Disable button and show loading
             submitBtn.disabled = true;

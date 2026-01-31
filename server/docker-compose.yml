@@ -1,7 +1,5 @@
-# version: '3.8'
 
 services:
-  # PostgreSQL Database
   db:
     image: postgres:15-alpine
     container_name: users_db
@@ -22,7 +20,6 @@ services:
     networks:
       - careermate_network
 
-  # Redis Cache
   redis:
     image: redis:7-alpine
     container_name: careermate_redis
@@ -40,23 +37,23 @@ services:
     networks:
       - careermate_network
 
-  # Backend API
   backend:
     build:
-      context: .
+      context: .              # ← SỬA: . thay vì ./server
       dockerfile: Dockerfile
     container_name: careermate_backend
     restart: unless-stopped
     env_file:
-      - .env
-    # environment:
-    #   - DATABASE_URL=postgresql://postgres:106006@db:5432/users_db
-    #   - REDIS_URL=redis://redis:6379/0
+      - .env                  # ← SỬA: .env thay vì ./server/.env
+    environment:
+      - DATABASE_URL=postgresql://postgres:106006@db:5432/users_db
+      - REDIS_URL=redis://redis:6379/0
     ports:
       - "8000:8000"
     volumes:
-      -  ./uploads:/app/uploads
-      - ./logs:/app/logs 
+      - .:/app                # ← SỬA: . thay vì ./server
+      - ../uploads:/app/uploads
+        # - .alembic.ini:/app/alembic.ini:ro
     depends_on:
       db:
         condition: service_healthy
@@ -64,14 +61,18 @@ services:
         condition: service_healthy
     networks:
       - careermate_network
-    # command: >
-    #   sh -c "
-    #     echo 'Waiting for database...' &&
-    #     sleep 5 &&
-    #     alembic upgrade head &&
-    #     echo 'Starting application...' &&
-    #     uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-    #   "
+    command: >
+      sh -c "
+        echo '⏳ Waiting for database...' &&
+        sleep 5 &&
+        echo '📁 Checking alembic.ini...' &&
+        ls -la /app/alembic.ini &&
+        echo '🔄 Running migrations...' &&
+        alembic upgrade head &&
+        echo '✅ Migrations completed!' &&
+        echo '🚀 Starting server...' &&
+        uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      "
 
 volumes:
   postgres_data:

@@ -11,23 +11,23 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from database.base import Base
 from core.config import settings
 
-# Import all models
+# Import ALL models (IMPORTANT!)
 from modules.users.models import User
 from modules.cvs.models import CV
 from modules.jobs.models import Job
 from modules.applications.models import Application
 
-# Alembic Config
+# Alembic Config object
 config = context.config
 
 # Set database URL from settings
 config.set_main_option('sqlalchemy.url', settings.DATABASE_URL)
 
-# Interpret config file for logging
+# Interpret the config file for Python logging
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Target metadata
+# Add your model's MetaData object here for 'autogenerate' support
 target_metadata = Base.metadata
 
 
@@ -55,7 +55,7 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, 
+            connection=connection,
             target_metadata=target_metadata,
             compare_type=True,
             compare_server_default=True,

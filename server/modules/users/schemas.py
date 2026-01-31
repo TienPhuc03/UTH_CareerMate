@@ -7,6 +7,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(..., min_length=6, max_length=72)
     full_name: str = Field(..., min_length=1, max_length=100)
+    role: str = "student"
     
     @field_validator('password')
     @classmethod
@@ -23,6 +24,7 @@ class UserOut(BaseModel):
     id: int
     email: EmailStr
     full_name: str
+    role: str
     is_active: bool
     created_at: datetime
 

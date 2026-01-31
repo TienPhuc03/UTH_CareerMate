@@ -1,25 +1,34 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import func
 from modules.users.models import User
 from modules.jobs.models import Job
 from modules.applications.models import Application
-from modules.cvs.models import CV
-
-def calculate_user_stats(db: Session):
-    return {
-        "total": db.query(User).count(),
-        "active": db.query(User).filter(User.is_active == True).count(),
-        "by_role": {
-            "admin": db.query(User).filter(User.role == "admin").count(),
-            "candidate": db.query(User).filter(User.role == "candidate").count()
-        }
-    }
 
 def get_dashboard_stats(db: Session):
-    # Tổng hợp tất cả thông số cho Dashboard
+    """Tổng hợp số liệu thống kê cho Admin Dashboard"""
+    
+    # 1. Thống kê User
+    total_users = db.query(User).count()
+    active_users = db.query(User).filter(User.is_active == True).count()
+    
+    # 2. Thống kê Job
+    total_jobs = db.query(Job).count()
+    active_jobs = db.query(Job).filter(Job.status == "active").count()
+    
+    # 3. Thống kê Applications
+    total_applications = db.query(Application).count()
+
     return {
-        "users": calculate_user_stats(db),
-        "jobs": {"total": db.query(Job).count()},
-        "applications": {"total": db.query(Application).count()},
-        "cvs": {"total": db.query(CV).count()}
+        "users": {
+            "total": total_users,
+            "active": active_users,
+            "inactive": total_users - active_users
+        },
+        "jobs": {
+            "total": total_jobs,
+            "active": active_jobs,
+            "closed": total_jobs - active_jobs
+        },
+        "applications": {
+            "total": total_applications
+        }
     }

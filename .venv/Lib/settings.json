@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "CM_DB",
+            "database": "users_db",
+            "username": "postgres"
+        }
+    ],
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none",
+    "reportMissingModuleSource": "none"
+  },
+  "python.linting.enabled": false,
+  "python.analysis.typeCheckingMode": "off"
+}

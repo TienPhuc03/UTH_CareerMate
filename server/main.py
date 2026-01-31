@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.base import Base, engine, test_connection
+from database.base import  test_connection
 from modules.users.router import router as user_router
 from modules.jobs.router import router as jobs_router 
 from modules.cvs.router import router as cv_router
@@ -19,15 +19,6 @@ from core.redis_client import redis_client
 
 # Setup logging
 logger = setup_logging()
-
-# Create tables
-try:
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables created")
-except Exception as e:
-    logger.error(f"Failed to create tables: {e}")
-
-# Test DB connection
 test_connection()
 
 
@@ -44,9 +35,10 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -104,9 +96,10 @@ def root():
         "docs": "/docs",
         "health": "/health"
     }
-@app.get("/")
-def root():
-    return {"message": "Welcome to Career Mates API!", "docs": "/docs"}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7962ebe50e2ff639a687f226a5b3309534e301f1
 
 
 @app.get("/health")

@@ -12,7 +12,7 @@ class ApplicationResponse(BaseModel):
     job_id: int
     cv_id: int
     status: str
-    applied_at: datetime
+    created_at: datetime
 
     class Config:
         from_attributes = True

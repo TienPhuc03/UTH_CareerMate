@@ -1,7 +1,9 @@
+
 """
-Gemini AI Analyzer - SYNC VERSION
+Gemini AI Analyzer - Using google-genai SDK
 """
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from core.config import settings
 from core.logging_config import get_logger
 from typing import Dict, Optional
@@ -9,92 +11,74 @@ import json
 import time
 
 logger = get_logger(__name__)
-
-# Configure Gemini
-genai.configure(api_key=settings.GEMINI_API_KEY)
-
+# Khởi tạo Client (Tự động lấy GEMINI_API_KEY từ biến môi trường hoặc config)
+try:
+    client = genai.Client(api_key=settings.GEMINI_API_KEY)
+except Exception as e:
+    logger.error(f"Failed to initialize Gemini Client: {e}")
+    client = None
 
 def analyze_cv_with_gemini(
     cv_text: str, 
     target_industry: Optional[str] = None
 ) -> Dict:
-    """
-    Analyze CV using Gemini AI (SYNC)
-    
-    Args:
-        cv_text: CV content
-        target_industry: Target industry
-        
-    Returns:
-        Analysis results
-    """
+    """Analyze CV using Gemini AI (New SDK)"""
     start_time = time.time()
     
+    if not client:
+        return _create_fallback_analysis(cv_text[:500], "Client init failed")
+
     try:
-        cv_text_limited = cv_text[:4000]
+        # Cắt ngắn text
+        cv_text_limited = cv_text[:10000] 
         
-        prompt = f"""Bạn là chuyên gia HR tại Việt Nam. Phân tích CV này và trả về JSON.
-
-Ngành mục tiêu: {target_industry or 'IT/Tech'}
-
+        prompt = f"""Bạn là chuyên gia HR. Phân tích CV này.
+Ngành: {target_industry or 'IT/Tech'}
 CV:
 {cv_text_limited}
 
-Trả về JSON (không có markdown, chỉ JSON thuần):
+Output JSON format:
 {{
-    "ats_score": <số 0-100>,
-    "overall_assessment": "<đánh giá tổng quan bằng tiếng Việt>",
-    "strengths": ["<điểm mạnh 1>", "<điểm mạnh 2>", "<điểm mạnh 3>"],
-    "weaknesses": ["<điểm yếu 1>", "<điểm yếu 2>"],
-    "skills_found": ["<skill1>", "<skill2>"],
-    "missing_skills": ["<skill thiếu 1>", "<skill thiếu 2>"],
-    "improvement_suggestions": ["<gợi ý 1>", "<gợi ý 2>", "<gợi ý 3>"],
-    "keyword_optimization": {{
-        "current_keywords": ["<từ khóa 1>", "<từ khóa 2>"],
-        "recommended_keywords": ["<từ khóa nên thêm 1>", "<từ khóa nên thêm 2>"]
-    }},
-    "career_advice": "<lời khuyên nghề nghiệp>"
+    "ats_score": 0-100,
+    "overall_assessment": "...",
+    "strengths": ["..."],
+    "weaknesses": ["..."],
+    "improvement_suggestions": ["..."],
+    "skills_found": ["..."]
 }}"""
-
-        model = genai.GenerativeModel(settings.GEMINI_MODEL)
-        
-        response = model.generate_content(
-            prompt,
-            generation_config={
-                "temperature": 0.7,
-                "top_p": 0.95,
-                "max_output_tokens": 2048,
-            }
+        response = client.models.generate_content(
+            model=settings.GEMINI_MODEL, # Hardcode tên model chuẩn để tránh lỗi config cũ
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json"
+            )
         )
         
         duration = time.time() - start_time
-        response_text = response.text.strip()
+        result_json = json.loads(response.text)
         
-        # Clean markdown
-        if "```json" in response_text:
-            response_text = response_text.split("```json")[1].split("```")[0].strip()
-        elif response_text.startswith("```"):
-            response_text = response_text.replace("```", "").strip()
+        logger.info(f"✅ Gemini analysis done. ATS: {result_json.get('ats_score')} ({duration:.2f}s)")
+        return result_json
         
-        # Parse JSON
-        analysis = json.loads(response_text)
-        logger.info(f"✅ Gemini analysis done. ATS: {analysis.get('ats_score')} ({duration:.2f}s)")
-        return analysis
-        
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON parse error: {e}")
-        return _create_fallback_analysis(cv_text[:500])
     except Exception as e:
-        logger.error(f"Gemini error: {e}")
+        logger.error(f"Gemini analysis error: {e}")
         return _create_fallback_analysis(cv_text[:500], str(e))
 
+def _create_fallback_analysis(cv_text: str, error: str = None) -> Dict:
+    return {
+        "ats_score": 0,
+        "overall_assessment": "Hệ thống đang bảo trì AI.",
+        "strengths": [],
+        "weaknesses": ["Lỗi kết nối AI"],
+        "error": error
+    }
 
 def generate_career_roadmap(
     cv_skills: str,
     target_role: str,
     current_level: str = "junior"
 ) -> Dict:
-    """Generate career roadmap (SYNC)"""
+    """Generate career roadmap with google-genai SDK"""
     try:
         prompt = f"""Tạo lộ trình nghề nghiệp cho IT tại Việt Nam.
 
@@ -117,8 +101,10 @@ Trả về JSON (không markdown):
     "tips": "<lời khuyên>"
 }}"""
 
-        model = genai.GenerativeModel(settings.GEMINI_MODEL)
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt
+        )
         
         text = response.text.strip()
         if "```json" in text:
@@ -142,7 +128,7 @@ Trả về JSON (không markdown):
 
 
 def compare_cv_with_job(cv_text: str, job_description: str) -> Dict:
-    """Compare CV with job (SYNC)"""
+    """Compare CV with job using google-genai SDK"""
     try:
         prompt = f"""So sánh CV với JD và trả về JSON (không markdown).
 
@@ -161,8 +147,10 @@ JSON:
     "cover_letter_tips": ["<tip1>", "<tip2>"]
 }}"""
 
-        model = genai.GenerativeModel(settings.GEMINI_MODEL)
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt
+        )
         
         text = response.text.strip()
         if "```json" in text:

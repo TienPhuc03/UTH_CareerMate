@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>CareerMate – Tải lên CV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -240,60 +241,116 @@
         </footer>
     </div>
 
-    <script>
-        // Load user email and check auth
-        const userEmail = localStorage.getItem('user_email');
-        const token = localStorage.getItem('access_token');
+<script>
+const userEmail = localStorage.getItem('user_email');
+const token = localStorage.getItem('access_token');
+
+function checkAuthStatus() {
+    if (token && userEmail) {
+        document.getElementById('authButtons').classList.add('hidden');
+        document.getElementById('userMenu').classList.remove('hidden');
+        document.getElementById('userMenu').classList.add('flex');
+        document.getElementById('userEmailHeader').textContent = userEmail;
+        document.getElementById('emailInput').value = userEmail;
+    } else {
+        // Allow upload without login for testing
+        console.warn('⚠️ Not logged in - using email from form');
+    }
+}
+checkAuthStatus();
+
+document.getElementById('cvFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const fileName = document.getElementById('fileName');
+        fileName.textContent = `✅ Đã chọn: ${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`;
+        fileName.classList.remove('hidden');
+    }
+});
+
+
+const API_URL = 'http://localhost:8000/api/cvs/upload';
+
+document.getElementById('cvUploadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const fileInput = document.getElementById('cvFile');
+    const emailInput = document.getElementById('emailInput');
+    const industrySelect = document.querySelector('select[name="targetIndustry"]');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Vui lòng chọn file CV!');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('email', emailInput.value);
+
+    if (industrySelect.value) {
+        formData.append('target_industry', industrySelect.value);
+    }
+
+    const btn = this.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang phân tích bằng AI...';
+    btn.disabled = true;
+
+    try {
+        console.log("🚀 Upload tới:", API_URL);
+        console.log("📦 FormData:", {
+            file: file.name,
+            email: emailInput.value,
+            industry: industrySelect.value
+        });
+
+        // 
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            body: formData
+        });
         
-        function checkAuthStatus() {
-            if (token && userEmail) {
-                document.getElementById('authButtons').classList.add('hidden');
-                document.getElementById('userMenu').classList.remove('hidden');
-                document.getElementById('userMenu').classList.add('flex');
-                document.getElementById('userEmailHeader').textContent = userEmail;
-                document.getElementById('emailInput').value = userEmail;
-            } else {
-                alert('Vui lòng đăng nhập trước!');
-                window.location.href = '../auth/login.html';
-            }
+        console.log("Response:", response);
+        console.log("Response data:", await response.text());
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("❌ Error:", errorText);
+            alert(`❌ Lỗi server (${response.status}):\n${errorText.substring(0, 300)}`);
+            return;
         }
-        checkAuthStatus();
 
-        // Handle file selection
-        document.getElementById('cvFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const fileName = document.getElementById('fileName');
-                fileName.textContent = `Đã chọn: ${file.name}`;
-                fileName.classList.remove('hidden');
-            }
-        });
+        const data = await response.json();
+        console.log("✅ Success:", data);
 
-        // Handle form submission
-        document.getElementById('cvUploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const file = document.getElementById('cvFile').files[0];
-            if (!file) {
-                alert('Vui lòng chọn file CV!');
-                return;
-            }
+        // Save result to localStorage
+        localStorage.setItem('current_cv_id', data.cv_id);
+        localStorage.setItem('current_ai_result', JSON.stringify(data.ai_analysis));
+        localStorage.setItem('current_ats_score', data.ats_score);
 
-            // Mock upload - In production, this would upload to backend
-            alert('CV đã được tải lên thành công!\n\nBạn có thể xem CV của mình tại trang "Xem CV".');
-            
-            // Redirect to print CV page
-            setTimeout(() => {
-                window.location.href = 'Printcv.html';
-            }, 1000);
-        });
+        alert(`✅ Upload thành công!\n\nATS Score: ${data.ats_score}/100\nCV ID: ${data.cv_id}`);
 
-        function logout() {
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('user_email');
-            alert('Đăng xuất thành công!');
-            window.location.href = 'Homepage.html';
-        }
-    </script>
+        // Redirect to result page
+        window.location.href = 'CVanalysisresultpage.html';
+
+    } catch (err) {
+        console.error("❌ Network error:", err);
+        
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+});
+
+function logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user_email');
+    window.location.href = '../auth/login.html';
+}
+</script>
+
+
+  
 </body>
 </html>

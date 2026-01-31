@@ -35,9 +35,10 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -95,7 +96,10 @@ def root():
         "docs": "/docs",
         "health": "/health"
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7962ebe50e2ff639a687f226a5b3309534e301f1
 
 
 @app.get("/health")

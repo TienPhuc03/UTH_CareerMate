@@ -1,11 +1,32 @@
-# Python
+# --- 1. Python System (File rác khi chạy code) ---
 __pycache__/
-.env
+*.py[cod]
+*$py.class
+
+# --- 2. Virtual Environment (QUAN TRỌNG NHẤT) ---
+# Bỏ qua thư mục môi trường ảo để tránh xung đột
 .venv/
-# Node
-node_modules/
-dist/
-*.session.sql
+venv/
+env/
+
+# --- 3. Bảo mật (Tuyệt đối không up file này) ---
+.env
+.env.local
+
+# --- 4. Dữ liệu người dùng & Database ---
+# Bỏ qua file CV đã upload
+uploads/
+server/uploads/
+# Bỏ qua database SQLite (nếu có dùng)
+*.sqlite3
+*.db
+
+# --- 5. Logs (File nhật ký lỗi) ---
+logs/
 *.log
 server/logs/
 
+# --- 6. Editor & Hệ điều hành ---
+.vscode/
+.idea/
+.DS_Store

@@ -27,11 +27,7 @@ test_connection()
 # Đảm bảo Python tìm thấy các module khi chạy từ thư mục server
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-origins = [
-    "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "http://localhost:3000",  # <-- Quan trọng: Thêm dòng này trùng với địa chỉ Live Server
-]
+
 
 app = FastAPI(
     title="CareerMate - AI Career Platform",
@@ -44,7 +40,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  
+    allow_origins=["*"],  # Cho phép tất cả các nguồn (có thể tùy chỉnh theo môi trường)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,69 +1,16 @@
-// function checkAuthStatus() {
-//     const token = localStorage.getItem('access_token');
-//     const email = localStorage.getItem('user_email');
-    
-//     if (token && email) {
-//         document.getElementById('authButtons').classList.add('hidden');
-//         document.getElementById('userInfo').classList.remove('hidden');
-//         document.getElementById('userInfo').classList.add('flex');
-        
-//         const nameParts = email.split('@')[0];
-//         const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
-//         const initials = displayName.substring(0, 2).toUpperCase();
-        
-//         document.getElementById('userNameDisplay').textContent = displayName;
-//         document.getElementById('userEmailDisplay').textContent = email;
-//         document.getElementById('dropdownUserName').textContent = displayName;
-//         document.getElementById('dropdownUserEmail').textContent = email;
-//         document.getElementById('userAvatar').textContent = initials;
-//     } else {
-//         document.getElementById('authButtons').classList.remove('hidden');
-//         document.getElementById('userInfo').classList.add('hidden');
-//     }
-// }
 
-// function logout() {
-//     localStorage.removeItem('access_token');
-//     localStorage.removeItem('user_email');
-//     alert('Đăng xuất thành công!');
-//     window.location.href = 'Homepage.html';
-// }
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     checkAuthStatus();
-    
-//     const userMenuToggle = document.getElementById('userMenuToggle');
-//     const userDropdown = document.getElementById('userDropdown');
-    
-//     if (userMenuToggle) {
-//         userMenuToggle.addEventListener('click', function(e) {
-//             e.stopPropagation();
-//             userDropdown.classList.toggle('hidden');
-//         });
-//     }
-    
-//     document.addEventListener('click', function(e) {
-//         if (userDropdown && !userDropdown.contains(e.target) && !userMenuToggle.contains(e.target)) {
-//             userDropdown.classList.add('hidden');
-//         }
-//     });
-    
-//     const dropdownItems = document.querySelectorAll('#userDropdown a, #userDropdown button');
-//     dropdownItems.forEach(item => {
-//         item.addEventListener('click', function() {
-//             userDropdown.classList.add('hidden');
-//         });
-//     });
-// });
-
-// Hàm kiểm tra trạng thái đăng nhập
 function checkAuthStatus() {
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('user_email');
-    
+    const role = localStorage.getItem('user_role');
     // Các phần tử cần thao tác trong Header
     const authButtons = document.getElementById('authButtons');
     const userInfo = document.getElementById('userInfo');
+    const dashboardContainer = document.getElementById('roleBasedDashboard');
+    const menu1 = document.getElementById('menu-item-1');
+    const menu2 = document.getElementById('menu-item-2');
+    const menu3 = document.getElementById('menu-item-3');
+
     
     // Nếu không tìm thấy Header (do đang nạp chậm), thì dừng lại
     if (!authButtons || !userInfo) return;
@@ -73,12 +20,41 @@ function checkAuthStatus() {
         authButtons.classList.add('hidden');
         userInfo.classList.remove('hidden');
         userInfo.classList.add('flex');
-        
+
+        if (dashboardContainer) {  
+            if (role === 'student') {
+            // Xóa nội dung cũ (nếu có)
+            dashboardContainer.innerHTML = `
+                    <a href="../page/Studentdashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 transition-colors">
+                        <i class="fas fa-user-graduate text-green-600 w-5"></i>
+                        <span>Student Dashboard</span>
+                    </a>`;
+            }else if (role ==='recruiter') {
+            dashboardContainer.innerHTML = `
+                    <a href="../page/Recruiterdashboard.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-sky-600 transition-colors">
+                        <i class="fas fa-briefcase text-sky-600 w-5"></i>
+                        <span>Recruiter Dashboard</span>
+                    </a>`;
+            }
+         }
+         if (token && role === 'recruiter') {
+        // Thay đổi cho Nhà tuyển dụng
+                 if(menu1) menu1.innerHTML = `<a href="../page/Formpostjob.html" class="py-3 block hover:text-green-600 lg:py-0 ">Đăng tin</a>`;
+                 if(menu2) menu2.innerHTML = `<a href="../page/Viewcandidate.html" class="py-3 block hover:text-green-600 lg:py-0 ">Danh sách ứng viên</a>`;
+                 if(menu3) menu3.style.display = 'none'; // Ẩn AI Coach nếu không cần
+         } else {
+        // Giữ mặc định cho Student/Khách
+                if(menu1) menu1.innerHTML = `<a href="#" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a>`;
+                if(menu2) menu2.innerHTML = `<a href="../page/Uploadcv.html" class="py-3 block hover:text-green-600 lg:py-0">Tạo CV</a>`;
+                if(menu3) {
+                      menu3.style.display = 'block';
+                      menu3.innerHTML = `<a href="../page/Careerai.html" class="py-3 block hover:text-green-600 lg:py-0">AI Coach</a>`;
+                 }
+             }
         // Cập nhật tên/avatar
         const nameParts = email.split('@')[0];
         const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
         const initials = displayName.substring(0, 2).toUpperCase();
-        
         // Điền thông tin vào các thẻ
         const ids = ['userNameDisplay', 'dropdownUserName'];
         ids.forEach(id => {

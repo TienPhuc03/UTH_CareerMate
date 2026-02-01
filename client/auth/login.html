@@ -108,6 +108,7 @@
                     // Save token to localStorage
                     localStorage.setItem('access_token', data.access_token);
                     localStorage.setItem('user_email', email);
+                    localStorage.setItem('user_role', data.role|| 'student');
 
                     // Show success message
                     showAlert('Đăng nhập thành công!', 'success');

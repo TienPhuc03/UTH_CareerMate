@@ -15,15 +15,12 @@
             <div class="p-6">
                 <a href="Homepage.html" class="text-2xl font-bold text-green-600 block mb-8">Career Mate</a>
 
-                <div class="mb-8 p-4 bg-green-50 rounded-xl">
-                    <div
-                        class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
-                        NT
-                    </div>
-                    <h3 class="text-center font-bold text-gray-800">Công ty UTH</h3>
-                    <p class="text-center text-sm text-gray-600">Gói: <span
-                            class="text-green-600 font-medium">Premium</span></p>
-                </div>
+            <div class="mb-8 p-4 bg-green-50 rounded-xl">
+                    <div id="userAvatar" class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
+                                                                                                                                                    </div>
+                <h3 id="recruiterName" class="text-center font-bold text-gray-800">Đang tải...</h3>
+                <p id="recruiterEmail" class="text-center text-sm text-gray-600">Đang tải...</p>
+            </div>
 
                 <nav class="space-y-2">
                     <a href="RecruiterDashboard.html"
@@ -388,6 +385,29 @@
             </div>
         </main>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Lấy thông tin từ localStorage (đã được lưu khi login)
+    const email = localStorage.getItem('user_email');
+    const role = localStorage.getItem('user_role');
+
+    if (!email || role !== 'recruiter') {
+        // Nếu không phải nhà tuyển dụng, chuyển hướng về trang chủ hoặc login
+        window.location.href = 'Homepage.html';
+        return;
+    }
+
+    // Xử lý tên hiển thị từ Email (Ví dụ: nhatuyendung@gmail.com -> Nhatuyendung)
+    const nameParts = email.split('@')[0];
+    const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
+    const initials = displayName.substring(0, 2).toUpperCase();
+
+    // Hiển thị lên giao diện
+    document.getElementById('recruiterName').textContent = displayName;
+    document.getElementById('recruiterEmail').textContent = email;
+    document.getElementById('userAvatar').textContent = initials;
+});
+</script>
 </body>
 
 </html>

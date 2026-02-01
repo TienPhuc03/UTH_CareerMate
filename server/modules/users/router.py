@@ -55,6 +55,7 @@ def login(user: schemas.UserLogin, db: DbDependency):
             detail="Email hoặc mật khẩu không chính xác"
         )
     
+    
     # Create access token
     access_token = security.create_access_token(
         data={"sub": db_user.email}
@@ -62,7 +63,9 @@ def login(user: schemas.UserLogin, db: DbDependency):
     
     return {
         "access_token": access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "role": db_user.role,
+        "email": db_user.email
     }
 
 @router.get("/profile", response_model=schemas.UserOut)

@@ -141,7 +141,7 @@
                             <option value="angiang">An Giang</option>
                             <option value="binhduong">Bình Dương</option>
                             <option value="dalat">Đà Lạt</option>
-                            <option value="nha-trang">Nha Trang</option>
+                            <option value="nhatrang">Nha Trang</option>
                             <option value="phutho">Phú Thọ</option>
                             <option value="quangninh">Quảng Ninh</option>
                             <option value="quangnam">Quảng Nam</option>
@@ -369,130 +369,82 @@
         </div>
     </main>
     <script>
-        let currentStep = 1;
-        const skills = [];
-        const requirements = [];
-        function formatCurrency(input) {
-            let value = input.value.replace(/\./g, '').replace(/\D/g, '');
-           
-            if (value === '') {
-                input.value = '';
-                return;
+    let currentStep = 1;
+    const skills = [];
+    let requirements = []; // Mảng lưu danh sách yêu cầu
+
+    // --- 1. ĐỊNH DẠNG TIỀN TỆ ---
+    function formatCurrency(input) {
+        let value = input.value.replace(/\./g, '').replace(/\D/g, '');
+        if (value === '') {
+            input.value = '';
+            return;
+        }
+        let number = parseInt(value, 10);
+        input.value = number.toLocaleString('vi-VN');
+    }
+
+    function getNumberFromFormatted(str) {
+        return parseInt(str.replace(/\./g, '')) || 0;
+    }
+
+    // --- 2. ĐIỀU HƯỚNG STEPS ---
+    function nextStep(step) {
+        if (!validateStep(step)) {
+            alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
+            return;
+        }
+        
+        if (step === 2) updateRequirements();
+
+        document.getElementById(`step${step}`).classList.remove('active');
+        document.getElementById(`step${step}-indicator`).classList.remove('step-active');
+        document.getElementById(`step${step}-indicator`).classList.add('step-completed');
+        
+        currentStep = step + 1;
+        document.getElementById(`step${currentStep}`).classList.add('active');
+        document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
+        
+        if (currentStep === 3) updateReview();
+    }
+
+    function prevStep(step) {
+        document.getElementById(`step${step}`).classList.remove('active');
+        document.getElementById(`step${step}-indicator`).classList.remove('step-active', 'step-completed');
+        
+        currentStep = step - 1;
+        document.getElementById(`step${currentStep}`).classList.add('active');
+        document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
+    }
+
+    function validateStep(step) {
+        if (step === 1) {
+            const requiredFields = ['jobTitle', 'company', 'location', 'jobDescription'];
+            for (let id of requiredFields) {
+                const field = document.getElementById(id);
+                if (!field || !field.value.trim()) return false;
             }
-           
-            let number = parseInt(value, 10);
-            let formatted = number.toLocaleString('vi-VN');
-            input.value = formatted;
         }
-        function getNumberFromFormatted(str) {
-            return parseInt(str.replace(/\./g, '')) || 0;
-        }
-        function formatCurrencyDisplay(num) {
-            if (!num || num === 0) return '0đ';
-            return num.toLocaleString('vi-VN') + 'đ';
-        }
-        function nextStep(step) {
-            if (!validateStep(step)) {
-                alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
-                return;
-            }
-           
-            if (step === 2) {
-                updateRequirements();
-            }
-           
-            document.getElementById(`step${step}`).classList.remove('active');
-            document.getElementById(`step${step}-indicator`).classList.remove('step-active');
-            document.getElementById(`step${step}-indicator`).classList.add('step-completed');
-           
-            currentStep = step + 1;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-            document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
-           
-            if (currentStep === 3) {
-                updateReview();
-            }
-        }
-        function prevStep(step) {
-            document.getElementById(`step${step}`).classList.remove('active');
-            document.getElementById(`step${step}-indicator`).classList.remove('step-active');
-            document.getElementById(`step${step}-indicator`).classList.remove('step-completed');
-           
-            currentStep = step - 1;
-            document.getElementById(`step${currentStep}`).classList.add('active');
-            document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
-        }
-        function validateStep(step) {
-            if (step === 1) {
-                const requiredFields = ['jobTitle', 'company', 'location', 'jobDescription'];
-                for (let fieldId of requiredFields) {
-                    const field = document.getElementById(fieldId);
-                    if (!field.value.trim()) {
-                        field.focus();
-                        return false;
-                    }
-                }
-                return true;
-            }
-           
-            if (step === 2) {
-                const requirementInputs = document.querySelectorAll('.requirement-input');
-                let hasValidRequirement = false;
-               
-                requirementInputs.forEach(input => {
-                    if (input.value.trim()) {
-                        hasValidRequirement = true;
-                    }
-                });
-               
-                if (!hasValidRequirement) {
-                    alert('Vui lòng thêm ít nhất một yêu cầu công việc');
-                    return false;
-                }
-               
-                if (!document.getElementById('experience').value) {
-                    alert('Vui lòng chọn mức kinh nghiệm yêu cầu');
-                    return false;
-                }
-               
-                return true;
-            }
-           
-            return true;
-        }
-        function updateRequirements() {
-            requirements.length = 0;
-            const requirementInputs = document.querySelectorAll('.requirement-input');
-            requirementInputs.forEach(input => {
-                if (input.value.trim()) {
-                    requirements.push(input.value.trim());
-                }
-            });
-        }
-        function addRequirement() {
-            const container = document.getElementById('requirementsContainer');
-            const newInput = document.createElement('div');
-            newInput.className = 'flex items-center gap-2 mb-2';
-            newInput.innerHTML = `
-                <input type="text" placeholder="Thêm yêu cầu khác..."
-                    class="requirement-input flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
-                <button type="button" onclick="this.parentElement.remove()"
-                    class="px-4 py-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            container.appendChild(newInput);
-            newInput.querySelector('input').focus();
-        }
-        function addSkill() {
-            const skillInput = document.getElementById('skillInput');
-            const skill = skillInput.value.trim();
-           
-            if (skill && !skills.includes(skill)) {
-                skills.push(skill);
-                updateSkillsDisplay();
-                skillInput.value = '';
-                skillInput.focus();
+        return true;
+    }
+
+    // --- 3. QUẢN LÝ YÊU CẦU ---
+    function updateRequirements() {
+        requirements = [];
+        const inputs = document.querySelectorAll('.requirement-input');
+        inputs.forEach(input => {
+            if (input.value.trim()) requirements.push(input.value.trim());
+        });
+    }
+     function addSkill() {
+        const skillInput = document.getElementById('skillInput');
+         const skill = skillInput.value.trim();
+   
+         if (skill && !skills.includes(skill)) {
+              skills.push(skill); 
+              updateSkillsDisplay();
+              skillInput.value = ''; 
+              skillInput.focus();
             }
         }
         function updateSkillsDisplay() {
@@ -519,173 +471,109 @@
                 addSkill();
             }
         });
-        function updateReview() {
-            const locationMap = {
-                'hcm': 'TP. Hồ Chí Minh',
-                'hanoi': 'Hà Nội',
-                'danang': 'Đà Nẵng',
-                'vungtau': 'Vũng Tàu',
-                'cantho': 'Cần Thơ',
-                'haiphong': 'Hải Phòng',
-                'angiang': 'An Giang',
-                'binhduong': 'Bình Dương',
-                'dalat': 'Đà Lạt',
-                'nha-trang': 'Nha Trang',
-                'phutho': 'Phú Thọ',
-                'quangninh': 'Quảng Ninh',
-                'quangnam': 'Quảng Nam',
-                'hue': 'Huế',
-                'longan': 'Long An',
-                'tayninh': 'Tây Ninh',
-                'binhthuan': 'Bình Thuận',
-                'bienhoa': 'Biên Hòa',
-                'remote': 'Làm việc từ xa',
-                'hybrid': 'Hybrid (Kết hợp)'
-            };
-           
-            const jobTypeMap = {
-                'fulltime': 'Toàn thời gian',
-                'parttime': 'Bán thời gian',
-                'intern': 'Thực tập'
-            };
-           
-            const experienceMap = {
-                'fresh': 'Không yêu cầu kinh nghiệm',
-                '6months': '6 tháng+',
-                '1year': '1 năm+',
-                '2year': '2 năm+',
-                '3year': '3 năm+',
-                '5year': '5 năm+'
-            };
-           
-            document.getElementById('review-jobTitle').textContent = document.getElementById('jobTitle').value;
-            document.getElementById('review-company').textContent = document.getElementById('company').value;
-           
-            const location = locationMap[document.getElementById('location').value] || '';
-            const jobType = jobTypeMap[document.querySelector('input[name="jobType"]:checked').value] || '';
-            document.getElementById('review-locationType').textContent = `${location} • ${jobType}`;
-           
-            const salaryMin = getNumberFromFormatted(document.getElementById('salaryMin').value);
-            const salaryMax = getNumberFromFormatted(document.getElementById('salaryMax').value);
-           
-            let salaryText = 'Thỏa thuận';
-            if (salaryMin > 0 && salaryMax > 0) {
-                salaryText = `${formatCurrencyDisplay(salaryMin)} - ${formatCurrencyDisplay(salaryMax)}/tháng`;
-            } else if (salaryMin > 0) {
-                salaryText = `Từ ${formatCurrencyDisplay(salaryMin)}/tháng`;
-            } else if (salaryMax > 0) {
-                salaryText = `Đến ${formatCurrencyDisplay(salaryMax)}/tháng`;
-            }
-            document.getElementById('review-salary').textContent = salaryText;
-           
-            document.getElementById('review-experienceText').textContent = experienceMap[document.getElementById('experience').value] || '';
-           
-            const skillsContainer = document.getElementById('review-skills');
-            skillsContainer.innerHTML = '';
-            if (skills.length > 0) {
-                skills.forEach(skill => {
-                    const tag = document.createElement('span');
-                    tag.className = 'skill-tag';
-                    tag.textContent = skill;
-                    skillsContainer.appendChild(tag);
-                });
-            } else {
-                skillsContainer.innerHTML = '<span class="skill-tag">Chưa có kỹ năng nào</span>';
-            }
-           
-            const requirementsContainer = document.getElementById('review-requirements');
-            requirementsContainer.innerHTML = '';
-           
-            updateRequirements();
-           
-            if (requirements.length > 0) {
-                requirements.forEach(req => {
-                    const li = document.createElement('li');
-                    li.textContent = req;
-                    requirementsContainer.appendChild(li);
-                });
-            } else {
-                const li = document.createElement('li');
-                li.textContent = 'Chưa có yêu cầu nào';
-                requirementsContainer.appendChild(li);
-            }
-           
-            document.getElementById('review-description').textContent = document.getElementById('jobDescription').value;
-        }
 
-        function submitForm() {
-            if (!document.getElementById('contactEmail').value) {
-                alert('Vui lòng nhập email nhận hồ sơ');
-                document.getElementById('contactEmail').focus();
-                return;
-            }
-           
-            if (!validateStep(1) || !validateStep(2)) {
-                alert('Vui lòng kiểm tra lại các thông tin bắt buộc');
-                return;
-            }
-           
-            const formData = {
-                jobTitle: document.getElementById('jobTitle').value,
-                company: document.getElementById('company').value,
-                location: document.getElementById('location').value,
-                jobType: document.querySelector('input[name="jobType"]:checked').value,
-                salaryMin: getNumberFromFormatted(document.getElementById('salaryMin').value),
-                salaryMax: getNumberFromFormatted(document.getElementById('salaryMax').value),
-                jobDescription: document.getElementById('jobDescription').value,
-                experience: document.getElementById('experience').value,
-                skills: skills,
-                benefits: document.getElementById('benefits').value,
-                contactEmail: document.getElementById('contactEmail').value,
-                requirements: requirements
-            };
-           
-            alert('✅ Tin tuyển dụng đã được đăng thành công!');
-        }
-        // LƯU BẢN NHÁP
-        function saveDraft() {
-            const draft = {
-                jobTitle: document.getElementById('jobTitle').value,
-                company: document.getElementById('company').value,
-                location: document.getElementById('location').value,
-                jobType: document.querySelector('input[name="jobType"]:checked').value,
-                salaryMin: document.getElementById('salaryMin').value,
-                salaryMax: document.getElementById('salaryMax').value,
-                jobDescription: document.getElementById('jobDescription').value,
-                experience: document.getElementById('experience').value,
-                skills: skills,
-                benefits: document.getElementById('benefits').value,
-                contactEmail: document.getElementById('contactEmail').value,
-                requirements: requirements
-            };
-            localStorage.setItem('jobPostDraft', JSON.stringify(draft));
-            alert('✅ Bản nháp đã được lưu!');
-            // vì sao bấm lưu bản nháp nó ko hiện bản nháp đã lưu
-            
-        }
+    function addRequirement() {
+        const container = document.getElementById('requirementsContainer');
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-2 mb-2';
+        div.innerHTML = `
+            <input type="text" placeholder="Thêm yêu cầu khác..." class="requirement-input flex-1 p-3 border border-gray-300 rounded-lg outline-none">
+            <button type="button" onclick="this.parentElement.remove()" class="px-4 py-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
+                <i class="fas fa-times"></i>
+            </button>`;
+        container.appendChild(div);
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadDraft();
-            skills.push('React.js', 'JavaScript', 'HTML/CSS', 'Git', 'Agile', 'Teamwork', 'Problem-solving', 'Communication', 'Time management');
-            updateSkillsDisplay();
-           
-            const salaryInputs = document.querySelectorAll('input[id^="salary"]');
-            salaryInputs.forEach(input => {
-                if (input.value) {
-                    formatCurrency(input);
-                }
+    // --- 4. XỬ LÝ GỬI DỮ LIỆU LÊN SERVER (QUAN TRỌNG NHẤT) ---
+    async function submitForm() {
+        updateRequirements();
+        
+        const sMinRaw = document.getElementById('salaryMin').value;
+        const sMaxRaw = document.getElementById('salaryMax').value;
+        
+        // Tạo chuỗi hiển thị lương
+        const salaryRangeText = (sMinRaw && sMaxRaw) ? `${sMinRaw} - ${sMaxRaw} VNĐ` : "Thỏa thuận";
+
+        const jobData = {
+            title: document.getElementById('jobTitle').value,
+            company_name: document.getElementById('company').value,
+            location: document.getElementById('location').value,
+            salary_range: salaryRangeText,
+            salary_min: getNumberFromFormatted(sMinRaw),
+            salary_max: getNumberFromFormatted(sMaxRaw),
+            job_type: document.querySelector('input[name="jobType"]:checked').value,
+            description: document.getElementById('jobDescription').value,
+            requirements: requirements.join('\n'), // Chuyển mảng thành chuỗi xuống dòng
+            benefits: document.getElementById('benefits').value,
+            status: "active"
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/jobs/up', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}` // Phải có token
+                },
+                body: JSON.stringify(jobData)
             });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const salaryInputs = document.querySelectorAll('input[id^="salary"]');
-            salaryInputs.forEach(input => {
-                input.addEventListener('blur', function() {
-                    if (this.value && !this.value.includes('.')) {
-                        formatCurrency(this);
-                    }
-                });
-            });
-        });
-    </script>
+
+            if (response.ok) {
+                alert('✅ Đăng tin tuyển dụng thành công!');
+                localStorage.removeItem('jobPostDraft');
+                window.location.href = "Findjobs.html"; // Luồng chuyển hướng
+            } else {
+                const err = await response.json();
+                alert('❌ Lỗi từ Server: ' + (err.detail || 'Không thể đăng tin'));
+            }
+        } catch (error) {
+            console.error('Submit Error:', error);
+            alert('❌ Lỗi kết nối! Hãy kiểm tra Backend đang chạy.');
+        }
+    }
+
+    // --- 5. HIỂN THỊ XEM TRƯỚC (REVIEW) ---
+   function updateReview() {
+    const locSelect = document.getElementById('location');
+    const expSelect = document.getElementById('experience');
+
+    // Lấy trực tiếp chữ hiển thị trong Option người dùng đang chọn
+    const displayLocation = locSelect.options[locSelect.selectedIndex].text;
+    const displayExperience = expSelect.options[expSelect.selectedIndex].text;
+    
+    // Lấy văn bản từ Radio button đang chọn
+    const selectedType = document.querySelector('input[name="jobType"]:checked');
+    const displayType = selectedType ? selectedType.nextElementSibling.textContent.trim() : "-";
+
+    // 1. Hiển thị thông tin cơ bản
+    document.getElementById('review-jobTitle').textContent = document.getElementById('jobTitle').value || "-";
+    document.getElementById('review-company').textContent = document.getElementById('company').value || "-";
+    document.getElementById('review-description').textContent = document.getElementById('jobDescription').value || "-";
+
+    // 2. Hiển thị Địa điểm & Hình thức (Đã fix viết hoa/có dấu)
+    document.getElementById('review-locationType').textContent = `${displayLocation} • ${displayType}`;
+
+    // 3. Hiển thị Lương
+    const sMin = document.getElementById('salaryMin').value;
+    const sMax = document.getElementById('salaryMax').value;
+    document.getElementById('review-salary').textContent = (sMin || sMax) ? `${sMin} - ${sMax} VNĐ` : "Thỏa thuận";
+
+    // 4. Hiển thị Kinh nghiệm
+    document.getElementById('review-experienceText').textContent = displayExperience;
+
+    // 5. HIỂN THỊ KỸ NĂNG (PHẦN QUAN TRỌNG)
+    const reviewSkills = document.getElementById('review-skills');
+    if (skills.length > 0) {
+        // Render mảng skills thành các tag xanh
+        reviewSkills.innerHTML = skills.map(s => `<span class="skill-tag">${s}</span>`).join(' ');
+    } else {
+        reviewSkills.innerHTML = '<span class="text-gray-400 italic">Chưa có kỹ năng nào</span>';
+    }
+
+    // 6. Hiển thị danh sách Yêu cầu
+    const reqList = document.getElementById('review-requirements');
+    reqList.innerHTML = requirements.map(r => `<li>• ${r}</li>`).join('') || '<li>Chưa có yêu cầu</li>';
+}
+</script>
 </body>
 </html>

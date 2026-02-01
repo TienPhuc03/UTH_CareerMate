@@ -6,10 +6,9 @@ from modules.jobs.models import Job
 from modules.jobs.schemas import JobCreate, JobResponse
 from core.dependencies import require_recruiter
 from modules.users.models import User
+router = APIRouter()
 
-router = APIRouter(prefix="/jobs", tags=["Jobs"])
-
-@router.post("/", response_model=JobResponse)
+@router.post("/up", response_model=JobResponse)
 def create_job(
     job: JobCreate, 
     db: Session = Depends(get_db),
@@ -29,6 +28,6 @@ def create_job(
     db.refresh(new_job)
     return new_job
 
-@router.get("/", response_model=list[JobResponse])
+@router.get("/get", response_model=list[JobResponse])
 def get_jobs(db: Session = Depends(get_db)):
     return db.query(Job).all()

@@ -138,464 +138,18 @@
           </div>
         </div>
       </div>
+      <div id="job-container" class="space-y-6">
+       <div class="text-center py-10">
+         <i class="fas fa-spinner fa-spin text-3xl text-green-500"></i>
+         <p class="mt-2 text-gray-500">Đang tải danh sách việc làm...</p>
+       </div>
+      </div>
 
       <!-- Jobs Grid -->
-      <div id="jobsContainer" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Job Card 1: Lead Data Engineer -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="tech hcmc"
-          onclick="
-            window.location.href =
-              'JobDetailPage.html?jobId=JOB_LEAD_DATA_ENGINEER_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-              >
-                V
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_LEAD_DATA_ENGINEER_001">
-                    Lead Data Engineer
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">VNG Corporation</p>
-              </div>
-            </div>
-            <button class="text-gray-400 hover:text-red-500">
-              <i class="far fa-heart text-xl"></i>
-            </button>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 50-70 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-code mr-1"></i> Python
-            </span>
-            <span
-              class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-database mr-1"></i> Big Data
-            </span>
-            <span
-              class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-chart-line mr-1"></i> Analytics
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Quận 7,
-              TP.HCM</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> 2 ngày
-              trước</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('VNG Corporation', 'Lead Data Engineer')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-
-        <!-- Job Card 2: Software Engineer Intern -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="tech hcmc"
-          onclick="
-            window.location.href = 'JobDetailPage.html?jobId=JOB_SE_INTERN_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-              >
-                F
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_SE_INTERN_001">
-                    Software Engineer Intern
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">FPT Software</p>
-              </div>
-            </div>
-            <button class="text-gray-400 hover:text-red-500">
-              <i class="far fa-heart text-xl"></i>
-            </button>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 8-12 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-            >
-              <i class="fab fa-react mr-1"></i> React
-            </span>
-            <span
-              class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm font-medium"
-            >
-              <i class="fab fa-js mr-1"></i> JavaScript
-            </span>
-            <span
-              class="px-3 py-1 bg-red-50 text-red-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-graduation-cap mr-1"></i> Intern
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Quận 1,
-              TP.HCM</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> 1 ngày
-              trước</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('FPT Software', 'Software Engineer Intern')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-
-        <!-- Job Card 3: Data Analyst Senior -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="tech hcmc"
-          onclick="
-            window.location.href =
-              'JobDetailPage.html?jobId=JOB_DATA_ANALYST_SR_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-              >
-                T
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_DATA_ANALYST_SR_001">
-                    Data Analyst Senior
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">Tiki Corporation</p>
-              </div>
-            </div>
-            <button class="text-gray-400 hover:text-red-500">
-              <i class="far fa-heart text-xl"></i>
-            </button>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 25-35 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-chart-bar mr-1"></i> SQL
-            </span>
-            <span
-              class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-            >
-              <i class="fab fa-python mr-1"></i> Python
-            </span>
-            <span
-              class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-brain mr-1"></i> Analytics
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Quận 2,
-              TP.HCM</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> 3 ngày
-              trước</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('Tiki Corporation', 'Data Analyst Senior')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-
-        <!-- Job Card 4: Marketing Executive -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="hanoi"
-          onclick="
-            window.location.href =
-              'JobDetailPage.html?jobId=JOB_MARKETING_EXEC_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-              >
-                V
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_MARKETING_EXEC_001">
-                    Marketing Executive
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">Vinamilk</p>
-              </div>
-            </div>
-            <button class="text-gray-400 hover:text-red-500">
-              <i class="far fa-heart text-xl"></i>
-            </button>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 15-20 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-pink-50 text-pink-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-bullhorn mr-1"></i> Marketing
-            </span>
-            <span
-              class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-users mr-1"></i> Social Media
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Hoàn
-              Kiếm, Hà Nội</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> 5 ngày
-              trước</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('Vinamilk', 'Marketing Executive')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-
-        <!-- Job Card 5: Backend Engineer -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="tech hcmc remote"
-          onclick="
-            window.location.href =
-              'JobDetailPage.html?jobId=JOB_BACKEND_ENGINEER_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
-              >
-                S
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_BACKEND_ENGINEER_001">
-                    Backend Engineer
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">Shopee Vietnam</p>
-              </div>
-            </div>
-            <span
-              class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold"
-            >
-              <i class="fas fa-home mr-1"></i> Remote OK
-            </span>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 30-50 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-medium"
-            >
-              <i class="fab fa-node-js mr-1"></i> Node.js
-            </span>
-            <span
-              class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-server mr-1"></i> MongoDB
-            </span>
-            <span
-              class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-cloud mr-1"></i> AWS
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Remote
-              / TP.HCM</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> Hôm nay</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('Shopee Vietnam', 'Backend Engineer')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-
-        <!-- Job Card 6: Store Manager -->
-        <div
-          class="job-card bg-white rounded-xl shadow-md hover:shadow-xl p-6 border border-gray-100 cursor-pointer"
-          data-category="hcmc"
-          onclick="
-            window.location.href =
-              'JobDetailPage.html?jobId=JOB_STORE_MANAGER_001'
-          "
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center text-white font-bold text-xl"
-              >
-                MWG
-              </div>
-              <div>
-                <h3
-                  class="text-xl font-bold text-gray-800 hover:text-green-600 cursor-pointer"
-                >
-                  <a href="JobDetailPage.html?jobId=JOB_STORE_MANAGER_001">
-                    Store Manager
-                  </a>
-                </h3>
-                <p class="text-green-600 font-semibold">Thế Giới Di Động</p>
-              </div>
-            </div>
-            <button class="text-gray-400 hover:text-red-500">
-              <i class="far fa-heart text-xl"></i>
-            </button>
-          </div>
-
-          <div class="mb-4">
-            <span
-              class="salary-badge inline-block px-4 py-2 text-white rounded-lg font-bold text-lg"
-            >
-              <i class="fas fa-dollar-sign mr-1"></i> 18-25 triệu
-            </span>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-orange-50 text-orange-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-store mr-1"></i> Retail
-            </span>
-            <span
-              class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm font-medium"
-            >
-              <i class="fas fa-users-cog mr-1"></i> Management
-            </span>
-          </div>
-
-          <div class="flex items-center text-gray-600 mb-4 gap-4">
-            <span
-              ><i class="fas fa-map-marker-alt text-green-600 mr-2"></i> Vũng
-              Tàu</span
-            >
-            <span
-              ><i class="fas fa-clock text-green-600 mr-2"></i> 4 ngày
-              trước</span
-            >
-          </div>
-
-          <button
-            onclick="applyJob('Thế Giới Di Động', 'Store Manager')"
-            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md"
-          >
-            <i class="fas fa-paper-plane mr-2"></i> Ứng tuyển ngay
-          </button>
-        </div>
-      </div>
+      
     </section>
      <div id ="footer-container"></div>
-    <script>
+     <script>
         // Load header
         fetch('../components/header.html')
             .then(response => response.text())
@@ -613,139 +167,134 @@
                 document.getElementById('footer-container').innerHTML = data;
             });
     </script>
+
     <script>
-      let userEmail = localStorage.getItem("user_email");
-      let token = localStorage.getItem("access_token");
+  // --- BIẾN TOÀN CỤC LƯU TRỮ DANH SÁCH JOB ---
+  let allJobs = [];
 
-      function checkAuthStatus() {
-        if (token && userEmail) {
-          document.getElementById("authButtons").classList.add("hidden");
-          document.getElementById("userInfo").classList.remove("hidden");
-          document.getElementById("userInfo").classList.add("flex");
+  // --- HÀM 1: NẠP DỮ LIỆU TỪ SERVER (THÊM MỚI) ---
+  async function loadJobsFromServer() {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/jobs/get');
+      allJobs = await response.json();
+      renderJobs(allJobs);
+    } catch (error) {
+      console.error("Lỗi khi kết nối server:", error);
+      document.getElementById('job-container').innerHTML = `
+        <p class="text-center text-red-500">Không thể kết nối đến máy chủ. Vui lòng thử lại sau!</p>`;
+    }
+  }
 
-          const nameParts = userEmail.split("@")[0];
-          const displayName =
-            nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
-          const initials = displayName.substring(0, 2).toUpperCase();
+  // --- HÀM 2: HIỂN THỊ DỮ LIỆU RA HTML (THÊM MỚI) ---
+  function renderJobs(jobs) {
+    const container = document.getElementById('job-container');
+    if (jobs.length === 0) {
+        container.innerHTML = '<p class="text-center text-gray-500 py-10">Không tìm thấy việc làm phù hợp.</p>';
+        document.getElementById("jobCount").textContent = 0;
+        return;
+    }
 
-          document.getElementById("userNameDisplay").textContent = displayName;
-          document.getElementById("userEmailDisplay").textContent = userEmail;
-          document.getElementById("dropdownUserName").textContent = displayName;
-          document.getElementById("dropdownUserEmail").textContent = userEmail;
-          document.getElementById("userAvatar").textContent = initials;
-        }
-      }
+    container.innerHTML = jobs.map(job => {
+        // Chuyển đổi mã location sang tên hiển thị
+        const locationMap = {
+    'hcm': 'TP. Hồ Chí Minh', 'hanoi': 'Hà Nội', 'danang': 'Đà Nẵng',
+    'haiphong': 'Hải Phòng', 'longan': 'Long An', 'vungtau': 'Vũng Tàu',
+    'cantho': 'Cần Thơ', 'dalat': 'Đà Lạt', 'nhatrang': 'Nha Trang',
+    'phutho': 'Phú Thọ', 'quangninh': 'Quảng Ninh', 'quangnam': 'Quảng Nam',
+    'hue': 'Huế', 'tayninh': 'Tây Ninh', 'binhthuan': 'Bình Thuận',
+    'bienhoa': 'Biên Hòa', 'remote': 'Làm việc từ xa', 'hybrid': 'Hybrid'
+};
+        const displayLocation = locationMap[job.location] || job.location;
 
-      document.addEventListener("DOMContentLoaded", function () {
-        checkAuthStatus();
+        // Chuyển đổi job_type sang tiếng Việt
+        const typeMap = {
+            'fulltime': 'Toàn thời gian', 'parttime': 'Bán thời gian', 'intern': 'Thực tập'
+        };
+        const displayType = typeMap[job.job_type] || job.job_type;
 
-        const userMenuToggle = document.getElementById("userMenuToggle");
-        const userDropdown = document.getElementById("userDropdown");
+        return `
+            <div class="job-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-green-500 hover:shadow-md transition-all mb-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="flex gap-5">
+                        <div class="w-16 h-16 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl shadow-inner">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <h3 class="text-xl font-bold text-gray-800 hover:text-green-600 transition-colors cursor-pointer">
+                                ${job.title}
+                            </h3>
+                            <p class="text-gray-600 font-medium flex items-center">
+                                <i class="far fa-hospital mr-2 text-gray-400"></i> ${job.company_name || 'Công ty tuyển dụng'}
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-y-2 gap-x-4 mt-3 text-sm">
+                                <span class="flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+                                    <i class="fas fa-map-marker-alt mr-2 text-red-400"></i> ${displayLocation}
+                                </span>
+                                <span class="flex items-center text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+                                    <i class="fas fa-briefcase mr-2 text-blue-400"></i> ${displayType}
+                                </span>
+                                <span class="flex items-center text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full">
+                                    <i class="fas fa-money-bill-wave mr-2"></i> ${job.salary_range}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
-        if (userMenuToggle) {
-          userMenuToggle.addEventListener("click", function (e) {
-            e.stopPropagation();
-            userDropdown.classList.toggle("hidden");
-          });
-        }
+                    <div class="flex flex-col gap-3 w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0">
+                        <a href="Jobdetailpage.html?id=${job.id}" 
+                           class="inline-flex items-center justify-center bg-green-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-green-700 transition-all shadow-lg shadow-green-200">
+                            Xem chi tiết <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    document.getElementById("jobCount").textContent = jobs.length;
+}
 
-        document.addEventListener("click", function (e) {
-          if (
-            userDropdown &&
-            !userDropdown.contains(e.target) &&
-            !userMenuToggle.contains(e.target)
-          ) {
-            userDropdown.classList.add("hidden");
-          }
-        });
+  // --- HÀM 3: SỬA LẠI HÀM LỌC (CẬP NHẬT TỪ HÀM CŨ) ---
+  function filterJobs(category) {
+    if (category === "all") {
+      renderJobs(allJobs);
+    } else {
+      const filtered = allJobs.filter(job => job.job_type === category);
+      renderJobs(filtered);
+    }
+  }
 
-        const dropdownItems = document.querySelectorAll(
-          "#userDropdown a, #userDropdown button",
-        );
-        dropdownItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            userDropdown.classList.add("hidden");
-          });
-        });
+  // --- HÀM 4: SỬA LẠI HÀM TÌM KIẾM (CẬP NHẬT TỪ HÀM CŨ) ---
+  function searchJobs() {
+    const location = document.getElementById("locationSearch").value.toLowerCase();
+    const keyword = document.getElementById("keywordSearch").value.toLowerCase();
+
+    const filtered = allJobs.filter(job => {
+      const matchLocation = !location || job.location.toLowerCase().includes(location);
+      const matchKeyword = !keyword || 
+                           job.title.toLowerCase().includes(keyword) || 
+                           job.company_name.toLowerCase().includes(keyword);
+      return matchLocation && matchKeyword;
+    });
+
+    renderJobs(filtered);
+  }
+
+  // --- KHỞI CHẠY KHI TRANG TẢI XONG ---
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Nạp header/footer động (Bạn đã fix ở bước trước)
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-container').innerHTML = html;
+        if (typeof initEvents === 'function') initEvents(); 
       });
 
-      function logout() {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("user_email");
-        alert("Đăng xuất thành công!");
-        window.location.href = "Homepage.html";
-      }
-
-      function applyJob(company, position) {
-        if (!userEmail) {
-          if (
-            confirm(
-              "Bạn cần đăng nhập để ứng tuyển. Chuyển đến trang đăng nhập?",
-            )
-          ) {
-            window.location.href = "../auth/login.html";
-          }
-          return;
-        }
-
-        if (
-          confirm(
-            `Xác nhận ứng tuyển:\n\nVị trí: ${position}\nCông ty: ${company}\n\nCV của bạn sẽ được gửi đến nhà tuyển dụng.`,
-          )
-        ) {
-          alert(
-            `✅ Đã gửi CV thành công!\n\nCông ty: ${company}\nVị trí: ${position}\n\nNhà tuyển dụng sẽ liên hệ qua: ${userEmail}`,
-          );
-        }
-      }
-
-      function updateJobCount() {
-        const visibleJobs = document.querySelectorAll(
-          '.job-card:not([style*="display: none"])',
-        ).length;
-        document.getElementById("jobCount").textContent = visibleJobs;
-      }
-
-      function filterJobs(category) {
-        const jobCards = document.querySelectorAll(".job-card");
-
-        jobCards.forEach((card) => {
-          if (category === "all") {
-            card.style.display = "block";
-          } else {
-            const categories = card.getAttribute("data-category");
-            if (categories.includes(category)) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          }
-        });
-        updateJobCount();
-      }
-
-      function searchJobs() {
-        const location = document
-          .getElementById("locationSearch")
-          .value.toLowerCase();
-        const keyword = document
-          .getElementById("keywordSearch")
-          .value.toLowerCase();
-        const jobCards = document.querySelectorAll(".job-card");
-
-        jobCards.forEach((card) => {
-          const text = card.textContent.toLowerCase();
-          const matchLocation = !location || text.includes(location);
-          const matchKeyword = !keyword || text.includes(keyword);
-
-          if (matchLocation && matchKeyword) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-        updateJobCount();
-      }
-    </script>
+    // 2. Nạp dữ liệu Job từ Server (Thay cho dữ liệu tĩnh)
+    loadJobsFromServer();
+  });
+</script>
   </body>
 </html>

@@ -216,38 +216,49 @@
 
     // --- PHẦN 3: XỬ LÝ ỨNG TUYỂN ---
 
-    const token = localStorage.getItem("access_token");
-    const userEmail = localStorage.getItem("user_email");
+   const token = localStorage.getItem("access_token");
 
-    // Nút cuộn xuống form hoặc yêu cầu đăng nhập
-    document.getElementById("btnApplyQuick").onclick = () => {
-        if (!token) {
-            if (confirm("Bạn cần đăng nhập để ứng tuyển. Chuyển đến trang đăng nhập?")) {
-                window.location.href = "../auth/login.html";
-            }
-            return;
-        }
-        document.getElementById("jobApplyForm").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("jobApplyForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    
+    if (!token) {
+        alert("Vui lòng đăng nhập để ứng tuyển!");
+        return;
+    }
+
+    // Lấy dữ liệu từ Form
+    const cvIdValue = document.querySelector('select[name="cvId"]').value;
+    const noteValue = document.querySelector('textarea[name="note"]').value;
+
+    // Dữ liệu phải khớp với ApplicationCreate schema
+    const applicationData = {
+        job_id: parseInt(jobIdFromUrl), // Chuyển sang số
+        cv_id: parseInt(cvIdValue) || 1, // Tạm thời để 1 nếu bạn chưa có quản lý CV
+        cover_letter: noteValue
     };
 
-    // Xử lý nộp form ứng tuyển
-    document.getElementById("jobApplyForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        
-        if (!token) {
-            alert("Vui lòng đăng nhập để thực hiện chức năng này");
-            return;
-        }
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/applications/apply', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Bắt buộc phải có token
+            },
+            body: JSON.stringify(applicationData)
+        });
 
-        const selectedCv = document.querySelector('select[name="cvId"]').value;
-        if (!selectedCv) {
-            alert("Vui lòng chọn CV của bạn");
-            return;
+        if (response.ok) {
+            alert("✅ Ứng tuyển thành công! Hồ sơ của bạn đã được gửi tới nhà tuyển dụng.");
+            window.location.href = "Findjobs.html";
+        } else {
+            const err = await response.json();
+            alert("❌ Lỗi: " + (err.detail || "Không thể nộp đơn"));
         }
-
-        // Hiện tại dùng alert để xác nhận luồng dữ liệu chuẩn
-        alert(`✅ Ứng tuyển thành công!\nCông việc ID: ${jobIdFromUrl}\nỨng viên: ${userEmail}`);
-    });
+    } catch (error) {
+        console.error("Apply Error:", error);
+        alert("❌ Lỗi kết nối đến Server!");
+    }
+  });
 
     document.getElementById("btnAnalyzeCVJob").onclick = () => {
         alert("Tính năng AI Analyzer đang được phát triển.");

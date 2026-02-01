@@ -35,28 +35,6 @@
                     </tr>
                 </thead>
                 <tbody id="candidate-list">
-                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold mr-3">
-                                    NV
-                                </div>
-                                <div>
-                                    <p class="font-bold text-gray-800">Nguyễn Văn A</p>
-                                    <p class="text-xs text-gray-500">nguyenvana@gmail.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-700 font-medium">Frontend Developer</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">01/02/2026</td>
-                        <td class="px-6 py-4">
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold">Chờ duyệt</span>
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="text-sky-600 hover:text-sky-800 font-bold text-sm mr-3">Xem CV</button>
-                            <button class="text-green-600 hover:text-green-800 font-bold text-sm">Duyệt</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -64,23 +42,137 @@
 
     <script src="../components/auth-script.js"></script>
     <script>
-        // Nạp Header
-        fetch('../components/header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-                // Sau khi nạp header, chạy lại auth-script để xử lý menu theo role
-                if (typeof initEvents === 'function') initEvents();
-            });
-
-        // Kiểm tra quyền truy cập
-        document.addEventListener('DOMContentLoaded', function() {
-            const role = localStorage.getItem('user_role');
-            if (role !== 'recruiter') {
-                alert("Bạn không có quyền truy cập trang này!");
-                window.location.href = "Homepage.html";
-            }
+    // --- 1. NẠP HEADER & KIỂM TRA QUYỀN (GIỮ NGUYÊN) ---
+    fetch('../components/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            const script = document.createElement('script');
+            script.src = '../components/auth-script.js';
+            document.body.appendChild(script);
         });
-    </script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const role = localStorage.getItem('user_role');
+        if (role !== 'recruiter') {
+            alert("Bạn không có quyền truy cập trang này!");
+            window.location.href = "Homepage.html";
+            return;
+        }
+        // Gọi hàm nạp dữ liệu khi trang vừa mở
+        loadApplications();
+    });
+
+    // --- 2. LOGIC QUẢN LÝ ỨNG VIÊN ---
+    const token = localStorage.getItem("access_token");
+
+    async function loadApplications() {
+        if (!token) return window.location.href = "../auth/login.html";
+
+        try {
+            // Gọi API lấy danh sách ứng tuyển
+            const response = await fetch('http://127.0.0.1:8000/api/applications/get', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.status === 401) {
+            alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
+            localStorage.removeItem("access_token");
+            window.location.href = "../auth/login.html";
+            return;
+        }
+            if (!response.ok) throw new Error("Lỗi nạp dữ liệu");
+            
+            const apps = await response.json();
+            
+            // Cập nhật số lượng (Fix lỗi sai ID totalApps thành candidate-count)
+            document.getElementById("candidate-count").textContent = apps.length;
+            
+            const container = document.getElementById("candidate-list");
+                 container.innerHTML = apps.map(app => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4 flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold mr-3">
+                            ${app.student_name ? app.student_name.charAt(0).toUpperCase() : '?'}
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-800">${app.student_name || 'Ẩn danh'}</div>
+                            <div class="text-[10px] text-gray-500">${app.student_email || ''}</div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-700">
+                        ${app.job_title || 'N/A'}
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600">
+                        ${new Date(app.created_at).toLocaleDateString('vi-VN')}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded-full text-[10px] font-bold ${getStatusClass(app.status)}">
+                            ${app.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-center space-x-3">
+                        <button onclick="viewCV(${app.cv_id})" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">
+                            <i class="fas fa-file-pdf"></i> CV
+                        </button>
+                        <button onclick="updateStatus(${app.id}, 'ACCEPTED')" class="text-green-600 hover:text-green-800 text-sm font-semibold">
+                            <i class="fas fa-check"></i> Duyệt
+                        </button>
+                        <button onclick="updateStatus(${app.id}, 'REJECTED')" class="text-red-600 hover:text-red-800 text-sm font-semibold">
+                            <i class="fas fa-times"></i> Loại
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        } catch (error) { 
+            console.error("Lỗi:", error);
+            document.getElementById("candidate-list").innerHTML = '<tr><td colspan="5" class="p-10 text-center text-red-500">Không nạp được dữ liệu từ Server</td></tr>';
+        }
+    }
+
+    // Hàm cập nhật trạng thái đơn ứng tuyển
+    async function updateStatus(appId, newStatus) {
+    if (!confirm(`Bạn có chắc muốn chuyển trạng thái sang ${newStatus}?`)) return;
+
+    const token = localStorage.getItem("access_token");
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/applications/${appId}/status`, {
+            method: 'PATCH',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+            // Gửi đúng trường 'status' khớp với ApplicationUpdate schema
+            body: JSON.stringify({ status: newStatus }) 
+        });
+
+        if (response.status === 401) {
+            alert("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại!");
+            return;
+        }
+
+        if (response.ok) {
+            alert("✅ Cập nhật trạng thái thành công!");
+            loadApplications(); // Tải lại danh sách để cập nhật giao diện
+        } else {
+            const errorData = await response.json();
+            alert("❌ Lỗi: " + (errorData.detail || "Không thể cập nhật"));
+        }
+    } catch (err) {
+        console.error("Lỗi kết nối:", err);
+        alert("❌ Không thể kết nối tới Server (Lỗi CORS hoặc Server chưa chạy)");
+    }
+}
+
+    function getStatusClass(status) {
+        if (status === 'ACCEPTED') return 'bg-green-100 text-green-700';
+        if (status === 'REJECTED') return 'bg-red-100 text-red-700';
+        return 'bg-yellow-100 text-yellow-700';
+    }
+
+    function viewCV(cvId) {
+        alert("Đang mở CV ID: " + cvId);
+        // Sau này bạn có thể redirect tới trang xem CV chi tiết
+    }
+</script>
 </body>
 </html>

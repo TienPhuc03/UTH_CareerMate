@@ -14,202 +14,191 @@
                 <a href="Homepage.html" class="text-2xl font-bold text-green-600 block mb-8">Career Mate</a>
                 
                 <div class="mb-8 p-4 bg-green-50 rounded-xl">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
+                    <div id="userAvatar" class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
                         SV
                     </div>
-                    <h3 class="text-center font-bold text-gray-800">Sinh viên IT</h3>
-                    <p class="text-center text-sm text-gray-600">Điểm CV: <span class="text-green-600 font-medium">85/100</span></p>
+                    <h3 id="studentName" class="text-center font-bold text-gray-800">Đang tải...</h3>
+                    <p id="studentEmail" class="text-center text-xs text-gray-500 truncate">...</p>
                 </div>
-                
+
                 <nav class="space-y-2">
-                    <a href="StudentDashboard.html" class="flex items-center p-3 text-green-600 bg-green-50 rounded-lg font-medium">
-                        <i class="fas fa-tachometer-alt w-6 mr-3"></i> Tổng quan
-                    </a>
-                    <a href="Profile.html" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-user w-6 mr-3"></i> Hồ sơ
+                    <a href="Studentdashboard.html" class="flex items-center p-3 text-green-600 bg-green-50 rounded-lg font-medium">
+                        <i class="fas fa-th-large w-6 mr-3"></i> Tổng quan
                     </a>
                     <a href="Findjobs.html" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-briefcase w-6 mr-3"></i> Việc làm
+                        <i class="fas fa-search w-6 mr-3"></i> Tìm việc làm
                     </a>
-                    <a href="Uploadcv.html" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-file-upload w-6 mr-3"></i> CV của tôi
+                    <a href="#" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
+                        <i class="fas fa-file-alt w-6 mr-3"></i> CV của tôi
                     </a>
-                    <a href="Careerai.html" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-robot w-6 mr-3"></i> AI Career Coach
+                    <a href="#" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
+                        <i class="fas fa-bell w-6 mr-3"></i> Thông báo
                     </a>
                 </nav>
             </div>
         </aside>
 
-        <main class="flex-1 p-6">
-            <div class="mb-6 flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-gray-800">Dashboard Sinh Viên</h1>
-                <div class="text-sm text-gray-500">
-                    Cập nhật lần cuối: Hôm nay, 8:30
-                </div>
+        <main class="flex-1 p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl font-bold text-gray-800">Bảng điều khiển sinh viên</h1>
+                <button onclick="logout()" class="text-gray-500 hover:text-red-500 transition">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất
+                </button>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
-                    <div class="flex justify-between items-start">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-blue-500">
+                    <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">Đã ứng tuyển</p>
-                            <p class="text-3xl font-bold text-gray-800 mt-2">24</p>
+                            <p id="stat-applied" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
-                            <i class="fas fa-paper-plane text-green-600 text-xl"></i>
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500">
+                            <i class="fas fa-paper-plane text-xl"></i>
                         </div>
-                    </div>
-                    <div class="mt-4">
-                        <span class="text-green-600 text-sm font-medium">+3 tuần này</span>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
-                    <div class="flex justify-between items-start">
+                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-yellow-500">
+                    <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 text-sm">Lượt xem hồ sơ</p>
-                            <p class="text-3xl font-bold text-gray-800 mt-2">142</p>
+                            <p class="text-gray-500 text-sm">Đang chờ duyệt</p>
+                            <p id="stat-pending" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-                            <i class="fas fa-eye text-blue-600 text-xl"></i>
+                        <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center text-yellow-500">
+                            <i class="fas fa-clock text-xl"></i>
                         </div>
-                    </div>
-                    <div class="mt-4">
-                        <span class="text-green-600 text-sm font-medium">+18 tuần này</span>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-500">
-                    <div class="flex justify-between items-start">
+                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-green-500">
+                    <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 text-sm">Việc làm phù hợp</p>
-                            <p class="text-3xl font-bold text-gray-800 mt-2">42</p>
+                            <p class="text-gray-500 text-sm">Được mời phỏng vấn</p>
+                            <p id="stat-accepted" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <i class="fas fa-star text-purple-600 text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <span class="text-green-600 text-sm font-medium">Độ phù hợp >80%</span>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-orange-500">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-gray-500 text-sm">Điểm kỹ năng</p>
-                            <p class="text-3xl font-bold text-gray-800 mt-2">76/100</p>
-                        </div>
-                        <div class="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center">
-                            <i class="fas fa-brain text-orange-600 text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full" style="width: 76%"></div>
+                        <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
+                            <i class="fas fa-check-circle text-xl"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="grid lg:grid-cols-2 gap-8">
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-bold text-gray-800">Đơn ứng tuyển gần đây</h2>
-                        <a href="#" class="text-green-600 hover:text-green-700 font-medium">
-                            Xem tất cả →
-                        </a>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800">Frontend Developer Intern</h3>
-                                    <div class="flex items-center mt-1 text-sm text-gray-600">
-                                        <span class="mr-3">🏢 FPT Software</span>
-                                        <span>📅 20/03/2025</span>
-                                    </div>
-                                </div>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">
-                                    Đã xem
-                                </span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm">
-                                <span class="text-gray-600 mr-4">📍 TP.HCM</span>
-                                <span class="text-gray-600">🎯 92% phù hợp</span>
-                            </div>
-                        </div>
-                        
-                        <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800">Data Analyst</h3>
-                                    <div class="flex items-center mt-1 text-sm text-gray-600">
-                                        <span class="mr-3">🏢 Tiki Corporation</span>
-                                        <span>📅 18/03/2025</span>
-                                    </div>
-                                </div>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold">
-                                    Đang xem xét
-                                </span>
-                            </div>
-                            <div class="mt-3 flex items-center text-sm">
-                                <span class="text-gray-600 mr-4">📍 Hà Nội</span>
-                                <span class="text-gray-600">🎯 88% phù hợp</span>
-                            </div>
-                        </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-history mr-2 text-green-500"></i> Lịch sử ứng tuyển gần đây
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-left text-gray-400 text-xs uppercase tracking-wider border-b">
+                                    <th class="pb-3 italic">Công việc</th>
+                                    <th class="pb-3 italic">Ngày nộp</th>
+                                    <th class="pb-3 italic text-center">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="application-history" class="divide-y divide-gray-100">
+                                <tr><td colspan="3" class="py-10 text-center text-gray-400">Đang tải dữ liệu...</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <h2 class="text-xl font-bold text-gray-800 mb-6">Kỹ năng của bạn</h2>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Frontend Development</span>
-                                <span class="font-bold text-green-600">84%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Backend Basics</span>
-                                <span class="font-bold text-green-600">70%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">UI/UX Design</span>
-                                <span class="font-bold text-green-600">60%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Tiếng Anh</span>
-                                <span class="font-bold text-green-600">90%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="font-bold text-gray-800 mb-4">Gợi ý việc làm phù hợp</h2>
+                    <div id="job-suggestions" class="space-y-4">
+                        <p class="text-sm text-gray-500 italic">Tính năng AI Matching đang phân tích CV của bạn...</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <script>
+        const API_BASE = "http://127.0.0.1:8000/api";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('access_token');
+            const email = localStorage.getItem('user_email');
+            const role = localStorage.getItem('user_role');
+
+            if (!token || (role !== 'student' && role !== 'candidate')) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Cập nhật Profile từ localStorage
+            const name = localStorage.getItem('full_name') || email.split('@')[0];
+            document.getElementById('studentName').textContent = name;
+            document.getElementById('studentEmail').textContent = email;
+            document.getElementById('userAvatar').textContent = name.substring(0, 2).toUpperCase();
+
+            // Hàm lấy danh sách ứng tuyển của sinh viên
+            async function fetchMyApplications() {
+                try {
+                    // Lưu ý: Endpoint này cần trả về danh sách ứng tuyển của chính User đang đăng nhập
+                    const res = await fetch(`${API_BASE}/applications/get`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+
+                    if (res.ok) {
+                        const apps = await res.json();
+                        renderDashboard(apps);
+                    }
+                } catch (err) {
+                    console.error("Lỗi khi tải dữ liệu:", err);
+                }
+            }
+
+            function renderDashboard(apps) {
+                // 1. Cập nhật con số thống kê
+                const pending = apps.filter(a => a.status === 'PENDING').length;
+                const accepted = apps.filter(a => a.status === 'ACCEPTED').length;
+                
+                document.getElementById('stat-applied').textContent = apps.length;
+                document.getElementById('stat-pending').textContent = pending;
+                document.getElementById('stat-accepted').textContent = accepted;
+
+                // 2. Render bảng lịch sử
+                const tbody = document.getElementById('application-history');
+                if (apps.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" class="py-10 text-center text-gray-400 text-sm">Bạn chưa ứng tuyển công việc nào.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = apps.slice(0, 5).map(app => `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="py-4">
+                            <p class="font-semibold text-gray-800 text-sm">${app.job_title || 'Vị trí #' + app.job_id}</p>
+                            <p class="text-[10px] text-gray-400">ID đơn: ${app.id}</p>
+                        </td>
+                        <td class="py-4 text-xs text-gray-600">
+                            ${new Date(app.created_at).toLocaleDateString('vi-VN')}
+                        </td>
+                        <td class="py-4 text-center">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-bold ${getStatusClass(app.status)}">
+                                ${app.status}
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            function getStatusClass(status) {
+                switch(status) {
+                    case 'ACCEPTED': return 'bg-green-100 text-green-700';
+                    case 'REJECTED': return 'bg-red-100 text-red-700';
+                    case 'PENDING': return 'bg-yellow-100 text-yellow-700';
+                    default: return 'bg-gray-100 text-gray-700';
+                }
+            }
+
+            fetchMyApplications();
+        });
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../auth/login.html';
+        }
+    </script>
 </body>
 </html>

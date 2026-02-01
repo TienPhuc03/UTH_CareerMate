@@ -266,6 +266,12 @@
                     }
 
                     alert("Upload thành công!");
+                       if (res.status === 401) {
+                            alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
+                            localStorage.removeItem("access_token");
+                            window.location.href = "../auth/login.html";
+                            return;
+                         }
 
                 } catch (err) {
                     console.error("❌ Fetch error:", err);

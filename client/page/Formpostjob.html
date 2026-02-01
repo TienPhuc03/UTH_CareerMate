@@ -517,6 +517,12 @@
                 },
                 body: JSON.stringify(jobData)
             });
+               if (response.status === 401) {
+            alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
+            localStorage.removeItem("access_token");
+            window.location.href = "../auth/login.html";
+            return;
+        }
 
             if (response.ok) {
                 alert('✅ Đăng tin tuyển dụng thành công!');

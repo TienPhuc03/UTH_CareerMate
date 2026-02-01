@@ -26,7 +26,7 @@ UPLOAD_DIR = "uploads/cvs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 
-@router.post("/upload")
+@router.post("/up")
 def upload_cv_file(
     file: UploadFile = File(...),
     email: str = Form(...),

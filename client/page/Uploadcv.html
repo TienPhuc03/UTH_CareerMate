@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8" />
     <title>CareerMate – Tải lên CV</title>
@@ -8,285 +9,280 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="min-h-screen bg-gray-50 text-slate-900 flex flex-col">
-    
+
     <div id="header-container"></div>
 
-        <main class="flex-1">
-            <section class="relative">
-                <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none"></div>
+    <main class="flex-1">
+        <section class="relative">
+            <div
+                class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none">
+            </div>
 
-                <div class="max-w-6xl mx-auto px-4 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center">
-                    <div>
-                        <p class="inline-flex items-center gap-2 text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 mb-4">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                            CareerMate – Bạn đồng hành ứng tuyển thông minh với AI
-                        </p>
-                        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-3">
-                            Upload CV để
-                            <span class="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-                                AI Career Coach
-                            </span>
-                            tối ưu hồ sơ của bạn
-                        </h1>
-                        <p class="text-sm md:text-[15px] text-slate-600 mb-4">
-                            Phân tích CV &lt; 5 giây, phát hiện lỗ hổng kỹ năng, gợi ý chỉnh sửa và việc làm phù hợp cho sinh viên năm cuối &amp; người mới tốt nghiệp.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px] mb-6">
-                            <div class="flex gap-2">
-                                <div class="mt-1 h-5 w-5 rounded-full bg-emerald-100 flex items-center justify-center text-[11px] text-green-600">
-                                    ✓
-                                </div>
-                                <div>
-                                    <div class="font-semibold">Phân tích CV bằng AI</div>
-                                    <p class="text-slate-500">Đánh giá ATS, điểm phù hợp JD và gợi ý từ khóa.</p>
-                                </div>
+            <div class="max-w-6xl mx-auto px-4 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <p
+                        class="inline-flex items-center gap-2 text-[11px] px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 mb-4">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        CareerMate – Bạn đồng hành ứng tuyển thông minh với AI
+                    </p>
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-3">
+                        Upload CV để
+                        <span class="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
+                            AI Career Coach
+                        </span>
+                        tối ưu hồ sơ của bạn
+                    </h1>
+                    <p class="text-sm md:text-[15px] text-slate-600 mb-4">
+                        Phân tích CV &lt; 5 giây, phát hiện lỗ hổng kỹ năng, gợi ý chỉnh sửa và việc làm phù hợp cho
+                        sinh viên năm cuối &amp; người mới tốt nghiệp.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[13px] mb-6">
+                        <div class="flex gap-2">
+                            <div
+                                class="mt-1 h-5 w-5 rounded-full bg-emerald-100 flex items-center justify-center text-[11px] text-green-600">
+                                ✓
                             </div>
-                            <div class="flex gap-2">
-                                <div class="mt-1 h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center text-[11px] text-blue-600">
-                                    ✓
-                                </div>
-                                <div>
-                                    <div class="font-semibold">Lộ trình nghề nghiệp</div>
-                                    <p class="text-slate-500">Gợi ý khóa học, kỹ năng và thử thách.</p>
-                                </div>
+                            <div>
+                                <div class="font-semibold">Phân tích CV bằng AI</div>
+                                <p class="text-slate-500">Đánh giá ATS, điểm phù hợp JD và gợi ý từ khóa.</p>
                             </div>
                         </div>
-                        <div class="flex flex-wrap items-center gap-3 text-xs">
-                            <button onclick="document.getElementById('cvFile').click()" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold shadow-md hover:shadow-lg">
-                                <i class="fas fa-upload"></i> Trải nghiệm Career AI Coach
-                            </button>
+                        <div class="flex gap-2">
+                            <div
+                                class="mt-1 h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center text-[11px] text-blue-600">
+                                ✓
+                            </div>
+                            <div>
+                                <div class="font-semibold">Lộ trình nghề nghiệp</div>
+                                <p class="text-slate-500">Gợi ý khóa học, kỹ năng và thử thách.</p>
+                            </div>
                         </div>
                     </div>
+                    <div class="flex flex-wrap items-center gap-3 text-xs">
+                        <button onclick="document.getElementById('cvFile').click()" type="button"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold shadow-md hover:shadow-lg">
+                            <i class="fas fa-upload"></i> Trải nghiệm Career AI Coach
+                        </button>
+                    </div>
+                </div>
 
-                    <div>
-                        <div class="bg-white rounded-2xl shadow-xl shadow-emerald-100/60 border border-slate-100 p-5 md:p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <h2 class="text-base md:text-lg font-semibold">
-                                        Tải CV để các cơ hội việc làm tự tìm đến bạn
-                                    </h2>
-                                    <p class="text-[12px] text-slate-500 mt-1">
-                                        Giảm đến 50% thời gian tìm được công việc phù hợp.
-                                    </p>
-                                </div>
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-[11px] text-emerald-700 border border-emerald-100">
-                                    &lt; 5 giây phân tích
-                                </span>
+                <div>
+                    <div
+                        class="bg-white rounded-2xl shadow-xl shadow-emerald-100/60 border border-slate-100 p-5 md:p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h2 class="text-base md:text-lg font-semibold">
+                                    Tải CV để các cơ hội việc làm tự tìm đến bạn
+                                </h2>
+                                <p class="text-[12px] text-slate-500 mt-1">
+                                    Giảm đến 50% thời gian tìm được công việc phù hợp.
+                                </p>
                             </div>
-
-                            <form id="cvUploadForm" class="space-y-4">
-                                <label for="cvFile" class="block border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/60 hover:bg-slate-50 cursor-pointer transition p-4 md:p-5">
-                                    <div class="flex flex-col items-center justify-center text-center gap-2">
-                                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-green-500 to-blue-500 text-white shadow-md">
-                                            <i class="fas fa-upload"></i>
-                                        </div>
-                                        <div class="text-[13px]">
-                                            <span class="font-semibold">Kéo &amp; thả CV vào đây</span>
-                                            <span class="text-slate-500"> hoặc </span>
-                                            <span class="text-blue-600 font-semibold">chọn tệp từ máy</span>
-                                        </div>
-                                        <p class="text-[11px] text-slate-500">
-                                            Hỗ trợ PDF, DOC, DOCX, dung lượng tối đa 5MB.
-                                        </p>
-                                        <p id="fileName" class="text-[12px] text-green-600 font-medium hidden"></p>
-                                    </div>
-                                    <input id="cvFile" name="file" type="file" accept=".pdf,.doc,.docx" class="hidden" />
-                                </label>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px]">
-                                    <div>
-                                        <label class="block text-xs font-medium text-slate-600 mb-1">
-                                            Email liên hệ
-                                        </label>
-                                        <input id="emailInput" type="email" name="email" placeholder="you@example.com" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500" required />
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-medium text-slate-600 mb-1">
-                                            Ngành mục tiêu
-                                        </label>
-                                        <select name="targetIndustry" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                            <option value="">Chọn ngành</option>
-                                            <option>Công nghệ thông tin</option>
-                                            <option>Marketing / Sales</option>
-                                            <option>Tài chính / Kế toán</option>
-                                            <option>Nhân sự / Hành chính</option>
-                                            <option>Khác</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-green-500 to-blue-500 shadow-md hover:shadow-lg">
-                                    <i class="fas fa-magic"></i> Phân tích CV bằng AI
-                                    <span class="text-[11px] font-normal opacity-90">(miễn phí lượt đầu)</span>
-                                </button>
-
-                                <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
-                                    <p>
-                                        Bằng việc tải CV, bạn đồng ý với <a href="#" class="text-blue-600 underline">Điều khoản</a> &amp; <a href="#" class="text-blue-600 underline">Bảo mật</a>.
-                                    </p>
-                                    <p class="flex items-center gap-1">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                                        Bảo mật OAuth2 &amp; JWT
-                                    </p>
-                                </div>
-                            </form>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-50 text-[11px] text-emerald-700 border border-emerald-100">
+                                &lt; 5 giây phân tích
+                            </span>
                         </div>
 
-                        <div class="grid sm:grid-cols-2 gap-3 mt-4 text-[12px]">
-                            <div class="rounded-xl bg-white/80 border border-emerald-50 p-3 flex gap-3">
-                                <div class="mt-1 h-7 w-7 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
-                                    🎯
+                        <form id="cvUploadForm" class="space-y-4">
+                            <label for="cvFile"
+                                class="block border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/60 hover:bg-slate-50 cursor-pointer transition p-4 md:p-5">
+                                <div class="flex flex-col items-center justify-center text-center gap-2">
+                                    <div
+                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-green-500 to-blue-500 text-white shadow-md">
+                                        <i class="fas fa-upload"></i>
+                                    </div>
+                                    <div class="text-[13px]">
+                                        <span class="font-semibold">Kéo &amp; thả CV vào đây</span>
+                                        <span class="text-slate-500"> hoặc </span>
+                                        <span class="text-blue-600 font-semibold">chọn tệp từ máy</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-500">
+                                        Hỗ trợ PDF, DOC, DOCX, dung lượng tối đa 5MB.
+                                    </p>
+                                    <p id="fileName" class="text-[12px] text-green-600 font-medium hidden"></p>
+                                </div>
+                                <input id="cvFile" name="file" type="file" accept=".pdf,.doc,.docx" class="hidden" />
+                            </label>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[13px]">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-600 mb-1">
+                                        Email liên hệ
+                                    </label>
+                                    <input id="emailInput" type="email" name="email" placeholder="you@example.com"
+                                        class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        required />
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-slate-800">Theo dõi số liệu</div>
-                                    <p class="text-slate-500">Dashboard cá nhân với điểm CV, tỷ lệ phù hợp.</p>
+                                    <label class="block text-xs font-medium text-slate-600 mb-1">
+                                        Ngành mục tiêu
+                                    </label>
+                                    <select name="targetIndustry"
+                                        class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">Chọn ngành</option>
+                                        <option>Công nghệ thông tin</option>
+                                        <option>Marketing / Sales</option>
+                                        <option>Tài chính / Kế toán</option>
+                                        <option>Nhân sự / Hành chính</option>
+                                        <option>Khác</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="rounded-xl bg-white/80 border border-blue-50 p-3 flex gap-3">
-                                <div class="mt-1 h-7 w-7 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-                                    💬
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-slate-800">Kết nối nhanh</div>
-                                    <p class="text-slate-500">Ghép đôi công việc dựa trên JD &amp; kỹ năng.</p>
-                                </div>
+
+                            <button type="submit"
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-green-500 to-blue-500 shadow-md hover:shadow-lg">
+                                <i class="fas fa-magic"></i> Phân tích CV bằng AI
+                                <span class="text-[11px] font-normal opacity-90">(miễn phí lượt đầu)</span>
+                            </button>
+
+                            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
+                                <p>
+                                    Bằng việc tải CV, bạn đồng ý với <a href="#" class="text-blue-600 underline">Điều
+                                        khoản</a> &amp; <a href="#" class="text-blue-600 underline">Bảo mật</a>.
+                                </p>
+                                <p class="flex items-center gap-1">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                    Bảo mật OAuth2 &amp; JWT
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-3 mt-4 text-[12px]">
+                        <div class="rounded-xl bg-white/80 border border-emerald-50 p-3 flex gap-3">
+                            <div
+                                class="mt-1 h-7 w-7 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                🎯
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-800">Theo dõi số liệu</div>
+                                <p class="text-slate-500">Dashboard cá nhân với điểm CV, tỷ lệ phù hợp.</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-white/80 border border-blue-50 p-3 flex gap-3">
+                            <div
+                                class="mt-1 h-7 w-7 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                                💬
+                            </div>
+                            <div>
+                                <div class="font-semibold text-slate-800">Kết nối nhanh</div>
+                                <p class="text-slate-500">Ghép đôi công việc dựa trên JD &amp; kỹ năng.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
 
     </div>
 
     <div id="footer-container"></div>
     <script>
-      // Load header
-      fetch('../components/header.html')
-       .then(response => response.text())
-       .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-            const script = document.createElement('script');
-            script.src = '../components/auth-script.js';
-            document.body.appendChild(script);
-          });
+        // Load header
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                const script = document.createElement('script');
+                script.src = '../components/auth-script.js';
+                document.body.appendChild(script);
+            });
 
-       // Load footer
-      fetch('../components/footer.html')
-       .then(response => response.text())
-       .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-         });
+        // Load footer
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
     </script>
-        <script>
-                const userEmail = localStorage.getItem('user_email');
-            const token = localStorage.getItem('access_token');
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-function checkAuthStatus() {
-    if (token && userEmail) {
-        document.getElementById('authButtons').classList.add('hidden');
-        document.getElementById('userMenu').classList.remove('hidden');
-        document.getElementById('userMenu').classList.add('flex');
-        document.getElementById('userEmailHeader').textContent = userEmail;
-        document.getElementById('emailInput').value = userEmail;
-    } else {
-        // Allow upload without login for testing
-        console.warn('⚠️ Not logged in - using email from form');
-    }
-}
-checkAuthStatus();
+            const API_URL = "http://localhost:8000/api/cvs/upload";
+            const form = document.getElementById("cvUploadForm");
+            const fileInput = document.getElementById("cvFile");
+            const emailInput = document.getElementById("emailInput");
+            const fileName = document.getElementById("fileName");
 
-document.getElementById('cvFile').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const fileName = document.getElementById('fileName');
-        fileName.textContent = `✅ Đã chọn: ${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`;
-        fileName.classList.remove('hidden');
-    }
-});
+            const userEmail = localStorage.getItem("user_email");
+            const token = localStorage.getItem("access_token");
 
+            // Autofill email nếu đã login
+            if (token && userEmail) {
+                emailInput.value = userEmail;
+            }
 
-const API_URL = 'http://localhost:8000/api/cvs/upload';
+            // Hiển thị tên file
+            fileInput.addEventListener("change", () => {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileName.textContent =
+                        `✅ Đã chọn: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                    fileName.classList.remove("hidden");
+                }
+            });
 
-document.getElementById('cvUploadForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+            // Submit form
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-    const fileInput = document.getElementById('cvFile');
-    const emailInput = document.getElementById('emailInput');
-    const industrySelect = document.querySelector('select[name="targetIndustry"]');
-    const file = fileInput.files[0];
+                const file = fileInput.files[0];
+                const email = emailInput.value;
 
-    if (!file) {
-        alert('Vui lòng chọn file CV!');
-        return;
-    }
+                if (!file) {
+                    alert("Vui lòng chọn CV!");
+                    return;
+                }
 
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('email', emailInput.value);
+                if (!email) {
+                    alert("Vui lòng nhập email!");
+                    return;
+                }
 
-    if (industrySelect.value) {
-        formData.append('target_industry', industrySelect.value);
-    }
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("email", email);
 
-    const btn = this.querySelector('button[type="submit"]');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang phân tích bằng AI...';
-    btn.disabled = true;
+                try {
+                    console.log("🚀 Uploading...");
 
-    try {
-        console.log("🚀 Upload tới:", API_URL);
-        console.log("📦 FormData:", {
-            file: file.name,
-            email: emailInput.value,
-            industry: industrySelect.value
+                    const res = await fetch(API_URL, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    console.log("Status:", res.status);
+
+                    const text = await res.text();
+                    console.log("Response:", text);
+
+                    if (!res.ok) {
+                        alert("Upload thất bại!");
+                        return;
+                    }
+
+                    alert("Upload thành công!");
+
+                } catch (err) {
+                    console.error("❌ Fetch error:", err);
+                    alert("Không kết nối được server!");
+                }
+            });
+
         });
 
-        // 
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            body: formData
-        });
-        
-        console.log("Response:", response);
-        console.log("Response data:", await response.text());
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error("❌ Error:", errorText);
-            alert(`❌ Lỗi server (${response.status}):\n${errorText.substring(0, 300)}`);
-            return;
+        function logout() {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("user_email");
+            window.location.href = "../auth/login.html";
         }
+    </script>
 
-        const data = await response.json();
-        console.log("✅ Success:", data);
-          
-        // Save result to localStorage
-        localStorage.setItem('current_cv_id', data.cv_id);
-        localStorage.setItem('current_ai_result', JSON.stringify(data.ai_analysis));
-        localStorage.setItem('current_ats_score', data.ats_score);
-
-        alert(`✅ Upload thành công!\n\nATS Score: ${data.ats_score}/100\nCV ID: ${data.cv_id}`);
-         setTimeout(() => {
-                window.location.href = 'Printcv.html';
-            }, 1000);
-        ;
-
-    } catch (err) {
-        console.error("❌ Network error:", err);
-        
-    } finally {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    }
-});
-
-function logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user_email');
-    window.location.href = '../auth/login.html';
-}
-</script>
 </body>
+
 </html>

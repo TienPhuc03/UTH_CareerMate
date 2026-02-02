@@ -10,7 +10,7 @@ from modules.admin.router import router as admin_router
 from modules.recruiter.router import router as recruiter_router
 import sys
 import os
-
+from database.base import Base, engine # Đảm bảo import đúng file cấu hình DB của bạn
 # Import config and logging
 from core.logging_config import setup_logging, get_logger
 from core.config import settings, display_settings
@@ -21,7 +21,7 @@ from core.redis_client import redis_client
 logger = setup_logging()
 test_connection()
 
-
+Base.metadata.create_all(bind=engine)
 
 
 # Đảm bảo Python tìm thấy các module khi chạy từ thư mục server

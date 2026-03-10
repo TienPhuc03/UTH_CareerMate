@@ -17,6 +17,7 @@ from core.config import settings, display_settings
 from core.redis_client import redis_client
 
 
+
 # Setup logging
 logger = setup_logging()
 test_connection()
@@ -133,6 +134,7 @@ if __name__ == "__main__":
         port=8000,
         log_level=settings.LOG_LEVEL.lower()
     )
+
 
 
 

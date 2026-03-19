@@ -49,3 +49,25 @@ async def get_google_user_info(access_token: str) -> dict:
     if response.status_code != 200:
         raise HTTPException(status_code=400, detail="Không thể lấy thông tin user từ Google")
     return response.json()
+
+async def exchange_code_for_token(code: str) -> dict:
+    """Đổi authorization code lấy access_token từ Google"""
+    
+    # ✅ Kiểm tra code không rỗng
+    if not code:
+        raise HTTPException(status_code=400, detail="Thiếu authorization code từ Google")
+    
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            GOOGLE_TOKEN_URL,
+            data={
+                "code": code,
+                "client_id": settings.GOOGLE_CLIENT_ID,
+                "client_secret": settings.GOOGLE_CLIENT_SECRET,
+                "redirect_uri": settings.GOOGLE_REDIRECT_URI,
+                "grant_type": "authorization_code",
+            },
+        )
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Không thể lấy token từ Google")
+    return response.json()

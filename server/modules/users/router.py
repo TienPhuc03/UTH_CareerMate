@@ -63,7 +63,8 @@ def login(user: schemas.UserLogin, db: DbDependency):
     
     # Create access token
     access_token = security.create_access_token(
-        data={"sub": db_user.email}
+        data={"sub": db_user.email,
+            "role": db_user.role}
     )
     
     return {
@@ -120,6 +121,7 @@ async def google_callback(code: str, db: DbDependency):
     jwt_token = security.create_access_token(data={"sub": db_user.email})
 
     # 5. Redirect về frontend kèm token
+    # ✅ Đổi thành Homepage.html
     return RedirectResponse(
-    url=f"http://127.0.0.1:5500/client/auth/login.html?token={jwt_token}&email={email}&role={db_user.role}"
+    url=f"http://127.0.0.1:5500/client/page/Homepage.html?token={jwt_token}&email={email}&role={db_user.role}"
 )

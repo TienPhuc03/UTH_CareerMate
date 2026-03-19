@@ -9,10 +9,9 @@ from core.config import settings
 from database.session import get_db
 from modules.users.models import User
 
-# Security scheme for automatic Swagger documentation
-security = HTTPBearer()
+# ✅ Thêm auto_error=False
+security = HTTPBearer(auto_error=False)
 
-# JWT configuration
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = "HS256"
 
@@ -20,6 +19,15 @@ def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: Session = Depends(get_db)
 ) -> User:
+
+    # ✅ Kiểm tra không có token → 401
+    if credentials is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Chưa đăng nhập, vui lòng cung cấp token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     token = credentials.credentials
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -28,14 +36,14 @@ def get_current_user(
         if email is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token: missing user email",
+                detail="Token không hợp lệ",
                 headers={"WWW-Authenticate": "Bearer"},
             )
         
-    except JWTError as e:
+    except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=f"Invalid or expired token: {str(e)}",
+            detail="Token không hợp lệ hoặc đã hết hạn",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
@@ -44,34 +52,37 @@ def get_current_user(
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="User not found",
+            detail="Không tìm thấy tài khoản",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
     if not user.is_active:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="User account is inactive",
+            detail="Tài khoản đã bị vô hiệu hóa",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
     return user
 
+
 def require_admin(current_user: User = Depends(get_current_user)) -> User:
     if current_user.role != "admin":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin access required"
+            detail="Yêu cầu quyền Admin"
         )
     return current_user
+
 
 def require_recruiter(current_user: User = Depends(get_current_user)) -> User:
     if current_user.role not in ["admin", "recruiter"]:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Recruiter or admin access required"
+            detail="Yêu cầu quyền Recruiter hoặc Admin"
         )
     return current_user
+
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()

@@ -1,81 +1,78 @@
-<header class="px-4 py-3 bg-white xl:px-0 sticky top-0 shadow-md z-50">
-    <div class="max-w-[1200px] mx-auto flex items-center">
+<header class="sticky top-0 z-50 bg-white px-4 py-3 shadow-md xl:px-0">
+    <div class="mx-auto flex max-w-[1200px] items-center">
         <div>
-            <a href="../page/Homepage.html" class="text-2xl md:text-3xl font-bold text-green-600">Career Mate</a>
+            <a href="../page/Homepage.html" class="text-2xl font-bold text-green-600 md:text-3xl">Career Mate</a>
         </div>
         <nav class="ml-auto flex items-center gap-10">
-            <input type="checkbox" hidden id="menu-toggle"
-                class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:opacity-100 checked:[&~.overlay]:visible">
-            <ul
-                class="block fixed top-0 left-0 bottom-0 bg-gray-100 text-black min-w-[200px] z-999 translate-x-[-100%] transition-transform duration-300 ease-[ease] lg:flex p-5 lg:gap-6 lg:static lg:bg-transparent lg:text-inherit lg:min-w-0 lg:p-0 lg:translate-x-0 lg:transition-none font-bold">
-                <li><a href="../page/Homepage.html" class="py-3 block hover:text-green-600 lg:py-0">Trang chủ</a></li>
-                <li><a href="../page/Findjobs.html" class="py-3 block hover:text-green-600 lg:py-0">Việc làm</a></li>
-                <li id="menu-item-1"><a href="../page/Printcv.html" class="py-3 block hover:text-green-600 lg:py-0">Mẫu CV</a></li>
-                <li id="menu-item-2"><a href="../page/Uploadcv.html" class="py-3 block hover:text-green-600 lg:py-0">Tạo CV</a></li>
-                <li id="menu-item-3"><a href="../page/Careerai.html" class="py-3 block hover:text-green-600 lg:py-0">AI Coach</a></li>
+            <input
+                type="checkbox"
+                hidden
+                id="menu-toggle"
+                class="checked:[&+ul]:translate-x-0 checked:[&~.overlay]:visible checked:[&~.overlay]:opacity-100"
+            >
+            <ul class="fixed bottom-0 left-0 top-0 z-[999] block min-w-[200px] -translate-x-full bg-gray-100 p-5 font-bold text-black transition-transform duration-300 ease-[ease] lg:static lg:flex lg:min-w-0 lg:translate-x-0 lg:gap-6 lg:bg-transparent lg:p-0 lg:text-inherit lg:transition-none">
+                <li><a href="../page/Homepage.html" class="block py-3 hover:text-green-600 lg:py-0">Trang chu</a></li>
+                <li><a href="../page/Findjobs.html" class="block py-3 hover:text-green-600 lg:py-0">Viec lam</a></li>
+                <li id="menu-item-1"><a href="../page/Printcv.html" class="block py-3 hover:text-green-600 lg:py-0">Mau CV</a></li>
+                <li id="menu-item-2"><a href="../page/Uploadcv.html" class="block py-3 hover:text-green-600 lg:py-0">Tao CV</a></li>
+                <li id="menu-item-3"><a href="../page/Careerai.html" class="block py-3 hover:text-green-600 lg:py-0">AI Coach</a></li>
             </ul>
-            <label for="menu-toggle"
-                class="overlay fixed inset-0 z-99 bg-[#000000a2] invisible opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
-            
-            <!-- Auth Buttons -->
+            <label for="menu-toggle" class="overlay invisible fixed inset-0 z-[99] bg-[#000000a2] opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"></label>
+
             <div id="authButtons" class="flex gap-3">
-                <a href="../auth/signup.html"
-                    class="block bg-white border font-bold border-green-600 px-6 py-3 text-green-600 rounded-full hover:bg-green-100">Đăng ký</a>
-                <a href="../auth/login.html"
-                    class="block bg-green-600 font-bold px-6 py-3 text-white rounded-full hover:bg-green-700">Đăng nhập</a>
+                <a href="../auth/signup.html" class="block rounded-full border border-green-600 bg-white px-6 py-3 font-bold text-green-600 hover:bg-green-100">Dang ky</a>
+                <a href="../auth/login.html" class="block rounded-full bg-green-600 px-6 py-3 font-bold text-white hover:bg-green-700">Dang nhap</a>
             </div>
 
-            <!-- User Info -->
             <div id="userInfo" class="hidden items-center gap-3">
                 <div class="relative">
-                    <div class="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity" id="userMenuToggle">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold" id="userAvatar">
-                            <!-- Initials -->
-                        </div>
+                    <div class="flex cursor-pointer items-center gap-3 transition-opacity hover:opacity-90" id="userMenuToggle">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 font-bold text-white" id="userAvatar"></div>
                         <div class="hidden md:block">
-                            <div class="font-medium text-gray-800 max-w-[150px] truncate" id="userNameDisplay"></div>
-                            <div class="text-xs text-gray-500 max-w-[150px] truncate" id="userEmailDisplay"></div>
+                            <div class="max-w-[150px] truncate font-medium text-gray-800" id="userNameDisplay"></div>
+                            <div class="max-w-[150px] truncate text-xs text-gray-500" id="userEmailDisplay"></div>
                         </div>
-                        <svg class="hidden md:block w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="hidden h-4 w-4 text-gray-500 md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
-                    
-                    <div class="absolute hidden right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-50" id="userDropdown">
-                        <div class="p-4 border-b border-gray-100">
-                            <div class="font-medium text-gray-800 truncate" id="dropdownUserName"></div>
-                            <div class="text-sm text-gray-500 truncate" id="dropdownUserEmail"></div>
+
+                    <div class="absolute right-0 top-full z-50 mt-2 hidden w-56 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" id="userDropdown">
+                        <div class="border-b border-gray-100 p-4">
+                            <div class="truncate font-medium text-gray-800" id="dropdownUserName"></div>
+                            <div class="truncate text-sm text-gray-500" id="dropdownUserEmail"></div>
                         </div>
-                        
-                        <a href="../page/Profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 transition-colors">
-                            <i class="fas fa-user text-green-600 w-5"></i>
-                            <span>Hồ sơ cá nhân</span>
+
+                        <a href="../page/Profile.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 transition-colors hover:bg-gray-50 hover:text-green-600">
+                            <i class="fas fa-user w-5 text-green-600"></i>
+                            <span>Ho so ca nhan</span>
                         </a>
                         <div id="roleBasedDashboard"></div>
-                        <a href="../page/Uploadcv.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                            <i class="fas fa-file-upload text-blue-600 w-5"></i>
-                            <span>Tạo CV mới</span>
+                        <a href="../page/Uploadcv.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600">
+                            <i class="fas fa-file-upload w-5 text-blue-600"></i>
+                            <span>Tao CV moi</span>
                         </a>
-                        
-                        <a href="../page/Careerai.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors">
-                            <i class="fas fa-robot text-purple-600 w-5"></i>
+                        <a href="../page/Careerai.html" class="flex items-center gap-3 px-4 py-3 text-gray-700 transition-colors hover:bg-gray-50 hover:text-purple-600">
+                            <i class="fas fa-robot w-5 text-purple-600"></i>
                             <span>AI Career Coach</span>
                         </a>
-                        
+
                         <div class="border-t border-gray-200"></div>
-                        
-                        <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors text-left">
-                            <i class="fas fa-sign-out-alt text-red-600 w-5"></i>
-                            <span>Đăng xuất</span>
+
+                        <button onclick="logout()" class="w-full px-4 py-3 text-left text-gray-700 transition-colors hover:bg-gray-50 hover:text-red-600">
+                            <span class="flex items-center gap-3">
+                                <i class="fas fa-sign-out-alt w-5 text-red-600"></i>
+                                <span>Dang xuat</span>
+                            </span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <label for="menu-toggle" class="flex flex-col gap-2 w-[30px] lg:hidden">
-                <span class="block w-full h-[3px] bg-[#333]"></span>
-                <span class="block w-full h-[3px] bg-[#333]"></span>
-                <span class="block w-full h-[3px] bg-[#333]"></span>
+            <label for="menu-toggle" class="flex w-[30px] flex-col gap-2 lg:hidden">
+                <span class="block h-[3px] w-full bg-[#333]"></span>
+                <span class="block h-[3px] w-full bg-[#333]"></span>
+                <span class="block h-[3px] w-full bg-[#333]"></span>
             </label>
         </nav>
     </div>

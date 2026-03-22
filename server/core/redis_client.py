@@ -1,7 +1,8 @@
-
-import redis
 import json
 from typing import Any, Optional
+
+import redis
+
 from core.config import settings
 from core.logging_config import get_logger
 
@@ -9,31 +10,31 @@ logger = get_logger(__name__)
 
 
 class RedisClient:
-    """Redis client wrapper"""
-    
+    """Redis client wrapper."""
+
     def __init__(self):
         self.client: Optional[redis.Redis] = None
         self.is_connected = False
         self._connect()
-    
+
     def _connect(self):
-        """Connect to Redis"""
+        """Connect to Redis."""
         try:
             self.client = redis.from_url(
                 settings.REDIS_URL,
                 encoding="utf-8",
                 decode_responses=True,
-                socket_connect_timeout=5
+                socket_connect_timeout=5,
             )
             self.client.ping()
             self.is_connected = True
-            logger.info(f"✅ Redis connected: {settings.REDIS_URL}")
-        except Exception as e:
+            logger.info(f"Redis connected: {settings.REDIS_URL}")
+        except Exception as exc:
             self.is_connected = False
-            logger.warning(f"⚠️  Redis not available: {e}")
-    
+            logger.warning(f"Redis not available: {exc}")
+
     def get(self, key: str) -> Optional[Any]:
-        """Get value from cache"""
+        """Get value from cache."""
         if not self.is_connected:
             return None
         try:
@@ -43,12 +44,12 @@ class RedisClient:
                 return json.loads(value)
             logger.debug(f"Cache MISS: {key}")
             return None
-        except Exception as e:
-            logger.error(f"Redis GET error: {e}")
+        except Exception as exc:
+            logger.error(f"Redis GET error: {exc}")
             return None
-    
+
     def set(self, key: str, value: Any, expire: int = None) -> bool:
-        """Set value in cache"""
+        """Set value in cache."""
         if not self.is_connected:
             return False
         try:
@@ -58,12 +59,12 @@ class RedisClient:
             self.client.setex(key, expire, serialized)
             logger.debug(f"Cache SET: {key} (expires in {expire}s)")
             return True
-        except Exception as e:
-            logger.error(f"Redis SET error: {e}")
+        except Exception as exc:
+            logger.error(f"Redis SET error: {exc}")
             return False
-    
+
     def delete(self, key: str) -> bool:
-        """Delete key from cache"""
+        """Delete key from cache."""
         if not self.is_connected:
             return False
         try:
@@ -71,12 +72,12 @@ class RedisClient:
             if result:
                 logger.debug(f"Cache DELETE: {key}")
             return bool(result)
-        except Exception as e:
-            logger.error(f"Redis DELETE error: {e}")
+        except Exception as exc:
+            logger.error(f"Redis DELETE error: {exc}")
             return False
-    
+
     def delete_pattern(self, pattern: str) -> int:
-        """Delete keys matching pattern"""
+        """Delete keys matching pattern."""
         if not self.is_connected:
             return 0
         try:
@@ -86,12 +87,12 @@ class RedisClient:
                 logger.debug(f"Deleted {deleted} keys matching '{pattern}'")
                 return deleted
             return 0
-        except Exception as e:
-            logger.error(f"Redis DELETE PATTERN error: {e}")
+        except Exception as exc:
+            logger.error(f"Redis DELETE PATTERN error: {exc}")
             return 0
-    
+
     def get_info(self) -> dict:
-        """Get Redis info"""
+        """Get Redis info."""
         if not self.is_connected:
             return {"status": "disconnected"}
         try:
@@ -100,17 +101,15 @@ class RedisClient:
                 "status": "connected",
                 "version": info.get("redis_version"),
                 "used_memory": info.get("used_memory_human"),
-                "total_keys": self.client.dbsize()
+                "total_keys": self.client.dbsize(),
             }
-        except Exception as e:
-            return {"status": "error", "error": str(e)}
+        except Exception as exc:
+            return {"status": "error", "error": str(exc)}
 
 
-# Global instance
 redis_client = RedisClient()
 
 
-# Helper functions
 def get_cv_cache_key(cv_id: int) -> str:
     return f"cv:analysis:{cv_id}"
 

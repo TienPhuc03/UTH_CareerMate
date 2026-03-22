@@ -8,6 +8,7 @@ from typing import Optional
 from core.config import settings
 from database.session import get_db
 from modules.users.models import User
+from modules.users.roles import normalize_user_role
 
 # Security scheme for automatic Swagger documentation
 security = HTTPBearer()
@@ -55,6 +56,7 @@ def get_current_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    user.role = normalize_user_role(user.role) or "candidate"
     return user
 
 def require_admin(current_user: User = Depends(get_current_user)) -> User:

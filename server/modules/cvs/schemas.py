@@ -1,7 +1,7 @@
-# 
-from pydantic import BaseModel, EmailStr
-from typing import Any, Dict, Optional
 from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 class CVCreate(BaseModel):
     full_name: str
@@ -12,6 +12,8 @@ class CVCreate(BaseModel):
     education: Optional[str] = None  
 
 class CVResponse(CVCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     user_id: Optional[int] = None
     file_path: Optional[str] = None
@@ -22,5 +24,3 @@ class CVResponse(CVCreate):
     created_at: datetime
     updated_at: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True

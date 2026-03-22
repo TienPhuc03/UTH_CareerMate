@@ -78,7 +78,7 @@ def create_job(
     """Đăng tin tuyển dụng mới với validation nâng cao"""
     
     # Validation: Kiểm tra salary
-    if job_data.salary_min and job_data.salary_max:
+    if job_data.salary_min is not None and job_data.salary_max is not None:
         if job_data.salary_min > job_data.salary_max:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -121,7 +121,7 @@ def create_job(
 def get_my_jobs(
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1, le=100),
-    status_filter: Optional[str] = Query(None, regex="^(active|closed|draft)$"),
+    status_filter: Optional[str] = Query(None, pattern="^(active|closed|draft)$"),
     db: Session = Depends(get_db),
     current_user: User = Depends(require_recruiter)
 ):
@@ -179,12 +179,12 @@ def update_job(
         )
     
     # Validation cho update
-    update_data = job_update.dict(exclude_unset=True)
+    update_data = job_update.model_dump(exclude_unset=True)
     
     # Check salary nếu đang update
     new_min = update_data.get("salary_min", job.salary_min)
     new_max = update_data.get("salary_max", job.salary_max)
-    if new_min and new_max and new_min > new_max:
+    if new_min is not None and new_max is not None and new_min > new_max:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="salary_min cannot exceed salary_max"

@@ -34,7 +34,7 @@ def upload_cv_file(
     db: Session = Depends(get_db)
 ):
     """Upload and analyze CV with Gemini AI"""
-    logger.info(f"📤 CV upload started: {email}")
+    logger.info(f"CV upload started: {email}")
     
     MAX_FILE_SIZE = 5 * 1024 * 1024 # 5MB
     
@@ -60,17 +60,17 @@ def upload_cv_file(
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
-    logger.info(f"💾 File saved: {filename}")
+    logger.info(f"File saved: {filename}")
     
     # Parse CV
     try:
         parsed_data = parse_cv_file(file_path, file_ext)
-        logger.info(f"✅ CV parsed. Found {len(parsed_data.get('skills', []))} skills")
+        logger.info(f"CV parsed. Found {len(parsed_data.get('skills', []))} skills")
     except Exception as e:
         # Nếu lỗi thì xóa file rác đi
         if os.path.exists(file_path):
             os.remove(file_path)
-        logger.error(f"❌ Parse failed: {e}")
+        logger.error(f"Parse failed: {e}")
         raise HTTPException(422, f"Cannot parse CV: {e}")
     
     #  Analyze with Gemini
@@ -81,7 +81,7 @@ def upload_cv_file(
             target_industry=target_industry
         )
     except Exception as e:
-        logger.warning(f"⚠️  AI analysis failed: {e}")
+        logger.warning(f"AI analysis failed: {e}")
     
     #Tìm User ID dựa trên Email
     user = db.query(User).filter(User.email == email).first()
@@ -111,7 +111,7 @@ def upload_cv_file(
         ai_feedback=ai_analysis   
     )
     
-    logger.info(f"✅ CV saved to DB: ID={cv_record.id}")
+    logger.info(f"CV saved to DB: ID={cv_record.id}")
     if ai_analysis:
         cache_key = get_cv_cache_key(cv_record.id)
         redis_client.set(cache_key, ai_analysis, expire=3600)
@@ -167,7 +167,7 @@ def re_analyze_cv(
     cached = redis_client.get(cache_key)
     
     if cached:
-        logger.info(f"🎯 Cache HIT for CV {cv_id}")
+        logger.info(f"Cache HIT for CV {cv_id}")
         return {
             "cv_id": cv_id,
             "analysis": cached,
@@ -179,7 +179,7 @@ def re_analyze_cv(
     if not cv:
         raise HTTPException(404, "CV not found")
     
-    logger.info(f"🔄 Cache MISS for CV {cv_id}, analyzing...")
+    logger.info(f"Cache MISS for CV {cv_id}, analyzing...")
     
     # Sử dụng text đã lưu trong DB để phân tích lại
     analysis = analyze_cv_with_gemini(cv.experience, target_industry)
@@ -266,7 +266,7 @@ def delete_cv(cv_id: int, db: Session = Depends(get_db)):
             os.remove(cv.file_path)
             logger.info(f"Deleted file: {cv.file_path}")
         except Exception as e:
-            logger.error(f"⚠️ Error deleting file: {e}")
+            logger.error(f"Error deleting file: {e}")
 
     # Delete from DB
     db.delete(cv)

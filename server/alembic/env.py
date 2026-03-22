@@ -12,10 +12,11 @@ from database.base import Base
 from core.config import settings
 
 # Import ALL models (IMPORTANT!)
-from modules.users.models import User
+from modules.users.models import User, Profile, UserSession, ActivityLog
 from modules.cvs.models import CV
-from modules.jobs.models import Job
+from modules.jobs.models import Job, Company, Skill, UserSkill, JobSkill
 from modules.applications.models import Application
+from modules.ai_coach.models import AICoachFeedback
 
 # Alembic Config object
 config = context.config

@@ -119,9 +119,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             const token = localStorage.getItem('access_token');
             const email = localStorage.getItem('user_email');
-            const role = localStorage.getItem('user_role');
+            const storedRole = localStorage.getItem('user_role');
+            const role = storedRole === 'student' ? 'candidate' : storedRole;
 
-            if (!token || (role !== 'student' && role !== 'candidate')) {
+            if (storedRole !== role && role) {
+                localStorage.setItem('user_role', role);
+            }
+
+            if (!token || role !== 'candidate') {
                 window.location.href = '../auth/login.html';
                 return;
             }

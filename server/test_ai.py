@@ -1,51 +1,45 @@
-# server/test_ai.py
 import os
-from google import genai
+
 from dotenv import load_dotenv
+from google import genai
 
-load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
 
-if not api_key:
-    print("❌ Thiếu API Key")
-    exit()
+def main():
+    load_dotenv()
+    api_key = os.getenv("GEMINI_API_KEY")
 
-client = genai.Client(api_key=api_key)
+    if not api_key:
+        print("Missing API key")
+        raise SystemExit(1)
 
-print(f"📡 Đang hỏi Google danh sách model cho Key: {api_key[:5]}...")
+    client = genai.Client(api_key=api_key)
+    print(f"Checking Gemini models for key prefix: {api_key[:5]}...")
 
-try:
-    # Lấy danh sách các model
-    # Lưu ý: Với SDK mới (google-genai), cú pháp list hơi khác
-    # Chúng ta sẽ thử gọi model cơ bản nhất để test
-    
-    print("\n--- THỬ NGHIỆM MODEL CỤ THỂ ---")
-    
-    # Danh sách các tên model có thể đúng. Hãy thử lần lượt.
     candidates = [
         "gemini-1.5-flash",
         "gemini-1.5-flash-001",
         "gemini-1.5-flash-002",
         "gemini-1.5-pro",
         "gemini-pro",
-        "gemini-3-flash-preview"
+        "gemini-3-flash-preview",
     ]
-    
+
     for model_name in candidates:
-        print(f"\n👉 Đang thử model: {model_name}")
+        print(f"Trying model: {model_name}")
         try:
             response = client.models.generate_content(
                 model=model_name,
-                contents="Hello, are you working?"
+                contents="Hello, are you working?",
             )
-            print(f"✅ THÀNH CÔNG! Model chuẩn là: {model_name}")
-            print(f"   Trả lời: {response.text}")
-            break # Tìm thấy rồi thì dừng lại
-        except Exception as e:
-            if "404" in str(e):
-                print(f"❌ Không tìm thấy (404)")
+            print(f"Success with model: {model_name}")
+            print(f"Response: {response.text}")
+            break
+        except Exception as exc:
+            if "404" in str(exc):
+                print("Not found (404)")
             else:
-                print(f"⚠️ Lỗi khác: {e}")
+                print(f"Other error: {exc}")
 
-except Exception as e:
-    print(f"Lỗi chung: {e}")
+
+if __name__ == "__main__":
+    main()

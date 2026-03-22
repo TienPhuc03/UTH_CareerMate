@@ -1,6 +1,8 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.base import  test_connection
+from database.base import test_connection
 from modules.users.router import router as user_router
 from modules.jobs.router import router as jobs_router 
 from modules.cvs.router import router as cv_router
@@ -10,9 +12,8 @@ from modules.admin.router import router as admin_router
 from modules.recruiter.router import router as recruiter_router
 import sys
 import os
-from database.base import Base, engine # Đảm bảo import đúng file cấu hình DB của bạn
 # Import config and logging
-from core.logging_config import setup_logging, get_logger
+from core.logging_config import setup_logging
 from core.config import settings, display_settings
 from core.redis_client import redis_client
 
@@ -21,12 +22,34 @@ from core.redis_client import redis_client
 logger = setup_logging()
 test_connection()
 
-Base.metadata.create_all(bind=engine)
-
 
 # Đảm bảo Python tìm thấy các module khi chạy từ thư mục server
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("=" * 70)
+    logger.info(" CAREERMATE APPLICATION STARTUP")
+    logger.info("=" * 70)
+
+    display_settings()
+
+    redis_info = redis_client.get_info()
+    if redis_info.get("status") == "connected":
+        logger.info(f" Redis connected - {redis_info.get('total_keys', 0)} keys")
+    else:
+        logger.warning(" Redis not connected - caching disabled")
+
+    logger.info("=" * 70)
+    logger.info(" APPLICATION READY")
+    logger.info(" API Docs: http://localhost:8000/docs")
+    logger.info("=" * 70)
+
+    try:
+        yield
+    finally:
+        logger.info(" Application shutting down...")
 
 
 app = FastAPI(
@@ -34,13 +57,14 @@ app = FastAPI(
     description="AI-powered career platform for Vietnamese job seekers",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Cho phép tất cả các nguồn (có thể tùy chỉnh theo môi trường)
+    allow_origins=settings.allowed_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -58,35 +82,6 @@ app.include_router(admin_router, prefix="/api/admin", tags=["Admin"])
 app.include_router(recruiter_router, prefix="/api/recruiter", tags=["Recruiter"])
 
 logger.info("All routers registered")
-
-
-@app.on_event("startup")
-def startup_event():
-    """Application startup"""
-    logger.info("=" * 70)
-    logger.info(" CAREERMATE APPLICATION STARTUP")
-    logger.info("=" * 70)
-    
-    # Display settings
-    display_settings()
-    
-    # Check Redis
-    redis_info = redis_client.get_info()
-    if redis_info.get("status") == "connected":
-        logger.info(f" Redis connected - {redis_info.get('total_keys', 0)} keys")
-    else:
-        logger.warning(" Redis not connected - caching disabled")
-
-    logger.info("=" * 70)
-    logger.info(" APPLICATION READY")
-    logger.info(f" API Docs: http://localhost:8000/docs")
-    logger.info("=" * 70)
-
-
-@app.on_event("shutdown")
-def shutdown_event():
-    """Application shutdown"""
-    logger.info(" Application shutting down...")
 
 
 @app.get("/")

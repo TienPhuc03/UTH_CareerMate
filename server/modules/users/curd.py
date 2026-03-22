@@ -1,24 +1,27 @@
-
 from sqlalchemy.orm import Session
-from modules.users.models import User
+
 from core.security import get_password_hash
+from modules.users.models import User
+from modules.users.roles import normalize_user_role
+
 
 def get_user_by_email(db: Session, email: str):
-    """Get user by email"""
+    """Get user by email."""
     return db.query(User).filter(User.email == email).first()
 
+
 def get_user_by_id(db: Session, user_id: int):
-    """Get user by ID"""
+    """Get user by ID."""
     return db.query(User).filter(User.id == user_id).first()
 
-def create_user(db: Session, email: str, full_name: str, password: str, role:str):
-    """Create a new user"""
-    hashed_password = get_password_hash(password)
+
+def create_user(db: Session, email: str, full_name: str, password: str, role: str):
+    """Create a new user."""
     db_user = User(
         email=email,
         full_name=full_name,
-        hashed_password=hashed_password,
-        role=role
+        hashed_password=get_password_hash(password),
+        role=normalize_user_role(role) or "candidate",
     )
     db.add(db_user)
     db.commit()

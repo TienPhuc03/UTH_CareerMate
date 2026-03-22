@@ -14,9 +14,10 @@ def get_user_by_id(db: Session, user_id: int):
     """Get user by ID."""
     return db.query(User).filter(User.id == user_id).first()
 
+def create_user(db: Session, email: str, full_name: str, password: str | None, role: str = "candidate"):
+    # Nếu user Google (password=None) thì không hash
+    hashed_password = get_password_hash(password) if password else None
 
-def create_user(db: Session, email: str, full_name: str, password: str, role: str):
-    """Create a new user."""
     db_user = User(
         email=email,
         full_name=full_name,

@@ -1,327 +1,481 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Find your dream job and create professional CV">
-    <meta name="keywords" content="job search, employment, create CV, recruitment">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Find your dream job and create professional CV"
+    />
+    <meta
+      name="keywords"
+      content="job search, employment, create CV, recruitment"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Career Mate - Find Jobs & Create Professional CV</title>
     <script>
       // Load header
-      fetch('../components/header.html')
-       .then(response => response.text())
-       .then(data => {
-            document.getElementById('header-container').innerHTML = data
-            const script = document.createElement('script');
-            script.src = '../components/auth-script.js';
-            document.body.appendChild(script);
-          });
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "../components/auth-script.js";
+          document.body.appendChild(script);
+        });
 
-       // Load footer
-      fetch('../components/footer.html')
-       .then(response => response.text())
-       .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-         });
+      // Load footer
+      fetch("../components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
+        });
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- header -->
     <div id="header-container"></div>
     <!--body-->
-    <section class="relative bg-gradient-to-r from-green-50 to-blue-50 py-16 md:py-24">
-        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                        Tìm <span class="text-green-600">Công Việc Mơ Ước</span> Cùng Chúng Tôi
-                    </h1>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Khám phá hàng nghìn cơ hội việc làm và tạo CV chuyên nghiệp để nổi bật với nhà tuyển dụng.
-                        Hành trình sự nghiệp của bạn bắt đầu từ đây.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="Findjobs.html"
-                            class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700 text-center text-lg">
-                            Tìm việc làm
-                        </a>
-                        <a href="Uploadcv.html"
-                            class="bg-white border-2 border-green-600 text-green-600 font-bold px-8 py-4 rounded-full hover:bg-green-50 text-center text-lg">
-                            Tạo CV
-                        </a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="bg-white p-8 rounded-2xl shadow-xl">
-                        <img src="../src/img/thành công.jpg" alt="Career Success" class="rounded-xl w-full h-auto">
-                    </div>
-                </div>
+    <section
+      class="relative bg-gradient-to-r from-green-50 to-blue-50 py-16 md:py-24"
+    >
+      <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
+            >
+              Tìm <span class="text-green-600">Công Việc Mơ Ước</span> Cùng
+              Chúng Tôi
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+              Khám phá hàng nghìn cơ hội việc làm và tạo CV chuyên nghiệp để nổi
+              bật với nhà tuyển dụng. Hành trình sự nghiệp của bạn bắt đầu từ
+              đây.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="Findjobs.html"
+                class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700 text-center text-lg"
+              >
+                Tìm việc làm
+              </a>
+              <a
+                href="Uploadcv.html"
+                class="bg-white border-2 border-green-600 text-green-600 font-bold px-8 py-4 rounded-full hover:bg-green-50 text-center text-lg"
+              >
+                Tạo CV
+              </a>
             </div>
+          </div>
+          <div class="relative">
+            <div class="bg-white p-8 rounded-2xl shadow-xl">
+              <img
+                src="../src/img/thành công.jpg"
+                alt="Career Success"
+                class="rounded-xl w-full h-auto"
+              />
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Job Search Section -->
     <section id="jobs" class="py-16 bg-white">
-        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Tìm Công Việc Hoàn Hảo</h2>
+      <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12"
+        >
+          Tìm Công Việc Hoàn Hảo
+        </h2>
 
-            <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white p-2 rounded-full shadow-lg border">
-                    <div class="flex flex-col md:flex-row gap-2">
-                        <input type="text" placeholder="Chức danh, từ khóa hoặc công ty"
-                            class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none">
-                        <input type="text" placeholder="Thành phố, tỉnh hoặc làm việc từ xa"
-                            class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none">
-                        <button class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700">
-                            Tìm việc
-                        </button>
-                    </div>
-                </div>
+        <div class="max-w-4xl mx-auto mb-12">
+          <div class="bg-white p-2 rounded-full shadow-lg border">
+            <div class="flex flex-col md:flex-row gap-2">
+              <input
+                type="text"
+                placeholder="Chức danh, từ khóa hoặc công ty"
+                class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Thành phố, tỉnh hoặc làm việc từ xa"
+                class="flex-grow px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              />
+              <button
+                class="bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700"
+              >
+                Tìm việc
+              </button>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-green-600 text-2xl">💼</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Công nghệ</h3>
-                    <p class="text-gray-600"></p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-blue-600 text-2xl">🏥</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Y tế</h3>
-                    <p class="text-gray-600"></p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-purple-600 text-2xl">💰</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Tài chính</h3>
-                    <p class="text-gray-600"></p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-yellow-600 text-2xl">🎓</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Giáo dục</h3>
-                    <p class="text-gray-600"></p>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
+          >
+            <div
+              class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <span class="text-green-600 text-2xl">💼</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Công nghệ</h3>
+            <p class="text-gray-600"></p>
+          </div>
+          <div
+            class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
+          >
+            <div
+              class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <span class="text-blue-600 text-2xl">🏥</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Y tế</h3>
+            <p class="text-gray-600"></p>
+          </div>
+          <div
+            class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
+          >
+            <div
+              class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <span class="text-purple-600 text-2xl">💰</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Tài chính</h3>
+            <p class="text-gray-600"></p>
+          </div>
+          <div
+            class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
+          >
+            <div
+              class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4"
+            >
+              <span class="text-yellow-600 text-2xl">🎓</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Giáo dục</h3>
+            <p class="text-gray-600"></p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CV Section -->
     <section id="cv-section" class="py-16 bg-gray-50">
-        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                        Tạo CV Chuyên Nghiệp <span class="text-green-600">Trong Vài Phút</span>
-                    </h2>
-                    <p class="text-gray-600 mb-8">
-                        Chọn từ các mẫu thiết kế chuyên nghiệp và tạo CV thu hút sự chú ý của nhà tuyển dụng.
-                        Dễ tùy chỉnh, sẵn sàng tải xuống.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center">
-                            <span class="text-green-600 mr-3">✔</span>
-                            <span>Mẫu chuyên nghiệp được thiết kế bởi chuyên gia</span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-green-600 mr-3">✔</span>
-                            <span>Tùy chỉnh dễ dàng với công cụ của chúng tôi</span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="text-green-600 mr-3">✔</span>
-                            <span>Tải xuống PDF, Word hoặc chia sẻ trực tuyến</span>
-                        </li>
-                    </ul>
-                    <a href="Uploadcv.html"
-                        class="inline-block bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700">
-                        Bắt đầu tạo CV
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-xl shadow-lg">
-                        <img src="../src/img/cvs1.jpg" alt="Mẫu CV 1" class="rounded-lg w-full h-48 object-cover">
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-lg mt-8">
-                        <img src="../src/img/cvs2.jpg" alt="Mẫu CV 2" class="rounded-lg w-full h-48 object-cover">
-                    </div>
-                </div>
+      <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Tạo CV Chuyên Nghiệp
+              <span class="text-green-600">Trong Vài Phút</span>
+            </h2>
+            <p class="text-gray-600 mb-8">
+              Chọn từ các mẫu thiết kế chuyên nghiệp và tạo CV thu hút sự chú ý
+              của nhà tuyển dụng. Dễ tùy chỉnh, sẵn sàng tải xuống.
+            </p>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <span class="text-green-600 mr-3">✔</span>
+                <span>Mẫu chuyên nghiệp được thiết kế bởi chuyên gia</span>
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-3">✔</span>
+                <span>Tùy chỉnh dễ dàng với công cụ của chúng tôi</span>
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-3">✔</span>
+                <span>Tải xuống PDF, Word hoặc chia sẻ trực tuyến</span>
+              </li>
+            </ul>
+            <a
+              href="Uploadcv.html"
+              class="inline-block bg-green-600 text-white font-bold px-8 py-4 rounded-full hover:bg-green-700"
+            >
+              Bắt đầu tạo CV
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-xl shadow-lg">
+              <img
+                src="../src/img/cvs1.jpg"
+                alt="Mẫu CV 1"
+                class="rounded-lg w-full h-48 object-cover"
+              />
             </div>
+            <div class="bg-white p-4 rounded-xl shadow-lg mt-8">
+              <img
+                src="../src/img/cvs2.jpg"
+                alt="Mẫu CV 2"
+                class="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Featured Jobs -->
     <section class="py-16 bg-white">
-        <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Việc Làm Nổi Bật</h2>
-                <a href="#jobs" class="text-green-600 font-bold hover:text-green-700">Xem tất cả →</a>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Lập Trình Viên Frontend</h3>
-                            <p class="text-gray-600">TechCorp Inc.</p>
-                        </div>
-                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-bold">Mới</span>
-                    </div>
-                    <p class="text-gray-600 mb-4">Tìm lập trình viên frontend có kinh nghiệm với React.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Từ xa</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">25tr-40tr (vnd)</span>
-                    </div>
-                    <a href="../page/Findjobs.html"
-                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
-                        Ứng tuyển ngay
-                    </a>
-                </div>
-
-                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Thiết Kế UX</h3>
-                            <p class="text-gray-600">DesignStudio</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-4">Tham gia đội ngũ sáng tạo để thiết kế trải nghiệm người dùng tuyệt vời.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Lai</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">10tr-25tr (vnd)</span>
-                    </div>
-                    <a href="../page/Findjobs.html"
-                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
-                        Ứng tuyển ngay
-                    </a>
-                </div>
-
-                <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Phân Tích Dữ Liệu</h3>
-                            <p class="text-gray-600">DataTech Solutions</p>
-                        </div>
-                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-bold">Gấp</span>
-                    </div>
-                    <p class="text-gray-600 mb-4">Phân tích dữ liệu và cung cấp thông tin chi tiết cho quyết định kinh doanh.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Tại văn phòng</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Toàn thời gian</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">8tr-25tr (vnd)</span>
-                    </div>
-                    <a href="../page/Findjobs.html"
-                        class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700">
-                        Ứng tuyển ngay
-                    </a>
-                </div>
-            </div>
+      <div class="max-w-[1200px] mx-auto px-4 xl:px-0">
+        <div class="flex justify-between items-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+            Việc Làm Nổi Bật
+          </h2>
+          <a href="#jobs" class="text-green-600 font-bold hover:text-green-700"
+            >Xem tất cả →</a
+          >
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Lập Trình Viên Frontend</h3>
+                <p class="text-gray-600">TechCorp Inc.</p>
+              </div>
+              <span
+                class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-bold"
+                >Mới</span
+              >
+            </div>
+            <p class="text-gray-600 mb-4">
+              Tìm lập trình viên frontend có kinh nghiệm với React.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Từ xa</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Toàn thời gian</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >25tr-40tr (vnd)</span
+              >
+            </div>
+            <a
+              href="../page/Findjobs.html"
+              class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700"
+            >
+              Ứng tuyển ngay
+            </a>
+          </div>
+
+          <div
+            class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Thiết Kế UX</h3>
+                <p class="text-gray-600">DesignStudio</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Tham gia đội ngũ sáng tạo để thiết kế trải nghiệm người dùng tuyệt
+              vời.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Lai</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Toàn thời gian</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >10tr-25tr (vnd)</span
+              >
+            </div>
+            <a
+              href="../page/Findjobs.html"
+              class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700"
+            >
+              Ứng tuyển ngay
+            </a>
+          </div>
+
+          <div
+            class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Phân Tích Dữ Liệu</h3>
+                <p class="text-gray-600">DataTech Solutions</p>
+              </div>
+              <span
+                class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-bold"
+                >Gấp</span
+              >
+            </div>
+            <p class="text-gray-600 mb-4">
+              Phân tích dữ liệu và cung cấp thông tin chi tiết cho quyết định
+              kinh doanh.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Tại văn phòng</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >Toàn thời gian</span
+              >
+              <span
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                >8tr-25tr (vnd)</span
+              >
+            </div>
+            <a
+              href="../page/Findjobs.html"
+              class="block w-full bg-green-600 text-white text-center font-bold py-3 rounded-lg hover:bg-green-700"
+            >
+              Ứng tuyển ngay
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div class="max-w-[1200px] mx-auto px-4 xl:px-0 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Sẵn Sàng Thăng Tiến Sự Nghiệp?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">
-                Tham gia cùng hàng nghìn chuyên gia đã tìm được công việc mơ ước qua nền tảng của chúng tôi.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="../auth/Login.html" class="bg-white text-green-600 font-bold px-8 py-4 rounded-full hover:bg-gray-100 text-lg">
-                    Tạo tài khoản miễn phí
-                </a>
-                <a href="../page/Findjobs.html"
-                    class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 text-lg">
-                    Khám phá việc làm
-                </a>
-            </div>
+    <section
+      class="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white"
+    >
+      <div class="max-w-[1200px] mx-auto px-4 xl:px-0 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Sẵn Sàng Thăng Tiến Sự Nghiệp?
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+          Tham gia cùng hàng nghìn chuyên gia đã tìm được công việc mơ ước qua
+          nền tảng của chúng tôi.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="../auth/Login.html"
+            class="bg-white text-green-600 font-bold px-8 py-4 rounded-full hover:bg-gray-100 text-lg"
+          >
+            Tạo tài khoản miễn phí
+          </a>
+          <a
+            href="../page/Findjobs.html"
+            class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 text-lg"
+          >
+            Khám phá việc làm
+          </a>
         </div>
+      </div>
     </section>
-    
 
     <!-- footer -->
     <div id="footer-container"></div>
 
     <script>
-        // Check if user is logged in
-        function checkAuthStatus() {
-            const token = localStorage.getItem('access_token');
-            const email = localStorage.getItem('user_email');
-            
-            if (token && email) {
-                // User is logged in - show user info
-                document.getElementById('authButtons').classList.add('hidden');
-                document.getElementById('userInfo').classList.remove('hidden');
-                document.getElementById('userInfo').classList.add('flex');
-                
-                // Extract user name from email (before @)
-                const nameParts = email.split('@')[0];
-                const displayName = nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
-                const initials = displayName.substring(0, 2).toUpperCase();
-                
-                // Set user info
-                document.getElementById('userNameDisplay').textContent = displayName;
-                document.getElementById('userEmailDisplay').textContent = email;
-                document.getElementById('dropdownUserName').textContent = displayName;
-                document.getElementById('dropdownUserEmail').textContent = email;
-                document.getElementById('userAvatar').textContent = initials;
-            } else {
-                // User is not logged in - show auth buttons
-                document.getElementById('authButtons').classList.remove('hidden');
-                document.getElementById('userInfo').classList.add('hidden');
-            }
-        }
-          checkAuthStatus();
+      // Đọc token từ URL sau Google OAuth
+      (function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenFromGoogle = urlParams.get("token");
+        const emailFromGoogle = urlParams.get("email");
+        const roleFromGoogle = urlParams.get("role");
 
-        function logout() {
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('user_email');
-            alert('Đăng xuất thành công!');
-            window.location.reload();
+        if (tokenFromGoogle) {
+          localStorage.setItem("access_token", tokenFromGoogle);
+          localStorage.setItem("user_email", emailFromGoogle || "");
+          localStorage.setItem("user_role", roleFromGoogle || "student");
+
+          // Xóa ?token=...&email=...&role=... khỏi URL cho gọn
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname,
+          );
+        }
+      })();
+
+      // Check if user is logged in
+      function checkAuthStatus() {
+        const token = localStorage.getItem("access_token");
+        const email = localStorage.getItem("user_email");
+
+        if (token && email) {
+          // User is logged in - show user info
+          document.getElementById("authButtons").classList.add("hidden");
+          document.getElementById("userInfo").classList.remove("hidden");
+          document.getElementById("userInfo").classList.add("flex");
+
+          // Extract user name from email (before @)
+          const nameParts = email.split("@")[0];
+          const displayName =
+            nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
+          const initials = displayName.substring(0, 2).toUpperCase();
+
+          // Set user info
+          document.getElementById("userNameDisplay").textContent = displayName;
+          document.getElementById("userEmailDisplay").textContent = email;
+          document.getElementById("dropdownUserName").textContent = displayName;
+          document.getElementById("dropdownUserEmail").textContent = email;
+          document.getElementById("userAvatar").textContent = initials;
+        } else {
+          // User is not logged in - show auth buttons
+          document.getElementById("authButtons").classList.remove("hidden");
+          document.getElementById("userInfo").classList.add("hidden");
+        }
+      }
+      checkAuthStatus();
+
+      function logout() {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("user_email");
+        alert("Đăng xuất thành công!");
+        window.location.reload();
+      }
+
+      // Toggle dropdown menu
+      document.addEventListener("DOMContentLoaded", function () {
+        const userMenuToggle = document.getElementById("userMenuToggle");
+        const userDropdown = document.getElementById("userDropdown");
+
+        if (userMenuToggle) {
+          userMenuToggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle("hidden");
+          });
         }
 
-        // Toggle dropdown menu
-        document.addEventListener('DOMContentLoaded', function() {
-            const userMenuToggle = document.getElementById('userMenuToggle');
-            const userDropdown = document.getElementById('userDropdown');
-            
-            if (userMenuToggle) {
-                userMenuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    userDropdown.classList.toggle('hidden');
-                });
-            }
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (userDropdown && !userDropdown.contains(e.target) && !userMenuToggle.contains(e.target)) {
-                    userDropdown.classList.add('hidden');
-                }
-            });
-            
-            // Close dropdown when clicking on a menu item
-            const dropdownItems = document.querySelectorAll('#userDropdown a, #userDropdown button');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    userDropdown.classList.add('hidden');
-                });
-            });
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (e) {
+          if (
+            userDropdown &&
+            !userDropdown.contains(e.target) &&
+            !userMenuToggle.contains(e.target)
+          ) {
+            userDropdown.classList.add("hidden");
+          }
         });
 
-        // Check auth status on page load
-    </script>
-</body>
+        // Close dropdown when clicking on a menu item
+        const dropdownItems = document.querySelectorAll(
+          "#userDropdown a, #userDropdown button",
+        );
+        dropdownItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            userDropdown.classList.add("hidden");
+          });
+        });
+      });
 
+      // Check auth status on page load
+    </script>
+  </body>
 </html>

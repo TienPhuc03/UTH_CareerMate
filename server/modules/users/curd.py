@@ -21,7 +21,7 @@ def create_user(db: Session, email: str, full_name: str, password: str | None, r
     db_user = User(
         email=email,
         full_name=full_name,
-        hashed_password=get_password_hash(password),
+        hashed_password=hashed_password,
         role=normalize_user_role(role) or "candidate",
     )
     db.add(db_user)

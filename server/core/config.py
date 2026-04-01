@@ -5,11 +5,15 @@ from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_FILE = os.path.join(BASE_DIR, ".env")
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
         case_sensitive=False,
     )
@@ -53,6 +57,7 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: Optional[str] = None
     GOOGLE_CLIENT_SECRET: Optional[str] = None
     GOOGLE_REDIRECT_URI: str = "http://127.0.0.1:8000/api/Auth/google/callback"
+    GOOGLE_OAUTH_SUCCESS_REDIRECT_URL: str = "http://127.0.0.1:5500/client/page/Homepage.html"
 
     @field_validator("DATABASE_URL", "REDIS_URL", "ALLOWED_ORIGINS", mode="before")
     @classmethod
@@ -120,4 +125,6 @@ def display_settings():
     print(f"AI Model: {settings.GEMINI_MODEL}")
     print(f"Gemini API Key: {'Set' if settings.GEMINI_API_KEY else 'Not set'}")
     print(f"Allowed Origins: {settings.allowed_origins_list}")
+    print(f"Google Redirect URI: {settings.GOOGLE_REDIRECT_URI}")
+    print(f"Google Success Redirect: {settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}")
     print("=" * 60)

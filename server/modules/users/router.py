@@ -1,18 +1,21 @@
 from typing import Annotated
+from urllib.parse import urlencode
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
 from core import security
+from core.config import settings
 from core.dependencies import get_current_user
 from database.session import get_db
 from modules.users import curd, schemas
+from modules.users.google_oauth import (
+    exchange_code_for_token, 
+    get_google_auth_url,
+    get_google_user_info,
+)
 from modules.users.roles import normalize_user_role
-
-from fastapi.responses import RedirectResponse, HTMLResponse
-from modules.users.google_oauth import get_google_auth_url, exchange_code_for_token, get_google_user_info
-from modules.users import curd
-from core import security
 
 
 router = APIRouter()
@@ -48,20 +51,14 @@ def login(user: schemas.UserLogin, db: DbDependency):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Email hoac mat khau khong chinh xac",
         )
-    
-    if not security.verify_password(user.password, db_user.hashed_password):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Email hoặc mật khẩu không chính xác"
-        )
-    
-    
-    # Create access token
+
     access_token = security.create_access_token(
-        data={"sub": db_user.email,
-            "role": db_user.role}
+        data={
+            "sub": db_user.email,
+            "role": db_user.role,
+        }
     )
-    
+
     return {
         "access_token": access_token,
         "token_type": "bearer",
@@ -71,53 +68,65 @@ def login(user: schemas.UserLogin, db: DbDependency):
 
 
 @router.get("/profile", response_model=schemas.UserOut)
-def get_profile(current_user = Depends(get_current_user)):
+def get_profile(current_user=Depends(get_current_user)):
     return current_user
+
 
 @router.get("/google/login")
 def google_login():
-    """Redirect người dùng đến trang đăng nhập Google"""
+    """Redirect nguoi dung den trang dang nhap Google."""
     auth_url = get_google_auth_url()
     return RedirectResponse(url=auth_url)
 
-# GG Oauth2 Routes
+
 @router.get("/google/callback")
-async def google_callback(code: str, db: DbDependency):
+async def google_callback(db: DbDependency, code: str | None = None, error: str | None = None):
     """
-    Google redirect về đây sau khi user đăng nhập thành công.
-    Đổi code -> token -> user info -> tạo/lấy user -> trả JWT
+    Google redirect ve day sau khi user dang nhap thanh cong.
+    Doi code -> token -> user info -> tao/lay user -> tra JWT.
     """
-    # 1. Đổi code lấy access_token
+    if error:
+        raise HTTPException(status_code=400, detail=f"Google OAuth error: {error}")
+
     token_data = await exchange_code_for_token(code)
     access_token_google = token_data.get("access_token")
 
     if not access_token_google:
-        raise HTTPException(status_code=400, detail="Không nhận được access token từ Google")
+        raise HTTPException(status_code=400, detail="Khong nhan duoc access token tu Google")
 
-    # 2. Lấy thông tin user từ Google
     google_user = await get_google_user_info(access_token_google)
     email = google_user.get("email")
     full_name = google_user.get("name", "")
 
     if not email:
-        raise HTTPException(status_code=400, detail="Không lấy được email từ Google")
+        raise HTTPException(status_code=400, detail="Khong lay duoc email tu Google")
 
-    # 3. Tìm hoặc tạo user trong DB
     db_user = curd.get_user_by_email(db, email)
     if not db_user:
         db_user = curd.create_user(
             db=db,
             email=email,
             full_name=full_name,
-            password=None,   # User Google không cần password
-            role="candidate"
+            password=None,
+            role="candidate",
         )
 
-    # 4. Tạo JWT token của hệ thống
-    jwt_token = security.create_access_token(data={"sub": db_user.email})
+    normalized_role = normalize_user_role(db_user.role) or "candidate"
+    jwt_token = security.create_access_token(
+        data={
+            "sub": db_user.email,
+            "role": normalized_role,
+        }
+    )
 
-    # 5. Redirect về frontend kèm token
-    # ✅ Đổi thành Homepage.html
+    query_string = urlencode(
+        {
+            "token": jwt_token,
+            "email": email,
+            "role": normalized_role,
+        }
+    )
+
     return RedirectResponse(
-    url=f"http://127.0.0.1:5500/client/page/Homepage.html?token={jwt_token}&email={email}&role={db_user.role}"
-)
+        url=f"{settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}?{query_string}"
+    )

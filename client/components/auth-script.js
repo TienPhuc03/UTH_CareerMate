@@ -45,12 +45,12 @@ function checkAuthStatus() {
         }
 
         if (role === "recruiter") {
-            if (menu1) menu1.innerHTML = `<a href="../page/Formpostjob.html" class="block py-3 hover:text-green-600 lg:py-0">Dang tin</a>`;
-            if (menu2) menu2.innerHTML = `<a href="../page/Viewcandidate.html" class="block py-3 hover:text-green-600 lg:py-0">Danh sach ung vien</a>`;
+            if (menu1) menu1.innerHTML = `<a href="../page/Formpostjob.html" class="block py-3 hover:text-green-600 lg:py-0">Đăng tin</a>`;
+            if (menu2) menu2.innerHTML = `<a href="../page/Viewcandidate.html" class="block py-3 hover:text-green-600 lg:py-0">Danh sách ứng viên</a>`;
             if (menu3) menu3.style.display = "none";
         } else {
-            if (menu1) menu1.innerHTML = `<a href="../page/Printcv.html" class="block py-3 hover:text-green-600 lg:py-0">Mau CV</a>`;
-            if (menu2) menu2.innerHTML = `<a href="../page/Uploadcv.html" class="block py-3 hover:text-green-600 lg:py-0">Tao CV</a>`;
+            if (menu1) menu1.innerHTML = `<a href="../page/Printcv.html" class="block py-3 hover:text-green-600 lg:py-0">Mẫu CV</a>`;
+            if (menu2) menu2.innerHTML = `<a href="../page/Uploadcv.html" class="block py-3 hover:text-green-600 lg:py-0">Tạo CV</a>`;
             if (menu3) {
                 menu3.style.display = "block";
                 menu3.innerHTML = `<a href="../page/Careerai.html" class="block py-3 hover:text-green-600 lg:py-0">AI Coach</a>`;

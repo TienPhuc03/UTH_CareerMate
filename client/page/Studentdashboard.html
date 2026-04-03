@@ -1,183 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard - Career Mate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 min-h-screen">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <div class="flex">
-        <aside class="w-64 bg-white shadow-lg min-h-screen sticky top-0">
-            <div class="p-6">
-                <a href="Homepage.html" class="text-2xl font-bold text-green-600 block mb-8">Career Mate</a>
-                
-                <div class="mb-8 p-4 bg-green-50 rounded-xl">
-                    <div id="userAvatar" class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
-                        SV
-                    </div>
-                    <h3 id="studentName" class="text-center font-bold text-gray-800">Đang tải...</h3>
-                    <p id="studentEmail" class="text-center text-xs text-gray-500 truncate">...</p>
-                </div>
+      <aside class="w-64 bg-white shadow-lg min-h-screen sticky top-0">
+        <div class="p-6">
+          <a
+            href="Homepage.html"
+            class="text-2xl font-bold text-green-600 block mb-8"
+            >Career Mate</a
+          >
 
-                <nav class="space-y-2">
-                    <a href="Studentdashboard.html" class="flex items-center p-3 text-green-600 bg-green-50 rounded-lg font-medium">
-                        <i class="fas fa-th-large w-6 mr-3"></i> Tổng quan
-                    </a>
-                    <a href="Findjobs.html" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-search w-6 mr-3"></i> Tìm việc làm
-                    </a>
-                    <a href="#" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-file-alt w-6 mr-3"></i> CV của tôi
-                    </a>
-                    <a href="#" class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg">
-                        <i class="fas fa-bell w-6 mr-3"></i> Thông báo
-                    </a>
-                </nav>
+          <div class="mb-8 p-4 bg-green-50 rounded-xl">
+            <div
+              id="userAvatar"
+              class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl"
+            >
+              SV
             </div>
-        </aside>
+            <h3 id="studentName" class="text-center font-bold text-gray-800">
+              Đang tải...
+            </h3>
+            <p
+              id="studentEmail"
+              class="text-center text-xs text-gray-500 truncate"
+            >
+              ...
+            </p>
+          </div>
 
-        <main class="flex-1 p-8">
-            <div class="flex justify-between items-center mb-8">
-                <h1 class="text-2xl font-bold text-gray-800">Bảng điều khiển sinh viên</h1>
-                <button onclick="logout()" class="text-gray-500 hover:text-red-500 transition">
-                    <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất
-                </button>
+          <nav class="space-y-2">
+            <a
+              href="Studentdashboard.html"
+              class="flex items-center p-3 text-green-600 bg-green-50 rounded-lg font-medium"
+            >
+              <i class="fas fa-th-large w-6 mr-3"></i> Tổng quan
+            </a>
+            <a
+              href="Findjobs.html"
+              class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
+            >
+              <i class="fas fa-search w-6 mr-3"></i> Tìm việc làm
+            </a>
+            <a
+              href="#"
+              class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
+            >
+              <i class="fas fa-file-alt w-6 mr-3"></i> CV của tôi
+            </a>
+            <a
+              href="#"
+              class="flex items-center p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg"
+            >
+              <i class="fas fa-bell w-6 mr-3"></i> Thông báo
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <main class="flex-1 p-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-2xl font-bold text-gray-800">
+            Bảng điều khiển sinh viên
+          </h1>
+          <button
+            onclick="logout()"
+            class="text-gray-500 hover:text-red-500 transition"
+          >
+            <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-blue-500"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-500 text-sm">Đã ứng tuyển</p>
+                <p
+                  id="stat-applied"
+                  class="text-3xl font-bold text-gray-800 mt-1"
+                >
+                  0
+                </p>
+              </div>
+              <div
+                class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500"
+              >
+                <i class="fas fa-paper-plane text-xl"></i>
+              </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-blue-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Đã ứng tuyển</p>
-                            <p id="stat-applied" class="text-3xl font-bold text-gray-800 mt-1">0</p>
-                        </div>
-                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500">
-                            <i class="fas fa-paper-plane text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-yellow-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Đang chờ duyệt</p>
-                            <p id="stat-pending" class="text-3xl font-bold text-gray-800 mt-1">0</p>
-                        </div>
-                        <div class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center text-yellow-500">
-                            <i class="fas fa-clock text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-green-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Được mời phỏng vấn</p>
-                            <p id="stat-accepted" class="text-3xl font-bold text-gray-800 mt-1">0</p>
-                        </div>
-                        <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
-                            <i class="fas fa-check-circle text-xl"></i>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div
+            class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-yellow-500"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-500 text-sm">Đang chờ duyệt</p>
+                <p
+                  id="stat-pending"
+                  class="text-3xl font-bold text-gray-800 mt-1"
+                >
+                  0
+                </p>
+              </div>
+              <div
+                class="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center text-yellow-500"
+              >
+                <i class="fas fa-clock text-xl"></i>
+              </div>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
-                    <h2 class="font-bold text-gray-800 mb-6 flex items-center">
-                        <i class="fas fa-history mr-2 text-green-500"></i> Lịch sử ứng tuyển gần đây
-                    </h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead>
-                                <tr class="text-left text-gray-400 text-xs uppercase tracking-wider border-b">
-                                    <th class="pb-3 italic">Công việc</th>
-                                    <th class="pb-3 italic">Ngày nộp</th>
-                                    <th class="pb-3 italic text-center">Trạng thái</th>
-                                </tr>
-                            </thead>
-                            <tbody id="application-history" class="divide-y divide-gray-100">
-                                <tr><td colspan="3" class="py-10 text-center text-gray-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <h2 class="font-bold text-gray-800 mb-4">Gợi ý việc làm phù hợp</h2>
-                    <div id="job-suggestions" class="space-y-4">
-                        <p class="text-sm text-gray-500 italic">Tính năng AI Matching đang phân tích CV của bạn...</p>
-                    </div>
-                </div>
+          </div>
+          <div
+            class="bg-white rounded-xl shadow-sm p-6 border-b-4 border-green-500"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-500 text-sm">Được mời phỏng vấn</p>
+                <p
+                  id="stat-accepted"
+                  class="text-3xl font-bold text-gray-800 mt-1"
+                >
+                  0
+                </p>
+              </div>
+              <div
+                class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500"
+              >
+                <i class="fas fa-check-circle text-xl"></i>
+              </div>
             </div>
-        </main>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
+            <h2 class="font-bold text-gray-800 mb-6 flex items-center">
+              <i class="fas fa-history mr-2 text-green-500"></i> Lịch sử ứng
+              tuyển gần đây
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr
+                    class="text-left text-gray-400 text-xs uppercase tracking-wider border-b"
+                  >
+                    <th class="pb-3 italic">Công việc</th>
+                    <th class="pb-3 italic">Ngày nộp</th>
+                    <th class="pb-3 italic text-center">Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="application-history"
+                  class="divide-y divide-gray-100"
+                >
+                  <tr>
+                    <td colspan="3" class="py-10 text-center text-gray-400">
+                      Đang tải dữ liệu...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-sm p-6">
+            <h2 class="font-bold text-gray-800 mb-4">Gợi ý việc làm phù hợp</h2>
+            <div id="job-suggestions" class="space-y-4">
+              <p class="text-sm text-gray-500 italic">
+                Tính năng AI Matching đang phân tích CV của bạn...
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script>
-        const API_BASE = "http://127.0.0.1:8000/api";
+      const API_BASE = "http://127.0.0.1:8000/api";
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('access_token');
-            const email = localStorage.getItem('user_email');
-            const storedRole = localStorage.getItem('user_role');
-            const role = storedRole === 'student' ? 'candidate' : storedRole;
+      document.addEventListener("DOMContentLoaded", function () {
+        const token = sessionStorage.getItem("access_token"); // ← đổi
+        const email = localStorage.getItem("user_email");
+        const storedRole = localStorage.getItem("user_role");
+        const role = storedRole === "student" ? "candidate" : storedRole;
 
-            if (storedRole !== role && role) {
-                localStorage.setItem('user_role', role);
+        if (storedRole !== role && role) {
+          localStorage.setItem("user_role", role);
+        }
+
+        if (!token || role !== "candidate") {
+          window.location.href = "../auth/login.html";
+          return;
+        }
+
+        // Cập nhật Profile từ localStorage
+        const name = localStorage.getItem("full_name") || email.split("@")[0];
+        document.getElementById("studentName").textContent = name;
+        document.getElementById("studentEmail").textContent = email;
+        document.getElementById("userAvatar").textContent = name
+          .substring(0, 2)
+          .toUpperCase();
+
+        // Hàm lấy danh sách ứng tuyển của sinh viên
+        async function fetchMyApplications() {
+          try {
+            // Lưu ý: Endpoint này cần trả về danh sách ứng tuyển của chính User đang đăng nhập
+            const res = await fetch(`${API_BASE}/applications/get`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+
+            if (res.ok) {
+              const apps = await res.json();
+              renderDashboard(apps);
             }
+          } catch (err) {
+            console.error("Lỗi khi tải dữ liệu:", err);
+          }
+        }
 
-            if (!token || role !== 'candidate') {
-                window.location.href = '../auth/login.html';
-                return;
-            }
+        function renderDashboard(apps) {
+          // 1. Cập nhật con số thống kê
+          const pending = apps.filter((a) => a.status === "PENDING").length;
+          const accepted = apps.filter((a) => a.status === "ACCEPTED").length;
 
-            // Cập nhật Profile từ localStorage
-            const name = localStorage.getItem('full_name') || email.split('@')[0];
-            document.getElementById('studentName').textContent = name;
-            document.getElementById('studentEmail').textContent = email;
-            document.getElementById('userAvatar').textContent = name.substring(0, 2).toUpperCase();
+          document.getElementById("stat-applied").textContent = apps.length;
+          document.getElementById("stat-pending").textContent = pending;
+          document.getElementById("stat-accepted").textContent = accepted;
 
-            // Hàm lấy danh sách ứng tuyển của sinh viên
-            async function fetchMyApplications() {
-                try {
-                    // Lưu ý: Endpoint này cần trả về danh sách ứng tuyển của chính User đang đăng nhập
-                    const res = await fetch(`${API_BASE}/applications/get`, {
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
+          // 2. Render bảng lịch sử
+          const tbody = document.getElementById("application-history");
+          if (apps.length === 0) {
+            tbody.innerHTML =
+              '<tr><td colspan="3" class="py-10 text-center text-gray-400 text-sm">Bạn chưa ứng tuyển công việc nào.</td></tr>';
+            return;
+          }
 
-                    if (res.ok) {
-                        const apps = await res.json();
-                        renderDashboard(apps);
-                    }
-                } catch (err) {
-                    console.error("Lỗi khi tải dữ liệu:", err);
-                }
-            }
-
-            function renderDashboard(apps) {
-                // 1. Cập nhật con số thống kê
-                const pending = apps.filter(a => a.status === 'PENDING').length;
-                const accepted = apps.filter(a => a.status === 'ACCEPTED').length;
-                
-                document.getElementById('stat-applied').textContent = apps.length;
-                document.getElementById('stat-pending').textContent = pending;
-                document.getElementById('stat-accepted').textContent = accepted;
-
-                // 2. Render bảng lịch sử
-                const tbody = document.getElementById('application-history');
-                if (apps.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="3" class="py-10 text-center text-gray-400 text-sm">Bạn chưa ứng tuyển công việc nào.</td></tr>';
-                    return;
-                }
-
-                tbody.innerHTML = apps.slice(0, 5).map(app => `
+          tbody.innerHTML = apps
+            .slice(0, 5)
+            .map(
+              (app) => `
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-4">
-                            <p class="font-semibold text-gray-800 text-sm">${app.job_title || 'Vị trí #' + app.job_id}</p>
+                            <p class="font-semibold text-gray-800 text-sm">${app.job_title || "Vị trí #" + app.job_id}</p>
                             <p class="text-[10px] text-gray-400">ID đơn: ${app.id}</p>
                         </td>
                         <td class="py-4 text-xs text-gray-600">
-                            ${new Date(app.created_at).toLocaleDateString('vi-VN')}
+                            ${new Date(app.created_at).toLocaleDateString("vi-VN")}
                         </td>
                         <td class="py-4 text-center">
                             <span class="px-3 py-1 rounded-full text-[10px] font-bold ${getStatusClass(app.status)}">
@@ -185,25 +264,31 @@
                             </span>
                         </td>
                     </tr>
-                `).join('');
-            }
-
-            function getStatusClass(status) {
-                switch(status) {
-                    case 'ACCEPTED': return 'bg-green-100 text-green-700';
-                    case 'REJECTED': return 'bg-red-100 text-red-700';
-                    case 'PENDING': return 'bg-yellow-100 text-yellow-700';
-                    default: return 'bg-gray-100 text-gray-700';
-                }
-            }
-
-            fetchMyApplications();
-        });
-
-        function logout() {
-            localStorage.clear();
-            window.location.href = '../auth/login.html';
+                `,
+            )
+            .join("");
         }
+
+        function getStatusClass(status) {
+          switch (status) {
+            case "ACCEPTED":
+              return "bg-green-100 text-green-700";
+            case "REJECTED":
+              return "bg-red-100 text-red-700";
+            case "PENDING":
+              return "bg-yellow-100 text-yellow-700";
+            default:
+              return "bg-gray-100 text-gray-700";
+          }
+        }
+
+        fetchMyApplications();
+      });
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "../auth/login.html";
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -119,6 +119,8 @@ async def google_callback(db: DbDependency, code: str | None = None, error: str 
         }
     )
 
+    # Dùng fragment (#) thay vì query string (?)
+    # Fragment không được gửi lên server, không xuất hiện trong server logs
     query_string = urlencode(
         {
             "token": jwt_token,
@@ -128,5 +130,5 @@ async def google_callback(db: DbDependency, code: str | None = None, error: str 
     )
 
     return RedirectResponse(
-        url=f"{settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}?{query_string}"
+        url=f"{settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}#{query_string}"
     )

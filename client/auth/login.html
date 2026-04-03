@@ -86,7 +86,7 @@
           <button
             onclick="
               window.location.href =
-                'http://127.0.0.1:8000/api/Auth/google/login';
+                'http://127.0.0.1:8000/api/Auth/google/login'
             "
             class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition"
           >
@@ -152,9 +152,9 @@
 
             if (res.ok) {
               // Save token to localStorage
-              localStorage.setItem("access_token", data.access_token);
-              localStorage.setItem("user_email", email);
-              localStorage.setItem("user_role", data.role || "student");
+              sessionStorage.setItem("access_token", data.access_token); // ← đổi sang sessionStorage
+              localStorage.setItem("user_email", email); // ← giữ nguyên
+              localStorage.setItem("user_role", data.role || "candidate"); // ← giữ nguyên
 
               // Show success message
               showAlert("Đăng nhập thành công!", "success");
@@ -211,19 +211,25 @@
       }
       // Xử lý token từ Google OAuth callback
       // Xử lý token từ Google OAuth callback
-      const urlParams = new URLSearchParams(window.location.search);
-      const googleToken = urlParams.get("token");
-      const googleEmail = urlParams.get("email");
-      const googleRole = urlParams.get("role");
+      // Đọc từ fragment (#) thay vì query string
+      const fragmentString = window.location.hash.substring(1);
+      const fragmentParams = new URLSearchParams(fragmentString);
+      const googleToken = fragmentParams.get("token");
+      const googleEmail = fragmentParams.get("email");
+      const googleRole = fragmentParams.get("role");
 
       if (googleToken) {
-        localStorage.setItem("access_token", googleToken);
+        sessionStorage.setItem("access_token", googleToken); // ← sessionStorage
         localStorage.setItem("user_email", googleEmail);
         localStorage.setItem("user_role", googleRole);
-        // Redirect về dashboard
+        // Xóa fragment trước khi redirect
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname,
+        );
         window.location.href = "../page/Dashboard.html";
       }
     </script>
   </body>
 </html>
-

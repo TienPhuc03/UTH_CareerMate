@@ -22,7 +22,7 @@
   </head>
   <body class="bg-cmLight text-slate-900">
     <!-- HEADER: nền xanh lá -->
-    <div id ="header-container"></div>
+    <div id="header-container"></div>
     <main class="max-w-4xl mx-auto px-4 py-6 space-y-4">
       <section
         class="bg-white border border-slate-100 rounded-xl p-4 space-y-3"
@@ -133,136 +133,159 @@
       </section>
     </main>
 
-    <div id ="footer-container"></div>
+    <div id="footer-container"></div>
     <script>
-    // --- PHẦN 1: XỬ LÝ NẠP HEADER/FOOTER (GIỮ NGUYÊN) ---
-    fetch('../components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-            const script = document.createElement('script');
-            script.src = '../components/auth-script.js';
-            document.body.appendChild(script);
+      // --- PHẦN 1: XỬ LÝ NẠP HEADER/FOOTER (GIỮ NGUYÊN) ---
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "../components/auth-script.js";
+          document.body.appendChild(script);
         });
 
-    fetch('../components/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
+      fetch("../components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
         });
-    //PHẦN 2: XỬ LÝ ỨNG TUYỂN VIỆC LÀM 
-    
-    // 1. Lấy ID từ URL (id này được truyền từ Findjobs.html)
-    const params = new URLSearchParams(window.location.search);
-    const jobIdFromUrl = params.get("id"); 
+      //PHẦN 2: XỬ LÝ ỨNG TUYỂN VIỆC LÀM
 
-    async function loadJobDetailFromServer() {
-       if (!jobIdFromUrl) return;
+      // 1. Lấy ID từ URL (id này được truyền từ Findjobs.html)
+      const params = new URLSearchParams(window.location.search);
+      const jobIdFromUrl = params.get("id");
+
+      async function loadJobDetailFromServer() {
+        if (!jobIdFromUrl) return;
 
         try {
-            // Bộ ánh xạ để hiển thị tên tỉnh thành chuẩn xác
-            const locationMap = {
-                'hcm': 'TP. Hồ Chí Minh', 'hanoi': 'Hà Nội', 'danang': 'Đà Nẵng',
-                'haiphong': 'Hải Phòng', 'longan': 'Long An', 'vungtau': 'Vũng Tàu',
-                'cantho': 'Cần Thơ', 'dalat': 'Đà Lạt', 'nhatrang': 'Nha Trang',
-                'phutho': 'Phú Thọ', 'quangninh': 'Quảng Ninh', 'quangnam': 'Quảng Nam',
-                'hue': 'Huế', 'tayninh': 'Tây Ninh', 'binhthuan': 'Bình Thuận',
-                'bienhoa': 'Biên Hòa', 'remote': 'Làm việc từ xa', 'hybrid': 'Hybrid'
-            };
+          // Bộ ánh xạ để hiển thị tên tỉnh thành chuẩn xác
+          const locationMap = {
+            hcm: "TP. Hồ Chí Minh",
+            hanoi: "Hà Nội",
+            danang: "Đà Nẵng",
+            haiphong: "Hải Phòng",
+            longan: "Long An",
+            vungtau: "Vũng Tàu",
+            cantho: "Cần Thơ",
+            dalat: "Đà Lạt",
+            nhatrang: "Nha Trang",
+            phutho: "Phú Thọ",
+            quangninh: "Quảng Ninh",
+            quangnam: "Quảng Nam",
+            hue: "Huế",
+            tayninh: "Tây Ninh",
+            binhthuan: "Bình Thuận",
+            bienhoa: "Biên Hòa",
+            remote: "Làm việc từ xa",
+            hybrid: "Hybrid",
+          };
 
-            const response = await fetch('http://127.0.0.1:8000/api/jobs/get');
-            if (!response.ok) throw new Error("Không thể kết nối API /get");
-            
-            const allJobs = await response.json();
-            const job = allJobs.find(j => j.id == jobIdFromUrl);
+          const response = await fetch("http://127.0.0.1:8000/api/jobs/get");
+          if (!response.ok) throw new Error("Không thể kết nối API /get");
 
-            if (!job) {
-                alert("Không tìm thấy thông tin công việc!");
-                return;
-            }
+          const allJobs = await response.json();
+          const job = allJobs.find((j) => j.id == jobIdFromUrl);
 
-            // 1. Cập nhật tiêu đề và thông tin Meta (Đã fix viết hoa địa điểm)
-            document.title = `${job.title} - CareerMate`;
-            document.querySelector("h1.text-lg").textContent = job.title;
-            
-            const displayLoc = locationMap[job.location] || job.location; // Dịch haiphong -> Hải Phòng
-            document.querySelector("p.text-xs.text-slate-600.mt-1").textContent = 
-                `${job.company_name || 'Công ty thành viên'} · ${displayLoc} · ${job.salary_range}`;
+          if (!job) {
+            alert("Không tìm thấy thông tin công việc!");
+            return;
+          }
 
-            // 2. Hàm render danh sách sạch sẽ hơn (Xóa bỏ các gạch đầu dòng thừa)
-            const formatListContent = (text) => {
-                if (!text) return '<li>Đang cập nhật...</li>';
-                // Tách dòng, lọc bỏ dòng trống, và loại bỏ ký tự gạch đầu dòng (-) nếu người dùng lỡ nhập vào
-                return text.split('\n')
-                    .map(line => line.replace(/^[\s•\-\*]+/, '').trim()) 
-                    .filter(line => line.length > 0)
-                    .map(line => `<li>${line}</li>`)
-                    .join('');
-            };
+          // 1. Cập nhật tiêu đề và thông tin Meta (Đã fix viết hoa địa điểm)
+          document.title = `${job.title} - CareerMate`;
+          document.querySelector("h1.text-lg").textContent = job.title;
 
-            document.querySelectorAll("ul.list-disc")[0].innerHTML = formatListContent(job.description);
-            document.querySelectorAll("ul.list-disc")[1].innerHTML = formatListContent(job.requirements);
+          const displayLoc = locationMap[job.location] || job.location; // Dịch haiphong -> Hải Phòng
+          document.querySelector("p.text-xs.text-slate-600.mt-1").textContent =
+            `${job.company_name || "Công ty thành viên"} · ${displayLoc} · ${job.salary_range}`;
 
-            // 3. Gán ID vào Form
-            const jobIdInput = document.querySelector('input[name="jobId"]');
-            if (jobIdInput) jobIdInput.value = job.id;
+          // 2. Hàm render danh sách sạch sẽ hơn (Xóa bỏ các gạch đầu dòng thừa)
+          const formatListContent = (text) => {
+            if (!text) return "<li>Đang cập nhật...</li>";
+            // Tách dòng, lọc bỏ dòng trống, và loại bỏ ký tự gạch đầu dòng (-) nếu người dùng lỡ nhập vào
+            return text
+              .split("\n")
+              .map((line) => line.replace(/^[\s•\-\*]+/, "").trim())
+              .filter((line) => line.length > 0)
+              .map((line) => `<li>${line}</li>`)
+              .join("");
+          };
 
+          document.querySelectorAll("ul.list-disc")[0].innerHTML =
+            formatListContent(job.description);
+          document.querySelectorAll("ul.list-disc")[1].innerHTML =
+            formatListContent(job.requirements);
+
+          // 3. Gán ID vào Form
+          const jobIdInput = document.querySelector('input[name="jobId"]');
+          if (jobIdInput) jobIdInput.value = job.id;
         } catch (error) {
-            console.error("Lỗi:", error);
+          console.error("Lỗi:", error);
         }
-    }
+      }
 
-    document.addEventListener("DOMContentLoaded", loadJobDetailFromServer);
+      document.addEventListener("DOMContentLoaded", loadJobDetailFromServer);
 
-    // --- PHẦN 3: XỬ LÝ ỨNG TUYỂN ---
+      // --- PHẦN 3: XỬ LÝ ỨNG TUYỂN ---
 
-   const token = localStorage.getItem("access_token");
+      const token = sessionStorage.getItem("access_token"); // ← đổi
 
-  document.getElementById("jobApplyForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-    
-    if (!token) {
-        alert("Vui lòng đăng nhập để ứng tuyển!");
-        return;
-    }
+      document
+        .getElementById("jobApplyForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
 
-    // Lấy dữ liệu từ Form
-    const cvIdValue = document.querySelector('select[name="cvId"]').value;
-    const noteValue = document.querySelector('textarea[name="note"]').value;
+          if (!token) {
+            alert("Vui lòng đăng nhập để ứng tuyển!");
+            return;
+          }
 
-    // Dữ liệu phải khớp với ApplicationCreate schema
-    const applicationData = {
-        job_id: parseInt(jobIdFromUrl), // Chuyển sang số
-        cv_id: parseInt(cvIdValue) || 1, // Tạm thời để 1 nếu bạn chưa có quản lý CV
-        cover_letter: noteValue
-    };
+          // Lấy dữ liệu từ Form
+          const cvIdValue = document.querySelector('select[name="cvId"]').value;
+          const noteValue = document.querySelector(
+            'textarea[name="note"]',
+          ).value;
 
-    try {
-        const response = await fetch('http://127.0.0.1:8000/api/applications/apply', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Bắt buộc phải có token
-            },
-            body: JSON.stringify(applicationData)
+          // Dữ liệu phải khớp với ApplicationCreate schema
+          const applicationData = {
+            job_id: parseInt(jobIdFromUrl), // Chuyển sang số
+            cv_id: parseInt(cvIdValue) || 1, // Tạm thời để 1 nếu bạn chưa có quản lý CV
+            cover_letter: noteValue,
+          };
+
+          try {
+            const response = await fetch(
+              "http://127.0.0.1:8000/api/applications/apply",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`, // Bắt buộc phải có token
+                },
+                body: JSON.stringify(applicationData),
+              },
+            );
+
+            if (response.ok) {
+              alert(
+                "✅ Ứng tuyển thành công! Hồ sơ của bạn đã được gửi tới nhà tuyển dụng.",
+              );
+              window.location.href = "Findjobs.html";
+            } else {
+              const err = await response.json();
+              alert("❌ Lỗi: " + (err.detail || "Không thể nộp đơn"));
+            }
+          } catch (error) {
+            console.error("Apply Error:", error);
+            alert("❌ Lỗi kết nối đến Server!");
+          }
         });
 
-        if (response.ok) {
-            alert("✅ Ứng tuyển thành công! Hồ sơ của bạn đã được gửi tới nhà tuyển dụng.");
-            window.location.href = "Findjobs.html";
-        } else {
-            const err = await response.json();
-            alert("❌ Lỗi: " + (err.detail || "Không thể nộp đơn"));
-        }
-    } catch (error) {
-        console.error("Apply Error:", error);
-        alert("❌ Lỗi kết nối đến Server!");
-    }
-  });
-
-    document.getElementById("btnAnalyzeCVJob").onclick = () => {
+      document.getElementById("btnAnalyzeCVJob").onclick = () => {
         alert("Tính năng AI Analyzer đang được phát triển.");
-    };
-</script>
+      };
+    </script>
   </body>
 </html>

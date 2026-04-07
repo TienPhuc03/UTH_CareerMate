@@ -22,6 +22,7 @@ server/uploads/
 logs/
 *.log
 server/logs/
+tests/_tmp_uploads/
 
 # --- 6. Editor & Hệ điều hành ---
 .vscode/

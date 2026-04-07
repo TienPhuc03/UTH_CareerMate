@@ -194,10 +194,7 @@
 
           <button
             type="button"
-            onclick="
-              window.location.href =
-                'http://127.0.0.1:8000/api/Auth/google/login'
-            "
+            onclick="loginWithGoogle()"
             class="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-black hover:text-white transition flex items-center justify-center"
           >
             <img
@@ -424,7 +421,9 @@
       }
       // --- 3. ĐĂNG KÝ VỚI GOOGLE (OPTIONAL) ---
       function loginWithGoogle() {
-        window.location.href = "http://127.0.0.1:8000/api/Auth/google/login";
+        const roleInput = document.querySelector('input[name="role"]:checked');
+        const selectedRole = roleInput ? roleInput.value : "student";
+        window.location.href = `${API_URL}/google/login?role=${encodeURIComponent(selectedRole)}`;
       }
 
       // Xử lý token từ Google OAuth callback
@@ -434,10 +433,15 @@
       const googleRole = urlParams.get("role");
 
       if (googleToken) {
+        const normalizedGoogleRole =
+          googleRole === "student" ? "candidate" : googleRole || "candidate";
         localStorage.setItem("access_token", googleToken);
         localStorage.setItem("user_email", googleEmail);
-        localStorage.setItem("user_role", googleRole);
-        window.location.href = "../page/Dashboard.html";
+        localStorage.setItem("user_role", normalizedGoogleRole);
+        window.location.href =
+          normalizedGoogleRole === "admin"
+            ? "../page/Admindashboard.html"
+            : "../page/Homepage.html";
       }
     </script>
   </body>

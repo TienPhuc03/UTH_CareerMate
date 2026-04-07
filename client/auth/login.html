@@ -125,6 +125,15 @@
 
     <script>
       const API_URL = "http://127.0.0.1:8000/api/Auth";
+      function redirectByRole(rawRole) {
+        const role =
+          rawRole === "student" ? "candidate" : rawRole || "candidate";
+        if (role === "admin") {
+          window.location.href = "../page/Admindashboard.html";
+          return;
+        }
+        window.location.href = "../page/Homepage.html";
+      }
 
       document
         .getElementById("loginForm")
@@ -151,17 +160,19 @@
             const data = await res.json();
 
             if (res.ok) {
+              const normalizedRole =
+                data.role === "student" ? "candidate" : data.role || "candidate";
               // Save token to localStorage
               localStorage.setItem("access_token", data.access_token);
               localStorage.setItem("user_email", email);
-              localStorage.setItem("user_role", data.role || "student");
+              localStorage.setItem("user_role", normalizedRole);
 
               // Show success message
               showAlert("Đăng nhập thành công!", "success");
 
               // Redirect to homepage
               setTimeout(() => {
-                window.location.href = "../page/Homepage.html";
+                redirectByRole(normalizedRole);
               }, 1000);
             } else {
               // Show error message
@@ -217,13 +228,14 @@
       const googleRole = urlParams.get("role");
 
       if (googleToken) {
+        const normalizedGoogleRole =
+          googleRole === "student" ? "candidate" : googleRole || "candidate";
         localStorage.setItem("access_token", googleToken);
         localStorage.setItem("user_email", googleEmail);
-        localStorage.setItem("user_role", googleRole);
-        // Redirect về dashboard
-        window.location.href = "../page/Dashboard.html";
+        localStorage.setItem("user_role", normalizedGoogleRole);
+        // Redirect based on role
+        redirectByRole(normalizedGoogleRole);
       }
     </script>
   </body>
 </html>
-

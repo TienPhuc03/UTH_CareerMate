@@ -189,9 +189,18 @@
         }
 
         function logout() {
+            if (window.performLogoutFlow) {
+                return window.performLogoutFlow({
+                    redirectUrl: 'Homepage.html',
+                    successMessage: 'Dang xuat thanh cong!',
+                });
+            }
+
             localStorage.removeItem('access_token');
             localStorage.removeItem('user_email');
-            alert('Đăng xuất thành công!');
+            localStorage.removeItem('user_role');
+            localStorage.removeItem('full_name');
+            alert('Dang xuat thanh cong!');
             window.location.href = 'Homepage.html';
         }
     </script>

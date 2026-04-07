@@ -1,0 +1,4 @@
+[31mERROR[0m | 2026-04-03 00:46:08 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[31mERROR[0m | 2026-04-03 00:47:18 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[31mERROR[0m | 2026-04-03 00:47:44 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[31mERROR[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:90 | Parse failed: Cannot read CV

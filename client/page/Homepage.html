@@ -384,10 +384,12 @@
     <script>
       // Đọc token từ URL sau Google OAuth
       (function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const tokenFromGoogle = urlParams.get("token");
-        const emailFromGoogle = urlParams.get("email");
-        const roleFromGoogle = urlParams.get("role");
+        // Đọc từ fragment (#) thay vì query string (?) - bảo mật hơn vì không gửi lên server
+        const fragmentString = window.location.hash.substring(1);
+        const fragmentParams = new URLSearchParams(fragmentString);
+        const tokenFromGoogle = fragmentParams.get("token");
+        const emailFromGoogle = fragmentParams.get("email");
+        const roleFromGoogle = fragmentParams.get("role");
 
         if (tokenFromGoogle) {
           const normalizedRole =
@@ -397,8 +399,11 @@
           localStorage.setItem("access_token", tokenFromGoogle);
           localStorage.setItem("user_email", emailFromGoogle || "");
           localStorage.setItem("user_role", normalizedRole);
+          sessionStorage.setItem("access_token", tokenFromGoogle);
+          localStorage.setItem("user_email", emailFromGoogle || "");
+          localStorage.setItem("user_role", roleFromGoogle || "candidate");
 
-          // Xóa ?token=...&email=...&role=... khỏi URL cho gọn
+          // Xóa #token=...&email=...&role=... khỏi URL ngay sau khi đọc
           window.history.replaceState(
             {},
             document.title,
@@ -409,7 +414,7 @@
 
       // Check if user is logged in
       function checkAuthStatus() {
-        const token = localStorage.getItem("access_token");
+        const token = sessionStorage.getItem("access_token"); // ← đổi
         const email = localStorage.getItem("user_email");
 
         if (token && email) {
@@ -436,7 +441,7 @@
           document.getElementById("userInfo").classList.add("hidden");
         }
       }
-      checkAuthStatus();
+      setTimeout(checkAuthStatus, 300);
 
       function logout() {
         if (window.performLogoutFlow) {
@@ -447,6 +452,8 @@
         }
 
         localStorage.removeItem("access_token");
+        sessionStorage.removeItem("access_token"); // ← đổi
+        localStorage.removeItem("access_token"); // ← thêm để dọn sạch
         localStorage.removeItem("user_email");
         localStorage.removeItem("user_role");
         localStorage.removeItem("full_name");

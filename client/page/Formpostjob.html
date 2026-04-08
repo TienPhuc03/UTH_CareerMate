@@ -1,585 +1,787 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post a Job Opening - Career Mate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        .skill-tag {
-            display: inline-block;
-            background: #f0fdf4;
-            color: #059669;
-            padding: 0.4rem 0.8rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            border: 1px solid #a7f3d0;
-        }
-        .step-active {
-            background: #059669 !important;
-            color: white !important;
-        }
-        .step-completed {
-            background: #10b981 !important;
-            color: white !important;
-        }
-        .currency-input {
-            position: relative;
-        }
-        .currency-input input {
-            padding-right: 65px;
-        }
-        .currency-suffix {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-weight: 600;
-        }
-        .form-step {
-            display: none;
-        }
-        .form-step.active {
-            display: block;
-        }
+      .skill-tag {
+        display: inline-block;
+        background: #f0fdf4;
+        color: #059669;
+        padding: 0.4rem 0.8rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        border: 1px solid #a7f3d0;
+      }
+      .step-active {
+        background: #059669 !important;
+        color: white !important;
+      }
+      .step-completed {
+        background: #10b981 !important;
+        color: white !important;
+      }
+      .currency-input {
+        position: relative;
+      }
+      .currency-input input {
+        padding-right: 65px;
+      }
+      .currency-suffix {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b7280;
+        font-weight: 600;
+      }
+      .form-step {
+        display: none;
+      }
+      .form-step.active {
+        display: block;
+      }
     </style>
-</head>
-<body class="bg-gray-50 min-h-screen">
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <header class="bg-white shadow-sm sticky top-0 z-10">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <a href="Homepage.html" class="text-2xl font-bold text-green-600">Career Mate</a>
-                    <span class="hidden md:inline text-sm text-gray-500">| Nhà tuyển dụng</span>
-                </div>
-               
-                <nav class="hidden md:flex space-x-6">
-                    <a href="RecruiterDashboard.html" class="text-gray-600 hover:text-green-600 transition-colors">
-                        <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
-                    </a>
-                    <a href="PostJob.html" class="text-green-600 font-medium">
-                        <i class="fas fa-plus-circle mr-1"></i> Đăng việc
-                    </a>
-                    <a href="Findjobs.html" class="text-gray-600 hover:text-green-600 transition-colors">
-                        <i class="fas fa-search mr-1"></i> Tìm ứng viên
-                    </a>
-                </nav>
-               
-                <div class="flex items-center space-x-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold">
-                        NT
-                    </div>
-                </div>
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-3">
+            <a href="Homepage.html" class="text-2xl font-bold text-green-600"
+              >Career Mate</a
+            >
+            <span class="hidden md:inline text-sm text-gray-500"
+              >| Nhà tuyển dụng</span
+            >
+          </div>
+
+          <nav class="hidden md:flex space-x-6">
+            <a
+              href="RecruiterDashboard.html"
+              class="text-gray-600 hover:text-green-600 transition-colors"
+            >
+              <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
+            </a>
+            <a href="PostJob.html" class="text-green-600 font-medium">
+              <i class="fas fa-plus-circle mr-1"></i> Đăng việc
+            </a>
+            <a
+              href="Findjobs.html"
+              class="text-gray-600 hover:text-green-600 transition-colors"
+            >
+              <i class="fas fa-search mr-1"></i> Tìm ứng viên
+            </a>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold"
+            >
+              NT
             </div>
+          </div>
         </div>
+      </div>
     </header>
-   
+
     <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <div class="mb-10">
-            <div class="flex items-center justify-between relative">
-                <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
-               
-                <div class="flex flex-col items-center relative z-10">
-                    <div id="step1-indicator" class="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg step-active">
-                        1
-                    </div>
-                    <span class="mt-2 text-sm font-medium text-green-600">Thông tin cơ bản</span>
-                </div>
-               
-                <div class="flex flex-col items-center relative z-10">
-                    <div id="step2-indicator" class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg">
-                        2
-                    </div>
-                    <span class="mt-2 text-sm font-medium text-gray-500">Yêu cầu công việc</span>
-                </div>
-               
-                <div class="flex flex-col items-center relative z-10">
-                    <div id="step3-indicator" class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg">
-                        3
-                    </div>
-                    <span class="mt-2 text-sm font-medium text-gray-500">Xem lại & Đăng</span>
-                </div>
+      <div class="mb-10">
+        <div class="flex items-center justify-between relative">
+          <div
+            class="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 z-0"
+          ></div>
+
+          <div class="flex flex-col items-center relative z-10">
+            <div
+              id="step1-indicator"
+              class="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg step-active"
+            >
+              1
             </div>
+            <span class="mt-2 text-sm font-medium text-green-600"
+              >Thông tin cơ bản</span
+            >
+          </div>
+
+          <div class="flex flex-col items-center relative z-10">
+            <div
+              id="step2-indicator"
+              class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg"
+            >
+              2
+            </div>
+            <span class="mt-2 text-sm font-medium text-gray-500"
+              >Yêu cầu công việc</span
+            >
+          </div>
+
+          <div class="flex flex-col items-center relative z-10">
+            <div
+              id="step3-indicator"
+              class="w-12 h-12 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg"
+            >
+              3
+            </div>
+            <span class="mt-2 text-sm font-medium text-gray-500"
+              >Xem lại & Đăng</span
+            >
+          </div>
         </div>
-        <form id="postJobForm">
-            <div id="step1" class="form-step active bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Đăng tin tuyển dụng mới</h1>
-                <p class="text-gray-600 mb-8">Điền thông tin chi tiết để tìm ứng viên phù hợp nhất</p>
-               
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">
-                            Chức danh công việc <span class="text-red-500">*</span>
-                        </label>
-                        <input type="text" id="jobTitle" required placeholder="VD: Lập trình viên Frontend"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">
-                            Tên công ty <span class="text-red-500">*</span>
-                        </label>
-                        <input type="text" id="company" required placeholder="VD: Công ty Công nghệ UTH"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
-                    </div>
-                </div>
-               
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">
-                            Địa điểm làm việc <span class="text-red-500">*</span>
-                        </label>
-                        <select id="location" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition" required>
-                            <option value="">Chọn địa điểm</option>
-                            <option value="hcm">TP. Hồ Chí Minh</option>
-                            <option value="hanoi">Hà Nội</option>
-                            <option value="danang">Đà Nẵng</option>
-                            <option value="vungtau">Vũng Tàu</option>
-                            <option value="cantho">Cần Thơ</option>
-                            <option value="haiphong">Hải Phòng</option>
-                            <option value="angiang">An Giang</option>
-                            <option value="binhduong">Bình Dương</option>
-                            <option value="dalat">Đà Lạt</option>
-                            <option value="nhatrang">Nha Trang</option>
-                            <option value="phutho">Phú Thọ</option>
-                            <option value="quangninh">Quảng Ninh</option>
-                            <option value="quangnam">Quảng Nam</option>
-                            <option value="hue">Huế</option>
-                            <option value="longan">Long An</option>
-                            <option value="tayninh">Tây Ninh</option>
-                            <option value="binhthuan">Bình Thuận</option>
-                            <option value="bienhoa">Biên Hòa</option>
-                            <option value="remote">Làm việc từ xa</option>
-                            <option value="hybrid">Hybrid (Kết hợp)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">
-                            Hình thức làm việc <span class="text-red-500">*</span>
-                        </label>
-                        <div class="flex flex-wrap gap-4">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="jobType" value="fulltime" class="text-green-600" checked>
-                                <span class="ml-2">Toàn thời gian</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="jobType" value="parttime" class="text-green-600">
-                                <span class="ml-2">Bán thời gian</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="jobType" value="intern" class="text-green-600">
-                                <span class="ml-2">Thực tập</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Mức lương (vnđ/tháng)
-                    </label>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="currency-input">
-                            <label class="block text-sm text-gray-600 mb-1">Từ</label>
-                            <input type="text" id="salaryMin" placeholder="10.000.000"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
-                                oninput="formatCurrency(this)">
-                            <span class="currency-suffix">vnđ</span>
-                        </div>
-                        <div class="currency-input">
-                            <label class="block text-sm text-gray-600 mb-1">Đến</label>
-                            <input type="text" id="salaryMax" placeholder="20.000.000"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
-                                oninput="formatCurrency(this)">
-                            <span class="currency-suffix">vnđ</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-2">Nhập số, hệ thống sẽ tự định dạng (VD: 1000 → 1.000)</p>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Mô tả công việc <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="jobDescription" rows="5" required placeholder="Mô tả chi tiết về công việc, trách nhiệm..."
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"></textarea>
-                </div>
-                <div class="flex justify-end pt-6 border-t">
-                    <button type="button" onclick="nextStep(1)"
-                        class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md">
-                        Tiếp theo: Yêu cầu công việc <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
+      </div>
+      <form id="postJobForm">
+        <div
+          id="step1"
+          class="form-step active bg-white rounded-2xl shadow-lg p-6 md:p-8"
+        >
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">
+            Đăng tin tuyển dụng mới
+          </h1>
+          <p class="text-gray-600 mb-8">
+            Điền thông tin chi tiết để tìm ứng viên phù hợp nhất
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">
+                Chức danh công việc <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="jobTitle"
+                required
+                placeholder="VD: Lập trình viên Frontend"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+              />
             </div>
-            <div id="step2" class="form-step bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Yêu cầu công việc</h1>
-                <p class="text-gray-600 mb-8">Xác định các yêu cầu và kỹ năng cần thiết</p>
-               
-                <div class="mb-8">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Yêu cầu công việc <span class="text-red-500">*</span>
-                    </label>
-                    <div id="requirementsContainer">
-                        <div class="flex items-center gap-2 mb-2">
-                            <input type="text" placeholder="VD: 1+ năm kinh nghiệm React"
-                                class="requirement-input flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
-                            <button type="button" onclick="addRequirement()"
-                                class="px-4 py-3 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Kinh nghiệm tối thiểu <span class="text-red-500">*</span>
-                    </label>
-                    <select id="experience" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition" required>
-                        <option value="">Chọn mức kinh nghiệm</option>
-                        <option value="fresh">Không yêu cầu kinh nghiệm</option>
-                        <option value="6months">6 tháng+</option>
-                        <option value="1year">1 năm+</option>
-                        <option value="2year">2 năm+</option>
-                        <option value="3year">3 năm+</option>
-                        <option value="5year">5 năm+</option>
-                    </select>
-                </div>
-                <div class="mb-8">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Kỹ năng yêu cầu
-                    </label>
-                    <div class="flex flex-wrap gap-2 mb-3" id="skillsContainer">
-                    </div>
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="Thêm kỹ năng (nhấn Enter hoặc nút Thêm)"
-                            class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
-                            id="skillInput">
-                        <button type="button" onclick="addSkill()"
-                            class="px-4 py-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition">
-                            <i class="fas fa-plus"></i> Thêm
-                        </button>
-                    </div>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Quyền lợi
-                    </label>
-                    <textarea id="benefits" rows="4" placeholder="Mô tả quyền lợi, phúc lợi công ty..."
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"></textarea>
-                </div>
-                <div class="flex justify-between pt-6 border-t">
-                    <button type="button" onclick="prevStep(2)"
-                        class="bg-gray-100 text-gray-700 font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition">
-                        <i class="fas fa-arrow-left mr-2"></i> Quay lại
-                    </button>
-                    <button type="button" onclick="nextStep(2)"
-                        class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md">
-                        Tiếp theo: Xem lại & Đăng <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">
+                Tên công ty <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="company"
+                required
+                placeholder="VD: Công ty Công nghệ UTH"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+              />
             </div>
-            <div id="step3" class="form-step bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Xem lại & Đăng</h1>
-                <p class="text-gray-600 mb-8">Kiểm tra thông tin trước khi đăng tin tuyển dụng. Kiểm tra kỹ thông tin trước khi đăng.</p>
-               
-                <div class="bg-gray-50 rounded-xl p-6 mb-8 border border-gray-200">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Tóm tắt tin tuyển dụng</h3>
-                   
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="font-medium text-gray-600">Vị trí & Công ty</h4>
-                            <p class="text-lg font-semibold" id="review-jobTitle">-</p>
-                            <p class="text-gray-700" id="review-company">-</p>
-                        </div>
-                       
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <h4 class="font-medium text-gray-600">Địa điểm & Hình thức</h4>
-                                <p class="font-semibold" id="review-locationType">-</p>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-600">Kinh nghiệm yêu cầu</h4>
-                                <p class="font-semibold" id="review-experienceText">-</p>
-                            </div>
-                        </div>
-                       
-                        <div>
-                            <h4 class="font-medium text-gray-600">Mức lương</h4>
-                            <p class="text-xl font-bold text-green-600" id="review-salary">-</p>
-                        </div>
-                       
-                        <div>
-                            <h4 class="font-medium text-gray-600">Kỹ năng yêu cầu</h4>
-                            <div class="flex flex-wrap gap-2 mt-2" id="review-skills">
-                                <span class="skill-tag">Chưa có kỹ năng nào</span>
-                            </div>
-                        </div>
-                       
-                        <div>
-                            <h4 class="font-medium text-gray-600">Mô tả công việc</h4>
-                            <p class="text-gray-700 mt-1" id="review-description">-</p>
-                        </div>
-                       
-                        <div id="review-requirements-container">
-                            <h4 class="font-medium text-gray-600">Yêu cầu công việc</h4>
-                            <ul class="list-disc pl-5 text-gray-700 mt-1" id="review-requirements">
-                                <li>Chưa có yêu cầu nào</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-medium mb-2">
-                        Email nhận hồ sơ <span class="text-red-500">*</span>
-                    </label>
-                    <input type="email" id="contactEmail" required placeholder="hr@company.com"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 pt-6 border-t">
-                    <button type="button" onclick="prevStep(3)"
-                        class="md:flex-1 bg-gray-100 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition">
-                        <i class="fas fa-arrow-left mr-2"></i> Quay lại chỉnh sửa
-                    </button>
-                    <button type="button" onclick="submitForm()"
-                        class="md:flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md">
-                        <i class="fas fa-paper-plane mr-2"></i> Đăng tin ngay
-                    </button>
-                    <button type="button"
-                        class="md:flex-1 bg-blue-100 text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition">
-                        <i class="fas fa-save mr-2"></i> Lưu bản nháp
-                    </button>
-                </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">
+                Địa điểm làm việc <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="location"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                required
+              >
+                <option value="">Chọn địa điểm</option>
+                <option value="hcm">TP. Hồ Chí Minh</option>
+                <option value="hanoi">Hà Nội</option>
+                <option value="danang">Đà Nẵng</option>
+                <option value="vungtau">Vũng Tàu</option>
+                <option value="cantho">Cần Thơ</option>
+                <option value="haiphong">Hải Phòng</option>
+                <option value="angiang">An Giang</option>
+                <option value="binhduong">Bình Dương</option>
+                <option value="dalat">Đà Lạt</option>
+                <option value="nhatrang">Nha Trang</option>
+                <option value="phutho">Phú Thọ</option>
+                <option value="quangninh">Quảng Ninh</option>
+                <option value="quangnam">Quảng Nam</option>
+                <option value="hue">Huế</option>
+                <option value="longan">Long An</option>
+                <option value="tayninh">Tây Ninh</option>
+                <option value="binhthuan">Bình Thuận</option>
+                <option value="bienhoa">Biên Hòa</option>
+                <option value="remote">Làm việc từ xa</option>
+                <option value="hybrid">Hybrid (Kết hợp)</option>
+              </select>
             </div>
-        </form>
-        <div class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 border border-blue-100">
-            <div class="flex items-start">
-                <div class="text-blue-600 mr-4 mt-1">
-                    <i class="fas fa-info-circle text-2xl"></i>
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">
+                Hình thức làm việc <span class="text-red-500">*</span>
+              </label>
+              <div class="flex flex-wrap gap-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="jobType"
+                    value="fulltime"
+                    class="text-green-600"
+                    checked
+                  />
+                  <span class="ml-2">Toàn thời gian</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="jobType"
+                    value="parttime"
+                    class="text-green-600"
+                  />
+                  <span class="ml-2">Bán thời gian</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="jobType"
+                    value="intern"
+                    class="text-green-600"
+                  />
+                  <span class="ml-2">Thực tập</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">
+              Mức lương (vnđ/tháng)
+            </label>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="currency-input">
+                <label class="block text-sm text-gray-600 mb-1">Từ</label>
+                <input
+                  type="text"
+                  id="salaryMin"
+                  placeholder="10.000.000"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                  oninput="formatCurrency(this)"
+                />
+                <span class="currency-suffix">vnđ</span>
+              </div>
+              <div class="currency-input">
+                <label class="block text-sm text-gray-600 mb-1">Đến</label>
+                <input
+                  type="text"
+                  id="salaryMax"
+                  placeholder="20.000.000"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                  oninput="formatCurrency(this)"
+                />
+                <span class="currency-suffix">vnđ</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">
+              Nhập số, hệ thống sẽ tự định dạng (VD: 1000 → 1.000)
+            </p>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">
+              Mô tả công việc <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="jobDescription"
+              rows="5"
+              required
+              placeholder="Mô tả chi tiết về công việc, trách nhiệm..."
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+            ></textarea>
+          </div>
+          <div class="flex justify-end pt-6 border-t">
+            <button
+              type="button"
+              onclick="nextStep(1)"
+              class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md"
+            >
+              Tiếp theo: Yêu cầu công việc
+              <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          id="step2"
+          class="form-step bg-white rounded-2xl shadow-lg p-6 md:p-8"
+        >
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">
+            Yêu cầu công việc
+          </h1>
+          <p class="text-gray-600 mb-8">
+            Xác định các yêu cầu và kỹ năng cần thiết
+          </p>
+
+          <div class="mb-8">
+            <label class="block text-gray-700 font-medium mb-2">
+              Yêu cầu công việc <span class="text-red-500">*</span>
+            </label>
+            <div id="requirementsContainer">
+              <div class="flex items-center gap-2 mb-2">
+                <input
+                  type="text"
+                  placeholder="VD: 1+ năm kinh nghiệm React"
+                  class="requirement-input flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                />
+                <button
+                  type="button"
+                  onclick="addRequirement()"
+                  class="px-4 py-3 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-8">
+            <label class="block text-gray-700 font-medium mb-2">
+              Kinh nghiệm tối thiểu <span class="text-red-500">*</span>
+            </label>
+            <select
+              id="experience"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+              required
+            >
+              <option value="">Chọn mức kinh nghiệm</option>
+              <option value="fresh">Không yêu cầu kinh nghiệm</option>
+              <option value="6months">6 tháng+</option>
+              <option value="1year">1 năm+</option>
+              <option value="2year">2 năm+</option>
+              <option value="3year">3 năm+</option>
+              <option value="5year">5 năm+</option>
+            </select>
+          </div>
+          <div class="mb-8">
+            <label class="block text-gray-700 font-medium mb-2">
+              Kỹ năng yêu cầu
+            </label>
+            <div class="flex flex-wrap gap-2 mb-3" id="skillsContainer"></div>
+            <div class="flex gap-2">
+              <input
+                type="text"
+                placeholder="Thêm kỹ năng (nhấn Enter hoặc nút Thêm)"
+                class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+                id="skillInput"
+              />
+              <button
+                type="button"
+                onclick="addSkill()"
+                class="px-4 py-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition"
+              >
+                <i class="fas fa-plus"></i> Thêm
+              </button>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">
+              Quyền lợi
+            </label>
+            <textarea
+              id="benefits"
+              rows="4"
+              placeholder="Mô tả quyền lợi, phúc lợi công ty..."
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+            ></textarea>
+          </div>
+          <div class="flex justify-between pt-6 border-t">
+            <button
+              type="button"
+              onclick="prevStep(2)"
+              class="bg-gray-100 text-gray-700 font-bold py-3 px-8 rounded-lg hover:bg-gray-200 transition"
+            >
+              <i class="fas fa-arrow-left mr-2"></i> Quay lại
+            </button>
+            <button
+              type="button"
+              onclick="nextStep(2)"
+              class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md"
+            >
+              Tiếp theo: Xem lại & Đăng <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          id="step3"
+          class="form-step bg-white rounded-2xl shadow-lg p-6 md:p-8"
+        >
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">Xem lại & Đăng</h1>
+          <p class="text-gray-600 mb-8">
+            Kiểm tra thông tin trước khi đăng tin tuyển dụng. Kiểm tra kỹ thông
+            tin trước khi đăng.
+          </p>
+
+          <div class="bg-gray-50 rounded-xl p-6 mb-8 border border-gray-200">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+              Tóm tắt tin tuyển dụng
+            </h3>
+
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-medium text-gray-600">Vị trí & Công ty</h4>
+                <p class="text-lg font-semibold" id="review-jobTitle">-</p>
+                <p class="text-gray-700" id="review-company">-</p>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="font-medium text-gray-600">
+                    Địa điểm & Hình thức
+                  </h4>
+                  <p class="font-semibold" id="review-locationType">-</p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Tin tuyển dụng của bạn sẽ được:</h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Phê duyệt nhanh chóng</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Hiển thị trong 30 ngày</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Đề xuất tới ứng viên phù hợp bằng AI</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Xuất hiện trên TopCV & Career Mate</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i> Nhận CV ứng tuyển trực tiếp</li>
-                    </ul>
+                  <h4 class="font-medium text-gray-600">Kinh nghiệm yêu cầu</h4>
+                  <p class="font-semibold" id="review-experienceText">-</p>
                 </div>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-gray-600">Mức lương</h4>
+                <p class="text-xl font-bold text-green-600" id="review-salary">
+                  -
+                </p>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-gray-600">Kỹ năng yêu cầu</h4>
+                <div class="flex flex-wrap gap-2 mt-2" id="review-skills">
+                  <span class="skill-tag">Chưa có kỹ năng nào</span>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-gray-600">Mô tả công việc</h4>
+                <p class="text-gray-700 mt-1" id="review-description">-</p>
+              </div>
+
+              <div id="review-requirements-container">
+                <h4 class="font-medium text-gray-600">Yêu cầu công việc</h4>
+                <ul
+                  class="list-disc pl-5 text-gray-700 mt-1"
+                  id="review-requirements"
+                >
+                  <li>Chưa có yêu cầu nào</li>
+                </ul>
+              </div>
             </div>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">
+              Email nhận hồ sơ <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="contactEmail"
+              required
+              placeholder="hr@company.com"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition"
+            />
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 pt-6 border-t">
+            <button
+              type="button"
+              onclick="prevStep(3)"
+              class="md:flex-1 bg-gray-100 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition"
+            >
+              <i class="fas fa-arrow-left mr-2"></i> Quay lại chỉnh sửa
+            </button>
+            <button
+              type="button"
+              onclick="submitForm()"
+              class="md:flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-6 rounded-lg hover:from-green-600 hover:to-green-700 transition shadow-md"
+            >
+              <i class="fas fa-paper-plane mr-2"></i> Đăng tin ngay
+            </button>
+            <button
+              type="button"
+              class="md:flex-1 bg-blue-100 text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition"
+            >
+              <i class="fas fa-save mr-2"></i> Lưu bản nháp
+            </button>
+          </div>
         </div>
+      </form>
+      <div
+        class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 border border-blue-100"
+      >
+        <div class="flex items-start">
+          <div class="text-blue-600 mr-4 mt-1">
+            <i class="fas fa-info-circle text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">
+              Tin tuyển dụng của bạn sẽ được:
+            </h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>
+                <i class="fas fa-check text-green-500 mr-2"></i> Phê duyệt nhanh
+                chóng
+              </li>
+              <li>
+                <i class="fas fa-check text-green-500 mr-2"></i> Hiển thị trong
+                30 ngày
+              </li>
+              <li>
+                <i class="fas fa-check text-green-500 mr-2"></i> Đề xuất tới ứng
+                viên phù hợp bằng AI
+              </li>
+              <li>
+                <i class="fas fa-check text-green-500 mr-2"></i> Xuất hiện trên
+                TopCV & Career Mate
+              </li>
+              <li>
+                <i class="fas fa-check text-green-500 mr-2"></i> Nhận CV ứng
+                tuyển trực tiếp
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </main>
     <script>
-    let currentStep = 1;
-    const skills = [];
-    let requirements = []; // Mảng lưu danh sách yêu cầu
+      let currentStep = 1;
+      const skills = [];
+      let requirements = []; // Mảng lưu danh sách yêu cầu
 
-    // --- 1. ĐỊNH DẠNG TIỀN TỆ ---
-    function formatCurrency(input) {
-        let value = input.value.replace(/\./g, '').replace(/\D/g, '');
-        if (value === '') {
-            input.value = '';
-            return;
+      // --- 1. ĐỊNH DẠNG TIỀN TỆ ---
+      function formatCurrency(input) {
+        let value = input.value.replace(/\./g, "").replace(/\D/g, "");
+        if (value === "") {
+          input.value = "";
+          return;
         }
         let number = parseInt(value, 10);
-        input.value = number.toLocaleString('vi-VN');
-    }
+        input.value = number.toLocaleString("vi-VN");
+      }
 
-    function getNumberFromFormatted(str) {
-        return parseInt(str.replace(/\./g, '')) || 0;
-    }
+      function getNumberFromFormatted(str) {
+        return parseInt(str.replace(/\./g, "")) || 0;
+      }
 
-    // --- 2. ĐIỀU HƯỚNG STEPS ---
-    function nextStep(step) {
+      // --- 2. ĐIỀU HƯỚNG STEPS ---
+      function nextStep(step) {
         if (!validateStep(step)) {
-            alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
-            return;
+          alert("Vui lòng điền đầy đủ thông tin bắt buộc (*)");
+          return;
         }
-        
+
         if (step === 2) updateRequirements();
 
-        document.getElementById(`step${step}`).classList.remove('active');
-        document.getElementById(`step${step}-indicator`).classList.remove('step-active');
-        document.getElementById(`step${step}-indicator`).classList.add('step-completed');
-        
+        document.getElementById(`step${step}`).classList.remove("active");
+        document
+          .getElementById(`step${step}-indicator`)
+          .classList.remove("step-active");
+        document
+          .getElementById(`step${step}-indicator`)
+          .classList.add("step-completed");
+
         currentStep = step + 1;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-        document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
-        
+        document.getElementById(`step${currentStep}`).classList.add("active");
+        document
+          .getElementById(`step${currentStep}-indicator`)
+          .classList.add("step-active");
+
         if (currentStep === 3) updateReview();
-    }
+      }
 
-    function prevStep(step) {
-        document.getElementById(`step${step}`).classList.remove('active');
-        document.getElementById(`step${step}-indicator`).classList.remove('step-active', 'step-completed');
-        
+      function prevStep(step) {
+        document.getElementById(`step${step}`).classList.remove("active");
+        document
+          .getElementById(`step${step}-indicator`)
+          .classList.remove("step-active", "step-completed");
+
         currentStep = step - 1;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-        document.getElementById(`step${currentStep}-indicator`).classList.add('step-active');
-    }
+        document.getElementById(`step${currentStep}`).classList.add("active");
+        document
+          .getElementById(`step${currentStep}-indicator`)
+          .classList.add("step-active");
+      }
 
-    function validateStep(step) {
+      function validateStep(step) {
         if (step === 1) {
-            const requiredFields = ['jobTitle', 'company', 'location', 'jobDescription'];
-            for (let id of requiredFields) {
-                const field = document.getElementById(id);
-                if (!field || !field.value.trim()) return false;
-            }
+          const requiredFields = [
+            "jobTitle",
+            "company",
+            "location",
+            "jobDescription",
+          ];
+          for (let id of requiredFields) {
+            const field = document.getElementById(id);
+            if (!field || !field.value.trim()) return false;
+          }
         }
         return true;
-    }
+      }
 
-    // --- 3. QUẢN LÝ YÊU CẦU ---
-    function updateRequirements() {
+      // --- 3. QUẢN LÝ YÊU CẦU ---
+      function updateRequirements() {
         requirements = [];
-        const inputs = document.querySelectorAll('.requirement-input');
-        inputs.forEach(input => {
-            if (input.value.trim()) requirements.push(input.value.trim());
+        const inputs = document.querySelectorAll(".requirement-input");
+        inputs.forEach((input) => {
+          if (input.value.trim()) requirements.push(input.value.trim());
         });
-    }
-     function addSkill() {
-        const skillInput = document.getElementById('skillInput');
-         const skill = skillInput.value.trim();
-   
-         if (skill && !skills.includes(skill)) {
-              skills.push(skill); 
-              updateSkillsDisplay();
-              skillInput.value = ''; 
-              skillInput.focus();
-            }
+      }
+      function addSkill() {
+        const skillInput = document.getElementById("skillInput");
+        const skill = skillInput.value.trim();
+
+        if (skill && !skills.includes(skill)) {
+          skills.push(skill);
+          updateSkillsDisplay();
+          skillInput.value = "";
+          skillInput.focus();
         }
-        function updateSkillsDisplay() {
-            const container = document.getElementById('skillsContainer');
-            container.innerHTML = '';
-           
-            skills.forEach(skill => {
-                const tag = document.createElement('span');
-                tag.className = 'skill-tag';
-                tag.innerHTML = `${skill} <button type="button" onclick="removeSkill('${skill}')" class="ml-1 text-red-400 hover:text-red-600">×</button>`;
-                container.appendChild(tag);
-            });
+      }
+      function updateSkillsDisplay() {
+        const container = document.getElementById("skillsContainer");
+        container.innerHTML = "";
+
+        skills.forEach((skill) => {
+          const tag = document.createElement("span");
+          tag.className = "skill-tag";
+          tag.innerHTML = `${skill} <button type="button" onclick="removeSkill('${skill}')" class="ml-1 text-red-400 hover:text-red-600">×</button>`;
+          container.appendChild(tag);
+        });
+      }
+      function removeSkill(skillToRemove) {
+        const index = skills.indexOf(skillToRemove);
+        if (index > -1) {
+          skills.splice(index, 1);
+          updateSkillsDisplay();
         }
-        function removeSkill(skillToRemove) {
-            const index = skills.indexOf(skillToRemove);
-            if (index > -1) {
-                skills.splice(index, 1);
-                updateSkillsDisplay();
-            }
-        }
-        document.getElementById('skillInput').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') {
-                e.preventDefault();
-                addSkill();
-            }
+      }
+      document
+        .getElementById("skillInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addSkill();
+          }
         });
 
-    function addRequirement() {
-        const container = document.getElementById('requirementsContainer');
-        const div = document.createElement('div');
-        div.className = 'flex items-center gap-2 mb-2';
+      function addRequirement() {
+        const container = document.getElementById("requirementsContainer");
+        const div = document.createElement("div");
+        div.className = "flex items-center gap-2 mb-2";
         div.innerHTML = `
             <input type="text" placeholder="Thêm yêu cầu khác..." class="requirement-input flex-1 p-3 border border-gray-300 rounded-lg outline-none">
             <button type="button" onclick="this.parentElement.remove()" class="px-4 py-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
                 <i class="fas fa-times"></i>
             </button>`;
         container.appendChild(div);
-    }
+      }
 
-    // --- 4. XỬ LÝ GỬI DỮ LIỆU LÊN SERVER (QUAN TRỌNG NHẤT) ---
-    async function submitForm() {
+      // --- 4. XỬ LÝ GỬI DỮ LIỆU LÊN SERVER (QUAN TRỌNG NHẤT) ---
+      async function submitForm() {
         updateRequirements();
-        
-        const sMinRaw = document.getElementById('salaryMin').value;
-        const sMaxRaw = document.getElementById('salaryMax').value;
-        
+
+        const sMinRaw = document.getElementById("salaryMin").value;
+        const sMaxRaw = document.getElementById("salaryMax").value;
+
         // Tạo chuỗi hiển thị lương
-        const salaryRangeText = (sMinRaw && sMaxRaw) ? `${sMinRaw} - ${sMaxRaw} VNĐ` : "Thỏa thuận";
+        const salaryRangeText =
+          sMinRaw && sMaxRaw ? `${sMinRaw} - ${sMaxRaw} VNĐ` : "Thỏa thuận";
 
         const jobData = {
-            title: document.getElementById('jobTitle').value,
-            company_name: document.getElementById('company').value,
-            location: document.getElementById('location').value,
-            salary_range: salaryRangeText,
-            salary_min: getNumberFromFormatted(sMinRaw),
-            salary_max: getNumberFromFormatted(sMaxRaw),
-            job_type: document.querySelector('input[name="jobType"]:checked').value,
-            description: document.getElementById('jobDescription').value,
-            requirements: requirements.join('\n'), // Chuyển mảng thành chuỗi xuống dòng
-            benefits: document.getElementById('benefits').value,
-            status: "active"
+          title: document.getElementById("jobTitle").value,
+          company_name: document.getElementById("company").value,
+          location: document.getElementById("location").value,
+          salary_range: salaryRangeText,
+          salary_min: getNumberFromFormatted(sMinRaw),
+          salary_max: getNumberFromFormatted(sMaxRaw),
+          job_type: document.querySelector('input[name="jobType"]:checked')
+            .value,
+          description: document.getElementById("jobDescription").value,
+          requirements: requirements.join("\n"), // Chuyển mảng thành chuỗi xuống dòng
+          benefits: document.getElementById("benefits").value,
+          status: "active",
         };
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/jobs/up', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('access_token')}` // Phải có token
-                },
-                body: JSON.stringify(jobData)
-            });
-               if (response.status === 401) {
+          const response = await fetch("http://127.0.0.1:8000/api/jobs/up", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Phải có token
+            },
+            body: JSON.stringify(jobData),
+          });
+          if (response.status === 401) {
             alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
-            localStorage.removeItem("access_token");
+            sessionStorage.removeItem("access_token");
             window.location.href = "../auth/login.html";
             return;
-        }
+          }
 
-            if (response.ok) {
-                alert('✅ Đăng tin tuyển dụng thành công!');
-                localStorage.removeItem('jobPostDraft');
-                window.location.href = "Findjobs.html"; // Luồng chuyển hướng
-            } else {
-                const err = await response.json();
-                alert('❌ Lỗi từ Server: ' + (err.detail || 'Không thể đăng tin'));
-            }
+          if (response.ok) {
+            alert("✅ Đăng tin tuyển dụng thành công!");
+            localStorage.removeItem("jobPostDraft");
+            window.location.href = "Findjobs.html"; // Luồng chuyển hướng
+          } else {
+            const err = await response.json();
+            alert("❌ Lỗi từ Server: " + (err.detail || "Không thể đăng tin"));
+          }
         } catch (error) {
-            console.error('Submit Error:', error);
-            alert('❌ Lỗi kết nối! Hãy kiểm tra Backend đang chạy.');
+          console.error("Submit Error:", error);
+          alert("❌ Lỗi kết nối! Hãy kiểm tra Backend đang chạy.");
         }
-    }
+      }
 
-    // --- 5. HIỂN THỊ XEM TRƯỚC (REVIEW) ---
-   function updateReview() {
-    const locSelect = document.getElementById('location');
-    const expSelect = document.getElementById('experience');
+      // --- 5. HIỂN THỊ XEM TRƯỚC (REVIEW) ---
+      function updateReview() {
+        const locSelect = document.getElementById("location");
+        const expSelect = document.getElementById("experience");
 
-    // Lấy trực tiếp chữ hiển thị trong Option người dùng đang chọn
-    const displayLocation = locSelect.options[locSelect.selectedIndex].text;
-    const displayExperience = expSelect.options[expSelect.selectedIndex].text;
-    
-    // Lấy văn bản từ Radio button đang chọn
-    const selectedType = document.querySelector('input[name="jobType"]:checked');
-    const displayType = selectedType ? selectedType.nextElementSibling.textContent.trim() : "-";
+        // Lấy trực tiếp chữ hiển thị trong Option người dùng đang chọn
+        const displayLocation = locSelect.options[locSelect.selectedIndex].text;
+        const displayExperience =
+          expSelect.options[expSelect.selectedIndex].text;
 
-    // 1. Hiển thị thông tin cơ bản
-    document.getElementById('review-jobTitle').textContent = document.getElementById('jobTitle').value || "-";
-    document.getElementById('review-company').textContent = document.getElementById('company').value || "-";
-    document.getElementById('review-description').textContent = document.getElementById('jobDescription').value || "-";
+        // Lấy văn bản từ Radio button đang chọn
+        const selectedType = document.querySelector(
+          'input[name="jobType"]:checked',
+        );
+        const displayType = selectedType
+          ? selectedType.nextElementSibling.textContent.trim()
+          : "-";
 
-    // 2. Hiển thị Địa điểm & Hình thức (Đã fix viết hoa/có dấu)
-    document.getElementById('review-locationType').textContent = `${displayLocation} • ${displayType}`;
+        // 1. Hiển thị thông tin cơ bản
+        document.getElementById("review-jobTitle").textContent =
+          document.getElementById("jobTitle").value || "-";
+        document.getElementById("review-company").textContent =
+          document.getElementById("company").value || "-";
+        document.getElementById("review-description").textContent =
+          document.getElementById("jobDescription").value || "-";
 
-    // 3. Hiển thị Lương
-    const sMin = document.getElementById('salaryMin').value;
-    const sMax = document.getElementById('salaryMax').value;
-    document.getElementById('review-salary').textContent = (sMin || sMax) ? `${sMin} - ${sMax} VNĐ` : "Thỏa thuận";
+        // 2. Hiển thị Địa điểm & Hình thức (Đã fix viết hoa/có dấu)
+        document.getElementById("review-locationType").textContent =
+          `${displayLocation} • ${displayType}`;
 
-    // 4. Hiển thị Kinh nghiệm
-    document.getElementById('review-experienceText').textContent = displayExperience;
+        // 3. Hiển thị Lương
+        const sMin = document.getElementById("salaryMin").value;
+        const sMax = document.getElementById("salaryMax").value;
+        document.getElementById("review-salary").textContent =
+          sMin || sMax ? `${sMin} - ${sMax} VNĐ` : "Thỏa thuận";
 
-    // 5. HIỂN THỊ KỸ NĂNG (PHẦN QUAN TRỌNG)
-    const reviewSkills = document.getElementById('review-skills');
-    if (skills.length > 0) {
-        // Render mảng skills thành các tag xanh
-        reviewSkills.innerHTML = skills.map(s => `<span class="skill-tag">${s}</span>`).join(' ');
-    } else {
-        reviewSkills.innerHTML = '<span class="text-gray-400 italic">Chưa có kỹ năng nào</span>';
-    }
+        // 4. Hiển thị Kinh nghiệm
+        document.getElementById("review-experienceText").textContent =
+          displayExperience;
 
-    // 6. Hiển thị danh sách Yêu cầu
-    const reqList = document.getElementById('review-requirements');
-    reqList.innerHTML = requirements.map(r => `<li>• ${r}</li>`).join('') || '<li>Chưa có yêu cầu</li>';
-}
-</script>
-</body>
+        // 5. HIỂN THỊ KỸ NĂNG (PHẦN QUAN TRỌNG)
+        const reviewSkills = document.getElementById("review-skills");
+        if (skills.length > 0) {
+          // Render mảng skills thành các tag xanh
+          reviewSkills.innerHTML = skills
+            .map((s) => `<span class="skill-tag">${s}</span>`)
+            .join(" ");
+        } else {
+          reviewSkills.innerHTML =
+            '<span class="text-gray-400 italic">Chưa có kỹ năng nào</span>';
+        }
+
+        // 6. Hiển thị danh sách Yêu cầu
+        const reqList = document.getElementById("review-requirements");
+        reqList.innerHTML =
+          requirements.map((r) => `<li>• ${r}</li>`).join("") ||
+          "<li>Chưa có yêu cầu</li>";
+      }
+    </script>
+  </body>
 </html>

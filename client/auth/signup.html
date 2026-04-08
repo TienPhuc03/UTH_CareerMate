@@ -427,10 +427,12 @@
       }
 
       // Xử lý token từ Google OAuth callback
-      const urlParams = new URLSearchParams(window.location.search);
-      const googleToken = urlParams.get("token");
-      const googleEmail = urlParams.get("email");
-      const googleRole = urlParams.get("role");
+      // Đọc từ fragment (#) thay vì query string
+      const fragmentString = window.location.hash.substring(1);
+      const fragmentParams = new URLSearchParams(fragmentString);
+      const googleToken = fragmentParams.get("token");
+      const googleEmail = fragmentParams.get("email");
+      const googleRole = fragmentParams.get("role");
 
       if (googleToken) {
         const normalizedGoogleRole =
@@ -442,6 +444,16 @@
           normalizedGoogleRole === "admin"
             ? "../page/Admindashboard.html"
             : "../page/Homepage.html";
+        sessionStorage.setItem("access_token", googleToken); // ← sessionStorage
+        localStorage.setItem("user_email", googleEmail);
+        localStorage.setItem("user_role", googleRole);
+        // Xóa fragment trước khi redirect
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname,
+        );
+        window.location.href = "../page/Dashboard.html";
       }
     </script>
   </body>

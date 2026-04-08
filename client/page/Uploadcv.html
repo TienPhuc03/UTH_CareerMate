@@ -173,7 +173,7 @@
             const submitButton = form.querySelector('button[type="submit"]');
             const originalButtonHtml = submitButton ? submitButton.innerHTML : "";
             const userEmail = localStorage.getItem("user_email");
-            const token = localStorage.getItem("access_token");
+            const token = sessionStorage.getItem('access_token'); // ← đổi
             const pageParams = new URLSearchParams(window.location.search);
 
             function showStatus(message, type = "info") {
@@ -286,6 +286,13 @@
                         );
                         return;
                     }
+                    alert("Upload thành công!");
+                       if (res.status === 401) {
+                            alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
+                            sessionStorage.removeItem('access_token')
+                            window.location.href = "../auth/login.html";
+                            return;
+                         }
 
                     if (!payload.cv_id) {
                         showStatus("Tải CV thành công nhưng chưa nhận được dữ liệu kết quả. Vui lòng thử lại.", "error");
@@ -314,6 +321,7 @@
             }
 
             localStorage.removeItem("access_token");
+            sessionStorage.removeItem('access_token')
             localStorage.removeItem("user_email");
             localStorage.removeItem("user_role");
             localStorage.removeItem("full_name");

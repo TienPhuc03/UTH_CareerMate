@@ -189,6 +189,8 @@ async def google_callback(
 
     token_response = _build_token_response(db, db_user)
 
+    # Dùng fragment (#) thay vì query string (?)
+    # Fragment không được gửi lên server, không xuất hiện trong server logs
     query_string = urlencode(
         {
             "token": token_response["access_token"],
@@ -198,5 +200,5 @@ async def google_callback(
     )
 
     return RedirectResponse(
-        url=f"{settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}?{query_string}"
+        url=f"{settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}#{query_string}"
     )

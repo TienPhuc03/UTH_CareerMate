@@ -1,109 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Danh sách ứng viên - Career Mate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 min-h-screen">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <div id="header-placeholder"></div>
 
     <main class="max-w-[1200px] mx-auto py-10 px-4">
-        <div class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-800">Danh sách ứng viên ứng tuyển</h1>
-                <p class="text-gray-600">Quản lý các hồ sơ đã nộp vào các vị trí đăng tuyển của bạn</p>
-            </div>
-            <div class="flex gap-3">
-                <span class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold">
-                    Tổng cộng: <span id="candidate-count">0</span> ứng viên
-                </span>
-            </div>
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-800">
+            Danh sách ứng viên ứng tuyển
+          </h1>
+          <p class="text-gray-600">
+            Quản lý các hồ sơ đã nộp vào các vị trí đăng tuyển của bạn
+          </p>
         </div>
+        <div class="flex gap-3">
+          <span
+            class="bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-semibold"
+          >
+            Tổng cộng: <span id="candidate-count">0</span> ứng viên
+          </span>
+        </div>
+      </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-gray-50 border-b border-gray-200">
-                        <th class="px-6 py-4 text-sm font-bold text-gray-700">Ứng viên</th>
-                        <th class="px-6 py-4 text-sm font-bold text-gray-700">Vị trí ứng tuyển</th>
-                        <th class="px-6 py-4 text-sm font-bold text-gray-700">Ngày nộp</th>
-                        <th class="px-6 py-4 text-sm font-bold text-gray-700">Trạng thái</th>
-                        <th class="px-6 py-4 text-sm font-bold text-gray-700 text-center">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody id="candidate-list">
-                </tbody>
-            </table>
-        </div>
+      <div
+        class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+      >
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-200">
+              <th class="px-6 py-4 text-sm font-bold text-gray-700">
+                Ứng viên
+              </th>
+              <th class="px-6 py-4 text-sm font-bold text-gray-700">
+                Vị trí ứng tuyển
+              </th>
+              <th class="px-6 py-4 text-sm font-bold text-gray-700">
+                Ngày nộp
+              </th>
+              <th class="px-6 py-4 text-sm font-bold text-gray-700">
+                Trạng thái
+              </th>
+              <th class="px-6 py-4 text-sm font-bold text-gray-700 text-center">
+                Thao tác
+              </th>
+            </tr>
+          </thead>
+          <tbody id="candidate-list"></tbody>
+        </table>
+      </div>
     </main>
 
     <script src="../components/auth-script.js"></script>
     <script>
-    // --- 1. NẠP HEADER & KIỂM TRA QUYỀN (GIỮ NGUYÊN) ---
-    fetch('../components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            const script = document.createElement('script');
-            script.src = '../components/auth-script.js';
-            document.body.appendChild(script);
+      // --- 1. NẠP HEADER & KIỂM TRA QUYỀN (GIỮ NGUYÊN) ---
+      fetch("../components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "../components/auth-script.js";
+          document.body.appendChild(script);
         });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const role = localStorage.getItem('user_role');
-        if (role !== 'recruiter') {
-            alert("Bạn không có quyền truy cập trang này!");
-            window.location.href = "Homepage.html";
-            return;
+      document.addEventListener("DOMContentLoaded", function () {
+        const role = localStorage.getItem("user_role");
+        if (role !== "recruiter") {
+          alert("Bạn không có quyền truy cập trang này!");
+          window.location.href = "Homepage.html";
+          return;
         }
         // Gọi hàm nạp dữ liệu khi trang vừa mở
         loadApplications();
-    });
+      });
 
-    // --- 2. LOGIC QUẢN LÝ ỨNG VIÊN ---
-    const token = localStorage.getItem("access_token");
+      // --- 2. LOGIC QUẢN LÝ ỨNG VIÊN ---
+      const token = sessionStorage.getItem("access_token"); // ← đổi
 
-    async function loadApplications() {
-        if (!token) return window.location.href = "../auth/login.html";
+      async function loadApplications() {
+        if (!token) return (window.location.href = "../auth/login.html");
 
         try {
-            // Gọi API lấy danh sách ứng tuyển
-            const response = await fetch('http://127.0.0.1:8000/api/applications/get', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (response.status === 401) {
+          // Gọi API lấy danh sách ứng tuyển
+          const response = await fetch(
+            "http://127.0.0.1:8000/api/applications/get",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
+          if (response.status === 401) {
             alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
-            localStorage.removeItem("access_token");
+            sessionStorage.removeItem("access_token");
             window.location.href = "../auth/login.html";
             return;
-        }
-            if (!response.ok) throw new Error("Lỗi nạp dữ liệu");
-            
-            const apps = await response.json();
-            
-            // Cập nhật số lượng (Fix lỗi sai ID totalApps thành candidate-count)
-            document.getElementById("candidate-count").textContent = apps.length;
-            
-            const container = document.getElementById("candidate-list");
-                 container.innerHTML = apps.map(app => `
+          }
+          if (!response.ok) throw new Error("Lỗi nạp dữ liệu");
+
+          const apps = await response.json();
+
+          // Cập nhật số lượng (Fix lỗi sai ID totalApps thành candidate-count)
+          document.getElementById("candidate-count").textContent = apps.length;
+
+          const container = document.getElementById("candidate-list");
+          container.innerHTML = apps
+            .map(
+              (app) => `
                 <tr class="border-b hover:bg-gray-50">
                     <td class="px-6 py-4 flex items-center">
                         <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold mr-3">
-                            ${app.student_name ? app.student_name.charAt(0).toUpperCase() : '?'}
+                            ${app.student_name ? app.student_name.charAt(0).toUpperCase() : "?"}
                         </div>
                         <div>
-                            <div class="font-bold text-gray-800">${app.student_name || 'Ẩn danh'}</div>
-                            <div class="text-[10px] text-gray-500">${app.student_email || ''}</div>
+                            <div class="font-bold text-gray-800">${app.student_name || "Ẩn danh"}</div>
+                            <div class="text-[10px] text-gray-500">${app.student_email || ""}</div>
                         </div>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium text-gray-700">
-                        ${app.job_title || 'N/A'}
+                        ${app.job_title || "N/A"}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-600">
-                        ${new Date(app.created_at).toLocaleDateString('vi-VN')}
+                        ${new Date(app.created_at).toLocaleDateString("vi-VN")}
                     </td>
                     <td class="px-6 py-4">
                         <span class="px-3 py-1 rounded-full text-[10px] font-bold ${getStatusClass(app.status)}">
@@ -122,57 +147,66 @@
                         </button>
                     </td>
                 </tr>
-            `).join('');
-        } catch (error) { 
-            console.error("Lỗi:", error);
-            document.getElementById("candidate-list").innerHTML = '<tr><td colspan="5" class="p-10 text-center text-red-500">Không nạp được dữ liệu từ Server</td></tr>';
+            `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Lỗi:", error);
+          document.getElementById("candidate-list").innerHTML =
+            '<tr><td colspan="5" class="p-10 text-center text-red-500">Không nạp được dữ liệu từ Server</td></tr>';
         }
-    }
+      }
 
-    // Hàm cập nhật trạng thái đơn ứng tuyển
-    async function updateStatus(appId, newStatus) {
-    if (!confirm(`Bạn có chắc muốn chuyển trạng thái sang ${newStatus}?`)) return;
+      // Hàm cập nhật trạng thái đơn ứng tuyển
+      async function updateStatus(appId, newStatus) {
+        if (!confirm(`Bạn có chắc muốn chuyển trạng thái sang ${newStatus}?`))
+          return;
 
-    const token = localStorage.getItem("access_token");
-    try {
-        const response = await fetch(`http://127.0.0.1:8000/api/applications/${appId}/status`, {
-            method: 'PATCH',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
+        const token = sessionStorage.getItem("access_token"); // ← đổi
+        try {
+          const response = await fetch(
+            `http://127.0.0.1:8000/api/applications/${appId}/status`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              // Gửi đúng trường 'status' khớp với ApplicationUpdate schema
+              body: JSON.stringify({ status: newStatus }),
             },
-            // Gửi đúng trường 'status' khớp với ApplicationUpdate schema
-            body: JSON.stringify({ status: newStatus }) 
-        });
+          );
 
-        if (response.status === 401) {
+          if (response.status === 401) {
             alert("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại!");
             return;
-        }
+          }
 
-        if (response.ok) {
+          if (response.ok) {
             alert("✅ Cập nhật trạng thái thành công!");
             loadApplications(); // Tải lại danh sách để cập nhật giao diện
-        } else {
+          } else {
             const errorData = await response.json();
             alert("❌ Lỗi: " + (errorData.detail || "Không thể cập nhật"));
+          }
+        } catch (err) {
+          console.error("Lỗi kết nối:", err);
+          alert(
+            "❌ Không thể kết nối tới Server (Lỗi CORS hoặc Server chưa chạy)",
+          );
         }
-    } catch (err) {
-        console.error("Lỗi kết nối:", err);
-        alert("❌ Không thể kết nối tới Server (Lỗi CORS hoặc Server chưa chạy)");
-    }
-}
+      }
 
-    function getStatusClass(status) {
-        if (status === 'ACCEPTED') return 'bg-green-100 text-green-700';
-        if (status === 'REJECTED') return 'bg-red-100 text-red-700';
-        return 'bg-yellow-100 text-yellow-700';
-    }
+      function getStatusClass(status) {
+        if (status === "ACCEPTED") return "bg-green-100 text-green-700";
+        if (status === "REJECTED") return "bg-red-100 text-red-700";
+        return "bg-yellow-100 text-yellow-700";
+      }
 
-    function viewCV(cvId) {
+      function viewCV(cvId) {
         alert("Đang mở CV ID: " + cvId);
         // Sau này bạn có thể redirect tới trang xem CV chi tiết
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>

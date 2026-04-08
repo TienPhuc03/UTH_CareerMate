@@ -227,6 +227,21 @@
           nameParts.charAt(0).toUpperCase() + nameParts.slice(1);
         const initials = displayName.substring(0, 2).toUpperCase();
 
+        function logout() {
+            if (window.performLogoutFlow) {
+                return window.performLogoutFlow({
+                    redirectUrl: 'Homepage.html',
+                    successMessage: 'Dang xuat thanh cong!',
+                });
+            }
+
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_email');
+            localStorage.removeItem('user_role');
+            localStorage.removeItem('full_name');
+            alert('Dang xuat thanh cong!');
+            window.location.href = 'Homepage.html';
+        }
         document.getElementById("userName").textContent = displayName;
         document.getElementById("userEmail").textContent = email;
         document.getElementById("displayName").textContent = displayName;

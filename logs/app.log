@@ -1,0 +1,50 @@
+[32mINFO[0m | 2026-04-03 00:46:08 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-03 00:46:08 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-03 00:46:08 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-03 00:46:08 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-03 00:46:08 | careermate | setup_logging:81 | ============================================================
+[31mERROR[0m | 2026-04-03 00:46:08 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[32mINFO[0m | 2026-04-03 00:47:18 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-03 00:47:18 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-03 00:47:18 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-03 00:47:18 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-03 00:47:18 | careermate | setup_logging:81 | ============================================================
+[31mERROR[0m | 2026-04-03 00:47:18 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[32mINFO[0m | 2026-04-03 00:47:44 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-03 00:47:44 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-03 00:47:44 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-03 00:47:44 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-03 00:47:44 | careermate | setup_logging:81 | ============================================================
+[31mERROR[0m | 2026-04-03 00:47:44 | careermate.modules.cvs.ai_analyzer | _initialize_client:38 | google-genai import failed: cannot import name 'genai' from 'google' (unknown location)
+[32mINFO[0m | 2026-04-03 00:48:10 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-03 00:48:10 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-03 00:48:10 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-03 00:48:10 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-03 00:48:10 | careermate | setup_logging:81 | ============================================================
+[32mINFO[0m | 2026-04-05 09:24:09 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-05 09:24:09 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-05 09:24:09 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-05 09:24:09 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-05 09:24:09 | careermate | setup_logging:81 | ============================================================
+[32mINFO[0m | 2026-04-05 09:24:12 | careermate.core.redis_client | _connect:31 | Redis connected: redis://127.0.0.1:6379/0
+[32mINFO[0m | 2026-04-05 09:24:12 | careermate | <module>:92 | All routers registered
+[32mINFO[0m | 2026-04-05 09:24:13 | careermate.modules.cvs.router | upload_cv_file:59 | CV upload started: upload-invalid@example.com
+[32mINFO[0m | 2026-04-05 09:24:47 | careermate | setup_logging:77 | ============================================================
+[32mINFO[0m | 2026-04-05 09:24:47 | careermate | setup_logging:78 | CAREERMATE APPLICATION STARTED
+[32mINFO[0m | 2026-04-05 09:24:47 | careermate | setup_logging:79 | Environment: development
+[32mINFO[0m | 2026-04-05 09:24:47 | careermate | setup_logging:80 | Log Level: INFO
+[32mINFO[0m | 2026-04-05 09:24:47 | careermate | setup_logging:81 | ============================================================
+[32mINFO[0m | 2026-04-05 09:24:48 | careermate.core.redis_client | _connect:31 | Redis connected: redis://127.0.0.1:6379/0
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate | <module>:92 | All routers registered
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:59 | CV upload started: upload-success@example.com
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:82 | File saved: upload-success_20260405_092449.pdf
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:86 | CV parsed. Found 3 skills
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:133 | CV saved to DB: ID=321
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:59 | CV upload started: upload-fallback@example.com
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:82 | File saved: upload-fallback_20260405_092449.pdf
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:86 | CV parsed. Found 0 skills
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:133 | CV saved to DB: ID=654
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:59 | CV upload started: upload-invalid@example.com
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:59 | CV upload started: upload-parse-error@example.com
+[32mINFO[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:82 | File saved: upload-parse-error_20260405_092449.pdf
+[31mERROR[0m | 2026-04-05 09:24:49 | careermate.modules.cvs.router | upload_cv_file:90 | Parse failed: Cannot read CV

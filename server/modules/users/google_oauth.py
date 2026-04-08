@@ -1,14 +1,65 @@
 from urllib.parse import urlencode
+import time
 
 import httpx
 from fastapi import HTTPException, status
+from jose import JWTError, jwt
 
 from core.config import settings
+from modules.users.roles import normalize_user_role
 
 
 GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
 GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo"
+ALLOWED_GOOGLE_SIGNUP_ROLES = {"candidate", "recruiter"}
+GOOGLE_STATE_ALGORITHM = "HS256"
+GOOGLE_STATE_EXPIRE_SECONDS = 10 * 60
+
+
+def normalize_google_signup_role(role: str | None) -> str:
+    """Normalize Google signup role and fallback safely to candidate."""
+    normalized = normalize_user_role(role) or "candidate"
+    if normalized not in ALLOWED_GOOGLE_SIGNUP_ROLES:
+        return "candidate"
+    return normalized
+
+
+def encode_google_oauth_state(role: str | None) -> str:
+    """Create a signed OAuth state payload containing selected role."""
+    payload = {
+        "role": normalize_google_signup_role(role),
+        "iat": int(time.time()),
+    }
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm=GOOGLE_STATE_ALGORITHM)
+
+
+def decode_google_oauth_state(state: str | None) -> str:
+    """
+    Decode OAuth state and return selected role.
+    Invalid/missing state always falls back to candidate.
+    """
+    if not state:
+        return "candidate"
+
+    try:
+        payload = jwt.decode(
+            state,
+            settings.SECRET_KEY,
+            algorithms=[GOOGLE_STATE_ALGORITHM],
+        )
+    except JWTError:
+        return "candidate"
+
+    if not isinstance(payload, dict):
+        return "candidate"
+
+    issued_at = payload.get("iat")
+    if isinstance(issued_at, (int, float)):
+        if time.time() - float(issued_at) > GOOGLE_STATE_EXPIRE_SECONDS:
+            return "candidate"
+
+    return normalize_google_signup_role(payload.get("role"))
 
 
 def _require_google_oauth_config() -> None:
@@ -49,7 +100,7 @@ def _build_google_error_detail(default_message: str, response: httpx.Response) -
     return default_message
 
 
-def get_google_auth_url() -> str:
+def get_google_auth_url(state: str | None = None) -> str:
     """Create the Google authorization URL."""
     _require_google_oauth_config()
 
@@ -61,6 +112,9 @@ def get_google_auth_url() -> str:
         "access_type": "offline",
         "prompt": "select_account",
     }
+    if state:
+        params["state"] = state
+
     return f"{GOOGLE_AUTH_URL}?{urlencode(params)}"
 
 

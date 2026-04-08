@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    LOGIN_RATE_LIMIT_ENABLED: bool = True
+    LOGIN_RATE_LIMIT_MAX_ATTEMPTS: int = 5
+    LOGIN_RATE_LIMIT_WINDOW_SECONDS: int = 900
 
     # AI Service - Gemini
     GEMINI_API_KEY: Optional[str] = None
@@ -127,4 +130,10 @@ def display_settings():
     print(f"Allowed Origins: {settings.allowed_origins_list}")
     print(f"Google Redirect URI: {settings.GOOGLE_REDIRECT_URI}")
     print(f"Google Success Redirect: {settings.GOOGLE_OAUTH_SUCCESS_REDIRECT_URL}")
+    print(
+        "Login Rate Limit: "
+        f"{settings.LOGIN_RATE_LIMIT_MAX_ATTEMPTS} attempts / "
+        f"{settings.LOGIN_RATE_LIMIT_WINDOW_SECONDS}s "
+        f"(enabled={settings.LOGIN_RATE_LIMIT_ENABLED})"
+    )
     print("=" * 60)

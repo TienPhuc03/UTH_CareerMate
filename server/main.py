@@ -6,6 +6,7 @@ from database.base import test_connection
 from modules.users.router import router as user_router
 from modules.jobs.router import router as jobs_router 
 from modules.cvs.router import router as cv_router
+from modules.cvs.ai_analyzer import get_gemini_runtime_status
 from modules.applications.router import router as app_router
 from modules.ai_coach.router import router as ai_router
 from modules.admin.router import router as admin_router
@@ -41,6 +42,12 @@ async def lifespan(app: FastAPI):
         logger.info(f" Redis connected - {redis_info.get('total_keys', 0)} keys")
     else:
         logger.warning(" Redis not connected - caching disabled")
+
+    gemini_info = get_gemini_runtime_status()
+    if gemini_info.get("status") == "ready":
+        logger.info(f" Gemini ready - model {gemini_info.get('model')}")
+    else:
+        logger.warning(f" Gemini unavailable - {gemini_info.get('error')}")
 
     logger.info("=" * 70)
     logger.info(" APPLICATION READY")
@@ -110,6 +117,7 @@ def health_check():
         "status": "healthy" if db_status == "healthy" else "degraded",
         "database": db_status,
         "redis": redis_info.get("status", "unknown"),
+        "gemini": get_gemini_runtime_status(),
         "environment": settings.ENVIRONMENT,
         "version": "1.0.0"
     }

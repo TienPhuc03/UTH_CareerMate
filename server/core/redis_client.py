@@ -76,6 +76,51 @@ class RedisClient:
             logger.error(f"Redis DELETE error: {exc}")
             return False
 
+    def get_int(self, key: str) -> Optional[int]:
+        """Get an integer value from Redis without JSON decoding."""
+        if not self.is_connected:
+            return None
+        try:
+            value = self.client.get(key)
+            if value is None:
+                return 0
+            return int(value)
+        except Exception as exc:
+            logger.error(f"Redis GET INT error: {exc}")
+            return None
+
+    def ttl(self, key: str) -> Optional[int]:
+        """Get TTL for a Redis key in seconds."""
+        if not self.is_connected:
+            return None
+        try:
+            ttl = self.client.ttl(key)
+            if ttl is None or ttl < 0:
+                return 0
+            return int(ttl)
+        except Exception as exc:
+            logger.error(f"Redis TTL error: {exc}")
+            return None
+
+    def increment_counter(self, key: str, expire: int) -> Optional[tuple[int, int]]:
+        """Atomically increment a counter and ensure it has an expiration."""
+        if not self.is_connected:
+            return None
+        try:
+            pipeline = self.client.pipeline()
+            pipeline.incr(key)
+            pipeline.ttl(key)
+            count, ttl = pipeline.execute()
+
+            if count == 1 or ttl is None or ttl < 0:
+                self.client.expire(key, expire)
+                ttl = expire
+
+            return int(count), int(ttl)
+        except Exception as exc:
+            logger.error(f"Redis INCR error: {exc}")
+            return None
+
     def delete_pattern(self, pattern: str) -> int:
         """Delete keys matching pattern."""
         if not self.is_connected:

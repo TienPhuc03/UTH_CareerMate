@@ -392,6 +392,13 @@
         const roleFromGoogle = fragmentParams.get("role");
 
         if (tokenFromGoogle) {
+          const normalizedRole =
+            roleFromGoogle === "student"
+              ? "candidate"
+              : roleFromGoogle || "candidate";
+          localStorage.setItem("access_token", tokenFromGoogle);
+          localStorage.setItem("user_email", emailFromGoogle || "");
+          localStorage.setItem("user_role", normalizedRole);
           sessionStorage.setItem("access_token", tokenFromGoogle);
           localStorage.setItem("user_email", emailFromGoogle || "");
           localStorage.setItem("user_role", roleFromGoogle || "candidate");
@@ -437,10 +444,20 @@
       setTimeout(checkAuthStatus, 300);
 
       function logout() {
+        if (window.performLogoutFlow) {
+          return window.performLogoutFlow({
+            reload: true,
+            successMessage: "Dang xuat thanh cong!",
+          });
+        }
+
+        localStorage.removeItem("access_token");
         sessionStorage.removeItem("access_token"); // ← đổi
         localStorage.removeItem("access_token"); // ← thêm để dọn sạch
         localStorage.removeItem("user_email");
-        alert("Đăng xuất thành công!");
+        localStorage.removeItem("user_role");
+        localStorage.removeItem("full_name");
+        alert("Dang xuat thanh cong!");
         window.location.reload();
       }
 

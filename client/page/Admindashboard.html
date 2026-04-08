@@ -22,7 +22,7 @@
                 </div>
                 
                 <nav class="space-y-2">
-                    <a href="AdminDashboard.html" class="flex items-center p-3 text-white bg-gray-800 rounded-lg font-medium">
+                    <a href="Admindashboard.html" class="flex items-center p-3 text-white bg-gray-800 rounded-lg font-medium">
                         <i class="fas fa-tachometer-alt w-6 mr-3"></i> Tổng quan hệ thống
                     </a>
                     <a href="#" class="flex items-center p-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg">
@@ -182,5 +182,16 @@
             </div>
         </main>
     </div>
+    <script>
+        (function () {
+            const token = localStorage.getItem("access_token");
+            const rawRole = localStorage.getItem("user_role");
+            const role = rawRole === "student" ? "candidate" : rawRole;
+
+            if (!token || role !== "admin") {
+                window.location.href = "../auth/login.html";
+            }
+        })();
+    </script>
 </body>
 </html>

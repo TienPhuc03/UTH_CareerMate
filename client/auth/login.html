@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -125,6 +125,15 @@
 
     <script>
       const API_URL = "http://127.0.0.1:8000/api/Auth";
+      function redirectByRole(rawRole) {
+        const role =
+          rawRole === "student" ? "candidate" : rawRole || "candidate";
+        if (role === "admin") {
+          window.location.href = "../page/Admindashboard.html";
+          return;
+        }
+        window.location.href = "../page/Homepage.html";
+      }
 
       document
         .getElementById("loginForm")
@@ -151,6 +160,8 @@
             const data = await res.json();
 
             if (res.ok) {
+              const normalizedRole =
+                data.role === "student" ? "candidate" : data.role || "candidate";
               // Save token to localStorage
               sessionStorage.setItem("access_token", data.access_token); // ← đổi sang sessionStorage
               localStorage.setItem("user_email", email); // ← giữ nguyên
@@ -161,7 +172,7 @@
 
               // Redirect to homepage
               setTimeout(() => {
-                window.location.href = "../page/Homepage.html";
+                redirectByRole(normalizedRole);
               }, 1000);
             } else {
               // Show error message
